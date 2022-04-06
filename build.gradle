@@ -20,14 +20,29 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'com.h2database:h2'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.dukescript.api:junit-browser-runner:1.0'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	// db
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation group: 'org.postgresql', name: 'postgresql', version: '14.2'
+	runtimeOnly 'org.postgresql:postgresql'
+	// https://mvnrepository.com/artifact/org.postgresql/postgresql : JDBC DRIVER
+	implementation group: 'org.postgresql', name: 'postgresql', version: '42.3.3'
+	// https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4.1
+	implementation group: 'org.bgee.log4jdbc-log4j2', name: 'log4jdbc-log4j2-jdbc4.1', version: '1.16'
+
+	// security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+	// 개발 편의
+	implementation 'org.springframework.boot:spring-boot-devtools'
+
 }
 
 tasks.named('test') {
