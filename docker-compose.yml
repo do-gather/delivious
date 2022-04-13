@@ -54,3 +54,7 @@ services:
       - CI=true
       - CHOKIDAR_USEPOLLING=true
     tty: true
+
+volumes:
+  postgres_data_dev:
+  
