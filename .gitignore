@@ -1,13 +1,17 @@
-.gradle
+/backend/.gradle
 
 # MAC
-.DS_Store
+/backend/.DS_Store
 
 # vscode setting
 .vscode
 
 ### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
+/backend/.idea
+/backend/*.iws
+/backend/*.iml
+/backend/*.ipr
+
+### env files ###
+/backend/.env
+/frontend/.env
