@@ -23,3 +23,20 @@ services:
       PGADMIN_DEFAULT_PASSWORD: "dogather"
     ports:
       - 5050:80
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - ./backend/:/app
+    working_dir: /app
+    command: sh run.sh
+    expose:
+      - 8000
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - db
