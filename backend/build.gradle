@@ -38,8 +38,7 @@ dependencies {
 
 	// security
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
-	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+	implementation 'org.springframework.security:spring-security-test'
 	// 개발 편의
 	implementation 'org.springframework.boot:spring-boot-devtools'
 
