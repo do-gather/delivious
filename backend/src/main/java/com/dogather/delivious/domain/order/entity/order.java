@@ -1,31 +1,30 @@
 package com.dogather.delivious.domain.order.entity;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.UUID;
 import static javax.persistence.GenerationType.AUTO;
 
-@Getter
+@Getter @Setter
 @NoArgsConstructor
 @Entity
-//@Table(name='order')
+@Table(name="orders")
 public class order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
+    @Column(nullable = false, unique = true)
     private UUID order_id;
+
+    @Column(nullable = false, unique = true)
     private UUID user_id;
+
+    @Column(nullable = false, unique = true, length = 25)
     private UUID table_id;
+
+    @Column(nullable = false, unique = false)
     private Integer total_count;
     private Integer total_price;
     private String status_now;

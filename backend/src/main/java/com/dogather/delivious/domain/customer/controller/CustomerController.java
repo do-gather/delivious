@@ -1,7 +1,6 @@
 package com.dogather.delivious.domain.customer.controller;
 
 import com.dogather.delivious.domain.customer.repository.CustomerRepository;
-import lombok.Getter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,4 +20,6 @@ public class CustomerController {
         return ResponseEntity.ok(this.customerRepository.findAll());
     }
 
+
 }
+
