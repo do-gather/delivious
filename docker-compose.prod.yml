@@ -1,0 +1,67 @@
+# 웹 개발용, development version, backend, frontend db만 있음.
+# docker-compose -f docker-compose.dev.yml up 으로 실행가능
+
+version: "3"
+
+services:
+  db:
+    image: postgres:12.0-alpine
+    environment:
+      - ./backend/.env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    restart: always
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - ./backend/.env
+    ports:
+      - 5050:80
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - ./backend/:/app
+    working_dir: /app
+    command: sh run.sh
+    expose:
+      - 8000
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        API_URL: "*"
+    volumes:
+      - ./frontend/:/frontend
+      - build_folder:/frontend/build
+      - ./frontend/node_modules/:/frontend/node_modules
+    tty: true
+
+  # nginx 컨테이너(서버)
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:8080
+    volumes:
+      - build_folder:/var/www/frontend
+    depends_on:
+      - backend
+      - frontend
+
+# 컨테이너 내려도 데이터 유지되도록 함
+volumes:
+  postgres_data:
+  build_folder:
+  
