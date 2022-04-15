@@ -35,4 +35,3 @@ public class entity {
         this.status_now = status_now;
         this.created_at = created_at;
     }
-}
