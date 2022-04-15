@@ -1,6 +1,10 @@
 package com.dogather.delivious.domain.order.entity;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
@@ -10,9 +14,10 @@ import java.sql.Timestamp;
 import java.util.UUID;
 import static javax.persistence.GenerationType.AUTO;
 
-@Data
+@Getter
+@NoArgsConstructor
 @Entity
-@Table(name='order')
+//@Table(name='order')
 public class order {
 
     @Id
@@ -26,7 +31,8 @@ public class order {
     private String status_now;
     private Timestamp created_at;
 
-    public entity(UUID order_id, UUID user_id, UUID table_id, Integer total_count, Integer total_price, String status_now, Timestamp created_at) {
+    @Builder
+    public order(UUID order_id, UUID user_id, UUID table_id, Integer total_count, Integer total_price, String status_now, Timestamp created_at) {
         this.order_id = order_id;
         this.user_id = user_id;
         this.table_id = table_id;

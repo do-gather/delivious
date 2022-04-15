@@ -1,12 +1,11 @@
 package com.dogather.delivious.domain.menu.entity;
 
-import lombok.Builder;
-
 import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.UUID;
 
 @Entity
 public class Menu {
@@ -15,7 +14,7 @@ public class Menu {
             strategy = GenerationType.IDENTITY
     )
     private Long menu_id;
-    private Long category_id;
+    private UUID category_id;
     private Long img_id;
     private Long store_num;
     private String menu_name;
@@ -25,7 +24,7 @@ public class Menu {
     private Timestamp updated_at;
 
 
-    public Menu(UUID menu_id, UUID category_id, Long img_id, Long store_num, String menu_name, Long menu_price, String description, Timestamp created_at, Timestamp updated_at) {
+    public Menu(Long menu_id, UUID category_id, Long img_id, Long store_num, String menu_name, Long menu_price, String description, Timestamp created_at, Timestamp updated_at) {
         this.menu_id = menu_id;
         this.category_id = category_id;
         this.img_id = img_id;
@@ -41,14 +40,14 @@ public class Menu {
         return new Menu.MenuBuilder();
     }
 
-    public Menu() {
+    public Menu(UUID menu_id, UUID category_id, Long img_id, Long store_num, String menu_name, Long menu_price, String description, Timestamp created_at, Timestamp updated_at) {
     }
 
     public Long getMenu_id() {
         return this.menu_id;
     }
 
-    public Long getCategory_id() {
+    public UUID getCategory_id() {
         return this.category_id;
     }
 

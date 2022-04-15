@@ -10,13 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
+
     private final CustomerRepository customerRepository;
 
     public CustomerController(CustomerRepository customerRepository) {this.customerRepository = customerRepository;}
 
     @GetMapping
     public ResponseEntity getAllCustomers() {
-        return CustomerRepository.ok(this.customerRepository.findAll());
+
+        return ResponseEntity.ok(this.customerRepository.findAll());
     }
 
 }
