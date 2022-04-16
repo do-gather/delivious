@@ -1,3 +1,3 @@
-function login(id) {
-    return
+export default function login(id) {
+  return;
 }
