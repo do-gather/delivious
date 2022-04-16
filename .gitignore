@@ -3,6 +3,9 @@
 # MAC
 .DS_Store
 
+# vscode setting
+.vscode
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
