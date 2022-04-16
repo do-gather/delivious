@@ -1,12 +1,13 @@
 {
+  "root":true,
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
     },
-    "project": "./src/tsconfig.json",
-    "ecmaVersion": 2018,
-    "sourceType": "module"
+    "project": "tsconfig.eslint.json",
+    "sourceType": "module",
+    "tsconfigRootDir": "frontend"
   },
   "extends": ["plugin:@typescript-eslint/recommended", "prettier", "plugin:prettier/recommended"],
   "plugins": ["react", "@typescript-eslint", "prettier"],
@@ -15,7 +16,7 @@
     "browser": true,
     "es6": true
   },
-  "rules": { "prettier/prettier": 0, "@typescript-eslint/explicit-module-boundary-types": "off" },
+  "rules": { "@typescript-eslint/explicit-module-boundary-types": "off" },
   "settings": {
     "import/resolver": {
       "node": {
