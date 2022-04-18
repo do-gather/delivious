@@ -5,13 +5,12 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "project": "tsconfig.eslint.json",
-    "sourceType": "module",
-    "tsconfigRootDir": "frontend"
+    "project": "./tsconfig.json",
+    "sourceType": "module"
   },
-  "extends": ["plugin:@typescript-eslint/recommended", "prettier", "plugin:prettier/recommended"],
+  "extends": ["plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
   "plugins": ["react", "@typescript-eslint", "prettier"],
-  "ignorePatterns": ["node_modules/"],
+  "ignorePatterns": ["node_modules/","tailwind.config.js","postcss.config.js"],
   "env": {
     "browser": true,
     "es6": true
