@@ -8,7 +8,7 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <h1>두게더의 딜러버스 팀!!</h1>
+        <Header />
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/admin/menu" element={<AdminMenu />} />
