@@ -1,12 +1,16 @@
 import './App.css';
-import { BrowserRouter, Routes } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import AdminMenu from './pages/AdminMenu.tsx';
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <h1>두게더의 딜러버스 팀!!</h1>
-        <Routes></Routes>
+        <Routes>
+          {/* <Route path="/" element={Main} /> */}
+          <Route path="/admin/menu" element={AdminMenu} />
+        </Routes>
       </BrowserRouter>
     </div>
   );
