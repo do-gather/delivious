@@ -2,9 +2,9 @@ import React from "react";
 
 export default function AdminMenu() {
     return (
-        <div className="w-full h-screen">
-            <div>메뉴관리 및 검색바</div>
-            <div className="flex mx-14 justify-between whitespace-nowrap text-white" style={{ backgroundColor: "#435CA5" }}>
+        <div className="w-full h-screen px-14">
+            <div className="font-bold text-3xl pb-9">메뉴관리</div>
+            <div className="flex px-10 justify-between font-semibold whitespace-nowrap text-white h-12 text-center items-center text-2xl" style={{ backgroundColor: "#435CA5" }}>
                 <div>Category</div>
                 <div>ID</div>
                 <div>Name</div>
