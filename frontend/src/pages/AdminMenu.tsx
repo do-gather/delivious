@@ -20,7 +20,7 @@ export default function AdminMenu() {
                 <div>Price</div>
                 <div>Date</div>
             </div>
-            <AdminMenuItem />
+            <AdminMenuItem category="Coffee" id="1391039" name="아이스 아메리카노" temp="Ice" size="Tall" price="4,000" date="2021.11.30" />
             <Divider />
         </div>
     );
