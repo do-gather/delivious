@@ -1,4 +1,11 @@
 import React from "react";
+import AdminMenuItem from "../components/AdminMenuItem.tsx";
+
+function Divider() {
+    return (
+        <div className="border-b w-full" style={{ borderColor: "#c4c4c4" }}></div>
+    );
+}
 
 export default function AdminMenu() {
     return (
@@ -13,6 +20,8 @@ export default function AdminMenu() {
                 <div>Price</div>
                 <div>Date</div>
             </div>
+            <AdminMenuItem />
+            <Divider />
         </div>
     );
 }
