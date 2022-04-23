@@ -1,3 +1,8 @@
+
+/**
+ * 테스트를 위해 임포트 하여 사용할 데이터 및 상수 모음
+ */
+
 const constants = {
     MENU_ITEMS: [
         {

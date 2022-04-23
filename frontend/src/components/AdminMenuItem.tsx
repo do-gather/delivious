@@ -1,5 +1,9 @@
 import React from "react";
 
+/**
+ * 어드민 메뉴 목록의 각 아이템
+ * @param props 메뉴안에 들어갈 각 항목을 아래 인터페이스 형태로 묶어서 받음
+ */
 interface Props {
     props: {
         category: string;

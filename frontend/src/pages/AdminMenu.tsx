@@ -2,6 +2,11 @@ import React from "react";
 import AdminMenuItem from "../components/AdminMenuItem.tsx";
 import constants from "../utils/constants.ts";
 
+/**
+ * '/admin/menu'로 연결되는 어드민 메뉴 페이지
+ * 메뉴 리스트를 보여주고 수정 및 검색이 가능
+ */
+
 function Divider() {
     return (
         <div className="border-b w-full" style={{ borderColor: "#c4c4c4" }}></div>
