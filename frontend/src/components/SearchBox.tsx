@@ -2,8 +2,8 @@ import React from "react";
 import SearchIcon from "../images/SearchIcon.tsx";
 
 /**
- * 어드민 메뉴 목록의 각 아이템
- * @param placeholder 메뉴안에 들어갈 각 항목을 아래 인터페이스 형태로 묶어서 받음
+ * 검색 입력 창
+ * @param placeholder 플레이스 홀더에 들어갈 말을 변수로 받음
  */
 interface Props {
     placeholder: string;
