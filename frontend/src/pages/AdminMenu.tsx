@@ -1,6 +1,8 @@
 import React from "react";
 import AdminMenuItem from "../components/AdminMenuItem.tsx";
 import constants from "../utils/constants.ts";
+import EditButton from "../images/EditButton.tsx";
+import { Link } from 'react-router-dom';
 
 /**
  * '/admin/menu'로 연결되는 어드민 메뉴 페이지
@@ -32,6 +34,9 @@ export default function AdminMenu() {
                     <Divider />
                 </div>
             ))}
+            <Link className="fixed left-11 bottom-11" to='/admin/menu/edit'>
+                <EditButton />
+            </Link>
         </div>
     );
 }
