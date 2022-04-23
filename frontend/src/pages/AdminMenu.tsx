@@ -2,6 +2,7 @@ import React from "react";
 import AdminMenuItem from "../components/AdminMenuItem.tsx";
 import constants from "../utils/constants.ts";
 import EditButton from "../images/EditButton.tsx";
+import SideButton from "../components/SideButton.tsx";
 import { Link } from 'react-router-dom';
 
 /**
@@ -34,6 +35,10 @@ export default function AdminMenu() {
                     <Divider />
                 </div>
             ))}
+            <div className="flex-col space-y-8 fixed right-0 top-14">
+                <SideButton color="#000000" name="주문하기" link="/" />
+                <SideButton color="#435ca5" name="관리페이지" link="/admin" />
+            </div>
             <Link className="fixed left-11 bottom-11" to='/admin/menu/edit'>
                 <EditButton />
             </Link>
