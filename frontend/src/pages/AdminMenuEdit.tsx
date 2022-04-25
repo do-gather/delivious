@@ -7,8 +7,8 @@ import Tap from "../components/Tap.tsx";
 import { Link } from 'react-router-dom';
 
 /**
- * '/admin/menu'로 연결되는 어드민 메뉴 페이지
- * 메뉴 리스트를 보여주고 수정 및 검색이 가능
+ * '/admin/menu/edit'로 연결되는 어드민 메뉴 수정 페이지
+ * 메뉴 리스트 수정 및 삭제, 추가가 가능
  */
 
 function Divider() {
