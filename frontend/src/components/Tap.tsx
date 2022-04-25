@@ -13,7 +13,7 @@ interface Props {
     link: string;
 }
 
-export default function SideButton(props: Props) {
+export default function Tap(props: Props) {
     return (
         <Link className="flex flex-wrap items-center px-4 w-12 h-56 text-white text-center text-base leading-8 rounded-l"
             style={{ backgroundColor: props.color }}

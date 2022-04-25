@@ -9,7 +9,7 @@ interface Props {
     placeholder: string;
 }
 
-export default function SearchBox(props: Props) {
+export default function SearchBar(props: Props) {
     return (
         <div className={`relative h-10`} style={{ width: "28.75rem" }}>
             <div className="absolute left-3.5 top-3">
