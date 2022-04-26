@@ -1,4 +1,5 @@
 import React from "react";
+import EditBox from "./EditBox.tsx";
 
 /**
  * 어드민 메뉴 목록의 각 아이템
@@ -14,18 +15,18 @@ interface Props {
         price: string;
         date: string;
     }
-
+    type?: string;
 }
 
-export default function AdminMenuItem({ props }: Props) {
+export default function AdminMenuItem({ props, type = "" }: Props) {
     return (
         <div className="grid grid-cols-7 px-10 gap-4 py-6 justify-between whitespace-nowrap text-center items-center text-base">
-            <div>{props.category}</div>
+            {type === 'edit' ? <EditBox placeholder="카테고리" text={props.category} /> : <div>{props.category}</div>}
             <div>{props.id}</div>
-            <div>{props.name}</div>
+            {type === 'edit' ? <EditBox placeholder="메뉴 이름" text={props.name} /> : <div>{props.name}</div>}
             <div>{props.temp}</div>
             <div>{props.size}</div>
-            <div>{props.price}</div>
+            {type === 'edit' ? <EditBox placeholder="가격" text={props.price} /> : <div>{props.price}</div>}
             <div>{props.date}</div>
         </div>
     );
