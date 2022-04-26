@@ -35,7 +35,7 @@ export default function AdminMenu() {
             </div>
             {constants.MENU_ITEMS.map((menu, index) => (
                 <div key={index}>
-                    <AdminMenuItem props={menu} />
+                    <AdminMenuItem props={menu} type={'display'} />
                     <Divider />
                 </div>
             ))}
