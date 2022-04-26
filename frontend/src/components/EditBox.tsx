@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 /**
  * 메뉴 수정 시 input box
@@ -11,12 +11,19 @@ interface Props {
 }
 
 export default function EditBox({ placeholder, text = '' }: Props) {
+    const [value, setValue] = useState(text);
+
+    const handleTextChange = (e: any) => {
+        setValue(e.target.value)
+    };
+
     return (
         <input
             type="text"
             className={`bg-white text-base text-center placeholder-gray-500 py-2.5 h-10 w-36`}
             placeholder={placeholder}
-            value={text}
+            value={value}
+            onChange={handleTextChange}
         />
     );
 }
