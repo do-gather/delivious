@@ -27,7 +27,7 @@ export default function AdminMenuEdit() {
                     <BasicButton buttonName="편집 완료" />
                 </Link>
             </div>
-            <div className="grid grid-cols-7 gap-4 px-10 justify-between font-semibold whitespace-nowrap text-white h-12 text-center items-center text-2xl" style={{ backgroundColor: "#435CA5" }}>
+            <div className="grid grid-cols-7 gap-4 px-10 font-semibold whitespace-nowrap text-white h-12 text-center items-center text-2xl" style={{ backgroundColor: "#435CA5" }}>
                 <div>Category</div>
                 <div>ID</div>
                 <div>Name</div>
@@ -42,6 +42,10 @@ export default function AdminMenuEdit() {
                     <Divider />
                 </div>
             ))}
+            <div>
+                <AdminMenuItem type='new' />
+                <Divider />
+            </div>
             <div className="flex-col space-y-8 fixed right-0 top-14">
                 <Tap color="#000000" name="주문하기" link="/" />
                 <Tap color="#435ca5" name="관리페이지" link="/admin" />
