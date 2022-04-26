@@ -10,7 +10,7 @@ interface Props {
 
 export default function BasicButton(props: Props) {
     return (
-        <div className='flex items-center rounded text-base font-bold text-white text-center px-10 object-left-top h-10' style={{ backgroundColor: '#435ca5' }}>
+        <div className='flex whitespace-nowrap items-center rounded text-base font-bold text-white text-center px-10 object-left-top h-10' style={{ backgroundColor: '#435ca5' }}>
             {props.buttonName}
         </div>
     );

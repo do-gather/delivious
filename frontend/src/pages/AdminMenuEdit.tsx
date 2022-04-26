@@ -1,7 +1,7 @@
 import React from "react";
 import AdminMenuItem from "../components/AdminMenuItem.tsx";
 import constants from "../utils/constants.ts";
-import EditButton from "../images/EditButton.tsx";
+import BasicButton from "../components/BasicButton.tsx";
 import SearchBar from "../components/SearchBar.tsx";
 import Tap from "../components/Tap.tsx";
 import { Link } from 'react-router-dom';
@@ -20,9 +20,12 @@ function Divider() {
 export default function AdminMenuEdit() {
     return (
         <div className="w-full h-screen pl-14 pr-32">
-            <div className="flex space-x-24">
-                <div className="font-bold text-3xl pb-9">메뉴관리</div>
-                <SearchBar placeholder="Search menu name or id" />
+            <div className="grid grid-cols-8 space-x-24 items-center pb-8 justify-between ">
+                <div className="col-span-1 font-bold text-3xl whitespace-nowrap">메뉴관리</div>
+                <div className="col-span-5"><SearchBar placeholder="Search menu name or id" /> </div>
+                <Link className="col-span-2 justify-self-end w-max" to='/admin/menu'>
+                    <BasicButton buttonName="편집 완료" />
+                </Link>
             </div>
             <div className="grid grid-cols-7 gap-4 px-10 justify-between font-semibold whitespace-nowrap text-white h-12 text-center items-center text-2xl" style={{ backgroundColor: "#435CA5" }}>
                 <div>Category</div>
@@ -43,9 +46,6 @@ export default function AdminMenuEdit() {
                 <Tap color="#000000" name="주문하기" link="/" />
                 <Tap color="#435ca5" name="관리페이지" link="/admin" />
             </div>
-            <Link className="fixed left-11 bottom-11" to='/admin/menu/edit'>
-                <EditButton />
-            </Link>
         </div>
     );
 }
