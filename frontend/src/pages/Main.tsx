@@ -19,8 +19,13 @@ function Divider() {
 
 export default function Main() {
     return (
-        <div>
-            <div className="w-full h-screen pl-14 pr-32">
+        <div className="flex">
+            <div className="flex-col w-44 space-y-3">
+                <div className="text-lg font-bold pl-16 pb-2">음료</div>
+                <div className="text-sm pl-20">커피</div>
+                <div className="text-sm pl-20">스무디</div>
+            </div>
+            <div className="w-full h-screen pl-14 pr-80">
                 <div className="flex space-x-2 items-center pb-5 text-left whitespace-nowrap">
                     <div className="font-bold text-xl">Menu</div>
                     <div className="text-sm"> /커피</div>
