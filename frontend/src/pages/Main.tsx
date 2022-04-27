@@ -19,23 +19,27 @@ function Divider() {
 
 export default function Main() {
     return (
-        <div className="w-full h-screen pl-14 pr-32">
-            <div className="flex space-x-2 items-center pb-5 text-left whitespace-nowrap">
-                <div className="font-bold text-xl">Menu</div>
-                <div className="text-sm"> /커피</div>
+        <div>
+            <div className="w-full h-screen pl-14 pr-32">
+                <div className="flex space-x-2 items-center pb-5 text-left whitespace-nowrap">
+                    <div className="font-bold text-xl">Menu</div>
+                    <div className="text-sm"> /커피</div>
+                </div>
+                <div className="text-base font-bold">Ice coffee</div>
+                <Divider />
+                <div className="grid grid-cols-4 pt-5">
+                    {constants.MENU_ITEMS.map((menu, index) => (
+                        <MenuItem props={menu} key={index} />
+                    ))}
+                </div>
+
+                <Link className="fixed left-11 bottom-11" to='/admin/menu/edit'>
+                    <EditButton />
+                </Link>
             </div>
-            <div className="text-base font-bold">Ice coffee</div>
-            <Divider />
-            <div className="grid grid-cols-4 pt-5">
-                {constants.MENU_ITEMS.map((menu, index) => (
-                    <MenuItem props={menu} key={index} />
-                ))}
+            <div className="flex fixed right-0 top-16">
+                <Tap color="#435ca5" name="주문하기" link="/" />
+                <div className="w-64 min-h-screen bg-white"></div>
             </div>
-            <div className="flex-col space-y-8 fixed right-0 top-14">
-                <Tap color="#000000" name="주문하기" link="/" />
-            </div>
-            <Link className="fixed left-11 bottom-11" to='/admin/menu/edit'>
-                <EditButton />
-            </Link>
         </div>);
 }
