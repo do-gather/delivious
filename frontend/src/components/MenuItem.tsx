@@ -40,17 +40,10 @@ export default function MenuItem({ props, type = 'display' }: Props) {
     return (
         <div className="text-center text-base w-36">
             <div className="w-36 h-36 bg-white whitespace-nowrap items-center px-10 cursor-pointer"
-                style={{ backgroundImage: `${TestImage}` }}>
+                style={{}}>
                 <img className="m-auto" alt='test-menu' src={TestImage}></img>
-                <div>{props.category}</div>
-
-
-                <div>{props.temp}</div>
-                <div>{props.size}</div>
-                <div>{props.price}</div>
-                <div>{props.date}</div>
             </div>
             <div>{props.name}</div>
-        </div>
+        </div >
     );
 }
