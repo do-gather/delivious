@@ -37,10 +37,6 @@ export default function Main() {
                         <MenuItem props={menu} key={index} />
                     ))}
                 </div>
-
-                <Link className="fixed left-11 bottom-11" to='/admin/menu/edit'>
-                    <EditButton />
-                </Link>
             </div>
             <div className="flex fixed right-0 top-16">
                 <Tap color="#435ca5" name="주문하기" link="/" />
