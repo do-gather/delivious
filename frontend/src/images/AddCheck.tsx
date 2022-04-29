@@ -3,6 +3,7 @@ import { SVGProps } from "react"
 
 const AddCheck = (props: SVGProps<SVGSVGElement>) => (
     <svg
+        className="mx-auto cursor-pointer"
         width={90}
         height={90}
         fill="none"
