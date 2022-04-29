@@ -40,7 +40,7 @@ export default function MenuItem({ props, type = 'display' }: Props) {
         <div className="text-center text-base w-36">
             <div className="w-36 h-36 bg-white whitespace-nowrap items-center cursor-pointer bg-contain bg-center"
                 style={{ backgroundImage: "url(https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png)" }}>
-                <img className="m-auto" alt='test-menu' src={TestImage}></img>
+                <div className="bg-zinc-500/50 w-full h-full"></div>
             </div>
             <div>{props.name}</div>
         </div >
