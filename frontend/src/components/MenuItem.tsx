@@ -25,8 +25,8 @@ export default function MenuItem({ props }: Props) {
     const [step, setStep] = useState(0)
 
     // 메뉴에 있는 옵션만 화면에 보여주기 위한 함수
-    const handleCheckLabel = (keyword: string, label: string) => {
-        return keyword.includes(label)
+    const handleCheckLabel = (options: string, label: string) => {
+        return options.includes(label)
     };
 
     const handleClicked = () => {
