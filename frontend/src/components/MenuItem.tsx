@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import getYmd10 from "../utils/utils.tsx";
+import AddCheck from "../images/AddCheck.tsx";
+import MenuButton from "./MenuButton.tsx";
 
 /**
  * 사용자 메뉴 목록의 각 아이템
@@ -37,12 +39,23 @@ export default function MenuItem({ props, type = 'display' }: Props) {
     };
 
     return (
-        <div className="text-center text-base w-36">
-            <div className="w-36 h-36 bg-white whitespace-nowrap items-center cursor-pointer bg-contain bg-center"
-                style={{ backgroundImage: "url(https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png)" }}>
-                <div className="bg-zinc-500/50 w-full h-full"></div>
+        <div className="text-center text-xs w-36">
+            <div className={`w-36 h-36 bg-white whitespace-nowrap items-center ${type === "display" && "cursor-pointer"} bg-contain bg-center`}
+                style={{ backgroundImage: "url(https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png)" }} >
+                {type === "temp" && <div className="flex justify-center items-center space-x-2 bg-zinc-500/50 w-full h-full">
+                    <MenuButton buttonName="Hot" textColor="text-black" bgColor="#ffffff" />
+                    <MenuButton buttonName="Ice" textColor="text-black" bgColor="#ffffff" />
+                </div>}
+                {type === "size" && <div className="flex flex-col justify-center items-center space-y-3.5 bg-zinc-500/50 w-full h-full">
+                    <MenuButton buttonName="Tall" textColor="text-black" bgColor="#ffffff" />
+                    <MenuButton buttonName="Grande" textColor="text-black" bgColor="#ffffff" />
+                    <MenuButton buttonName="Venti" textColor="text-black" bgColor="#ffffff" />
+                </div>}
+                {type === "add" && <div className="flex justify-center items-center bg-zinc-500/50 w-full h-full">
+                    <AddCheck />
+                </div>}
             </div>
-            <div>{props.name}</div>
+            <div className="mt-3">{props.name}</div>
         </div >
     );
 }
