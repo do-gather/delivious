@@ -1,10 +1,7 @@
 import React from "react";
 import MenuItem from "../components/MenuItem.tsx";
 import constants from "../utils/constants.ts";
-import EditButton from "../images/EditButton.tsx";
-import SearchBar from "../components/SearchBar.tsx";
 import Tap from "../components/Tap.tsx";
-import { Link } from 'react-router-dom';
 
 /**
  * '/'로 연결되는 메인 페이지
