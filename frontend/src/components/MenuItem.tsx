@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import getYmd10 from "../utils/utils.tsx";
 import AddCheck from "../images/AddCheck.tsx";
 import PillButton from "./PillButton.tsx";
 
@@ -22,16 +21,7 @@ interface Props {
 }
 
 export default function MenuItem({ props }: Props) {
-    const [currentDate, setCurrentDate] = useState(getYmd10())
-    const [menu, setMenu] = useState(props ? props : props = {
-        category: '',
-        id: '-',
-        name: '',
-        temp: '',
-        size: '',
-        price: '',
-        date: '',
-    })
+
     const [step, setStep] = useState(0)
 
     // 메뉴에 있는 옵션만 화면에 보여주기 위한 함수
