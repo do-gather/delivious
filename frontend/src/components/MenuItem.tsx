@@ -7,8 +7,9 @@ import MenuButton from "./MenuButton.tsx";
  * 사용자 메뉴 목록의 각 아이템
  * 
  * @param props 메뉴안에 들어갈 각 항목을 아래 인터페이스 형태로 묶어서 받음
- * @param type 아이템이 수정 상태인지 아닌지 입력, 기본은 'display'. 수정 시 'edit'을 전달. 새로 추가 시 'new' 전달. 전달하지 않으면 'display'로 초기화 됨
+ * @param type 아이템이 수정 상태인지 아닌지 입력, 기본은 'display'. 온도 선택 시 'temp'을 전달. 사이즈 선택 시 'size' 전달. 최종 선택 시 'add' 전달. 전달하지 않으면 'display'로 초기화 됨
  */
+
 interface Props {
     props?: {
         category: string;

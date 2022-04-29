@@ -3,6 +3,8 @@ import React from "react";
 /**
  * 기본 둥근 모서리 버튼 (메뉴 담는 과정에서 쓰임)
  * @param buttonName 버튼에 들어갈 이름을 받음
+ * @param textColor 버튼 이름 색상 받음
+ * @param bgColor 버튼 배경 색상 받음
  */
 interface Props {
     buttonName: string;
