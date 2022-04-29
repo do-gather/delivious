@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import getYmd10 from "../utils/utils.tsx";
-import TestImage from "../images/menu_test.png";
 
 /**
  * 사용자 메뉴 목록의 각 아이템
@@ -39,8 +38,8 @@ export default function MenuItem({ props, type = 'display' }: Props) {
 
     return (
         <div className="text-center text-base w-36">
-            <div className="w-36 h-36 bg-white whitespace-nowrap items-center px-10 cursor-pointer"
-                style={{}}>
+            <div className="w-36 h-36 bg-white whitespace-nowrap items-center cursor-pointer bg-contain bg-center"
+                style={{ backgroundImage: "url(https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png)" }}>
                 <img className="m-auto" alt='test-menu' src={TestImage}></img>
             </div>
             <div>{props.name}</div>
