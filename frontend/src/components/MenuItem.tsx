@@ -44,7 +44,6 @@ export default function MenuItem({ props }: Props) {
             backgroundImage: 'url(https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png)',
           }}
           onClick={handleClicked}
-          onKeyDown={handleClicked}
         />
       ) : (
         <div

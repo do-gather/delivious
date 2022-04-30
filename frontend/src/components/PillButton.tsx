@@ -18,7 +18,7 @@ export default function PillButton({ buttonTitle, onClick, activeColor = 'active
     <button
       type="button"
       className={`flex whitespace-nowrap justify-center items-center rounded-3xl text-base text-center 
-        px-2 h-7 cursor-pointer bg-white ${activeColor} active:text-white text-black `}
+        px-2 h-7 bg-white ${activeColor} active:text-white text-black `}
       onClick={onClick}
     >
       {buttonTitle}

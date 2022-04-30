@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import React from 'react';
 import CheckBox from './CheckBox';
 import EditBox from './EditBox';
@@ -13,7 +14,6 @@ import getYmd10 from '../utils/utils';
  *              새로 추가 시 'new' 전달. 전달하지 않으면 'display'로 초기화 됨
  */
 interface Props {
-  // eslint-disable-next-line react/require-default-props
   props?: {
     category: string;
     id: string;
@@ -23,7 +23,6 @@ interface Props {
     price: string;
     date: string;
   };
-  // eslint-disable-next-line react/require-default-props
   type?: string;
 }
 
