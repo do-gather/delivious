@@ -1,5 +1,4 @@
-import React from "react";
-
 export default function Login() {
-    return;
+  // eslint-disable-next-line no-useless-return
+  return;
 }
