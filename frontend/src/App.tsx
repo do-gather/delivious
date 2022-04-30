@@ -1,9 +1,10 @@
+import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import AdminMenu from './pages/AdminMenu.tsx';
-import Header from './components/Header.tsx';
-import Main from './pages/Main.tsx';
-import AdminMenuEdit from './pages/AdminMenuEdit.tsx';
+import AdminMenu from './pages/AdminMenu';
+import Header from './components/Header';
+import Main from './pages/Main';
+import AdminMenuEdit from './pages/AdminMenuEdit';
 
 function App() {
   return (

@@ -1,6 +1,6 @@
-import React from "react";
-import Logo from "../images/delivious_logo.png";
+import React from 'react';
 import { Link } from 'react-router-dom';
+import MainLogo from '../images/MainLogo';
 
 /**
  * 로고가 위치하는 헤더 컴포넌트
@@ -8,12 +8,11 @@ import { Link } from 'react-router-dom';
  */
 
 export default function Header() {
-    return (
-        <>
-            <div>
-                <Link className="w-28" to='/'>
-                    <img className="mx-14 py-9 w-28" alt='main-logo' src={Logo}></img>
-                </Link>
-            </div>
-        </>);
+  return (
+    <div className="px-14 py-9">
+      <Link className="flex w-fit" to="/">
+        <MainLogo />
+      </Link>
+    </div>
+  );
 }
