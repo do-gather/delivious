@@ -36,8 +36,8 @@ export default function AdminMenuItem({ props, type = 'display' }: Props) {
         date: '',
     })
 
-    const handleChecked = (keyword: string, label: string) => {
-        return keyword.includes(label)
+    const handleChecked = (options: string, label: string) => {
+        return options.includes(label)
     };
 
     return (

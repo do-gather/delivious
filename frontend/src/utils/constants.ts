@@ -23,6 +23,16 @@ const constants = {
             price: '5,000',
             date: "2021.1.30"
         },
+    ],
+    CATEGORIES: [
+        {
+            category: '음료',
+            name: '커피',
+        },
+        {
+            category: '음료',
+            name: '스무디',
+        },
     ]
 }
 export default constants;
