@@ -15,7 +15,7 @@ const constants = {
     },
     {
       category: 'Coffee',
-      id: '13967839',
+      id: '13947839',
       name: '토피넛 라떼',
       temp: 'Ice, Hot',
       size: 'Tall, Grande, Venti',
@@ -70,12 +70,16 @@ const constants = {
   ],
   CATEGORIES: [
     {
-      category: '음료',
-      name: '커피',
+      name: 'Coffee',
+      id: '1391039',
     },
     {
-      category: '음료',
-      name: '스무디',
+      name: 'Non-Coffee',
+      id: '1414612',
+    },
+    {
+      name: 'Tea',
+      id: '1245666',
     },
   ],
 };
