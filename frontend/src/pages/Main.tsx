@@ -1,7 +1,7 @@
-import React from "react";
-import MenuItem from "../components/MenuItem.tsx";
-import constants from "../utils/constants.ts";
-import Tap from "../components/Tap.tsx";
+import React from 'react';
+import MenuItem from '../components/MenuItem';
+import constants from '../utils/constants';
+import Tap from '../components/Tap';
 
 /**
  * '/'로 연결되는 메인 페이지
@@ -9,35 +9,34 @@ import Tap from "../components/Tap.tsx";
  */
 
 function Divider() {
-    return (
-        <div className="border-b w-full" style={{ borderColor: "#c4c4c4" }}></div>
-    );
+  return <div className="border-b w-full" style={{ borderColor: '#c4c4c4' }} />;
 }
 
 export default function Main() {
-    return (
-        <div className="flex">
-            <div className="flex-col w-44 space-y-3">
-                <div className="text-lg font-bold pl-16 pb-2 cursor-pointer">음료</div>
-                <div className="text-sm pl-20 cursor-pointer">커피</div>
-                <div className="text-sm pl-20 cursor-pointer">스무디</div>
-            </div>
-            <div className="w-full h-screen pl-14 pr-80">
-                <div className="flex space-x-2 items-center pb-5 text-left whitespace-nowrap">
-                    <div className="font-bold text-xl">Menu</div>
-                    <div className="text-sm"> /커피</div>
-                </div>
-                <div className="text-base font-bold">Ice coffee</div>
-                <Divider />
-                <div className="grid grid-cols-4 pt-5">
-                    {constants.MENU_ITEMS.map((menu, index) => (
-                        <MenuItem props={menu} key={index} />
-                    ))}
-                </div>
-            </div>
-            <div className="flex fixed right-0 top-16">
-                <Tap color="#435ca5" name="주문하기" link="/" />
-                <div className="w-64 min-h-screen bg-white"></div>
-            </div>
-        </div>);
+  return (
+    <div className="flex">
+      <div className="flex-col w-44 space-y-3">
+        <div className="text-lg font-bold pl-16 pb-2 cursor-pointer">음료</div>
+        <div className="text-sm pl-20 cursor-pointer">커피</div>
+        <div className="text-sm pl-20 cursor-pointer">스무디</div>
+      </div>
+      <div className="w-full h-screen pl-14 pr-80">
+        <div className="flex space-x-2 items-center pb-5 text-left whitespace-nowrap">
+          <div className="font-bold text-xl">Menu</div>
+          <div className="text-sm"> /커피</div>
+        </div>
+        <div className="text-base font-bold">Ice coffee</div>
+        <Divider />
+        <div className="grid grid-cols-4 pt-5">
+          {constants.MENU_ITEMS.map(menu => (
+            <MenuItem props={menu} key={menu.id} />
+          ))}
+        </div>
+      </div>
+      <div className="flex fixed right-0 top-16">
+        <Tap color="#435ca5" name="주문하기" link="/" />
+        <div className="w-64 min-h-screen bg-white" />
+      </div>
+    </div>
+  );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 /**
  * 중복 체크 가능한 check box
@@ -6,28 +6,30 @@ import React, { useState } from "react";
  * @param label 체크 박스 옆에 표시될 이름
  */
 interface Props {
-    checked?: boolean;
-    label: string;
+  // eslint-disable-next-line react/require-default-props
+  checked?: boolean;
+  label: string;
 }
 
 export default function CheckBox({ checked = false, label }: Props) {
-    const [mark, setMark] = useState(checked);
+  const [mark, setMark] = useState(checked);
 
-    const handleMarkChange = () => {
-        setMark(!mark)
-    };
+  const handleMarkChange = () => {
+    setMark(!mark);
+  };
 
-    return (
-        <div className="flex items-center">
-            <input
-                type="checkbox"
-                className={`cursor-pointer mr-1 w-5 h-5 bg-white shadow-none outline-none`}
-                checked={mark}
-                onChange={handleMarkChange}
-            />
-            <label className="text-left text-base">
-                {label}
-            </label>
-        </div>
-    );
+  return (
+    <div className="flex items-center">
+      <input
+        id={label}
+        type="checkbox"
+        className="cursor-pointer mr-1 w-5 h-5 bg-white shadow-none outline-none"
+        checked={mark}
+        onChange={handleMarkChange}
+      />
+      <label className="text-left text-base" htmlFor="check">
+        {label}
+      </label>
+    </div>
+  );
 }
