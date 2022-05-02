@@ -9,10 +9,10 @@ import MainLogo from '../images/MainLogo';
 
 export default function Header() {
   return (
-    <div className="px-12 py-9 h-16">
+    <header className="absolute px-12 py-9 h-16">
       <Link className="flex w-fit" to="/">
         <MainLogo />
       </Link>
-    </div>
+    </header>
   );
 }
