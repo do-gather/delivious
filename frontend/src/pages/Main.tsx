@@ -14,7 +14,7 @@ function Divider() {
 
 export default function Main() {
   return (
-    <div className="flex pt-12" style={{ backgroundColor: '#E5E5E5', height: '100%' }}>
+    <div className="flex pt-28 h-full space-x-12">
       <div className="pl-12 flex-col w-44 space-y-3 text-center">
         <div className="text-base font-bold pb-2 whitespace-nowrap">스타벅스 강남R점</div>
         {constants.CATEGORIES.map(item => (
@@ -23,23 +23,25 @@ export default function Main() {
           </div>
         ))}
       </div>
-      <div className="w-full h-screen pl-14 pr-80">
+      <div className="w-full">
         <div className="flex space-x-2 items-center pb-5 text-left whitespace-nowrap">
           <div className="font-bold text-xl">Menu</div>
         </div>
-        {constants.CATEGORIES.map(category => (
-          <>
-            <div className="text-base font-bold">{category.name}</div>
-            <Divider />
-            <div className="flex flex-wrap pt-5 gap-12 pb-12">
-              {constants.MENU_ITEMS.map(
-                menu => menu.category === category.name && <MenuItem props={menu} key={menu.id} />,
-              )}
+        <div className="h-4/5 overflow-y-auto">
+          {constants.CATEGORIES.map(category => (
+            <div className="text-base font-bold" key={category.id}>
+              {category.name}
+              <Divider />
+              <div className="flex flex-wrap pt-5 gap-12 pb-12">
+                {constants.MENU_ITEMS.map(
+                  menu => menu.category === category.name && <MenuItem props={menu} key={menu.id} />,
+                )}
+              </div>
             </div>
-          </>
-        ))}
+          ))}
+        </div>
       </div>
-      <div className="flex fixed right-0 top-16">
+      <div className="flex right-0 top-16">
         <Tap color="#435ca5" name="주문하기" link="/" />
         <div className="w-64 min-h-screen bg-white" />
       </div>

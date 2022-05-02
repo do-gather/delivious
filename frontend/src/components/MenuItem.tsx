@@ -83,7 +83,7 @@ export default function MenuItem({ props }: Props) {
           )}
         </div>
       )}
-      <div className="mt-3">{props.name}</div>
+      <div className="mt-3 font-normal">{props.name}</div>
     </div>
   );
 }
