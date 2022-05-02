@@ -17,7 +17,7 @@ function Divider() {
 
 export default function AdminMenu() {
   return (
-    <div className="w-full h-screen pl-14 pr-32">
+    <div className="w-full h-screen pl-14 pr-32 pt-7">
       <div className="grid grid-cols-8 space-x-4 items-center pb-8 justify-between ">
         <div className="col-span-1 font-bold text-3xl whitespace-nowrap">메뉴관리</div>
         <div className="col-span-5">
