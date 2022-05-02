@@ -14,24 +14,30 @@ function Divider() {
 
 export default function Main() {
   return (
-    <div className="flex">
-      <div className="flex-col w-44 space-y-3">
-        <div className="text-lg font-bold pl-16 pb-2 cursor-pointer">음료</div>
-        <div className="text-sm pl-20 cursor-pointer">커피</div>
-        <div className="text-sm pl-20 cursor-pointer">스무디</div>
+    <div className="flex pt-12" style={{ backgroundColor: '#E5E5E5', height: '100%' }}>
+      <div className="pl-12 flex-col w-44 space-y-3 text-center">
+        <div className="text-base font-bold pb-2 whitespace-nowrap">스타벅스 강남R점</div>
+        {constants.CATEGORIES.map(item => (
+          <div className="text-sm cursor-pointer" key={item.id}>
+            {item.name}
+          </div>
+        ))}
       </div>
       <div className="w-full h-screen pl-14 pr-80">
         <div className="flex space-x-2 items-center pb-5 text-left whitespace-nowrap">
           <div className="font-bold text-xl">Menu</div>
-          <div className="text-sm"> /커피</div>
         </div>
-        <div className="text-base font-bold">Ice coffee</div>
-        <Divider />
-        <div className="grid grid-cols-4 pt-5">
-          {constants.MENU_ITEMS.map(menu => (
-            <MenuItem props={menu} key={menu.id} />
-          ))}
-        </div>
+        {constants.CATEGORIES.map(category => (
+          <>
+            <div className="text-base font-bold">{category.name}</div>
+            <Divider />
+            <div className="flex flex-wrap pt-5 gap-12 pb-12">
+              {constants.MENU_ITEMS.map(
+                menu => menu.category === category.name && <MenuItem props={menu} key={menu.id} />,
+              )}
+            </div>
+          </>
+        ))}
       </div>
       <div className="flex fixed right-0 top-16">
         <Tap color="#435ca5" name="주문하기" link="/" />
