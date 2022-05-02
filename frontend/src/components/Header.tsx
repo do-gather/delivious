@@ -9,7 +9,7 @@ import MainLogo from '../images/MainLogo';
 
 export default function Header() {
   return (
-    <header className="absolute px-12 py-9 h-16">
+    <header className="fixed w-full px-12 py-9 h-16" style={{ backgroundColor: '#E5E5E5' }}>
       <Link className="flex w-fit" to="/">
         <MainLogo />
       </Link>
