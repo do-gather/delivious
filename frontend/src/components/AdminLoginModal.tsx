@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import BasicButton from './BasicButton';
 
 /**
@@ -10,6 +11,7 @@ interface Props {
 }
 
 export default function AdminLoginModal({ onClose }: Props) {
+  const navigate = useNavigate();
   return (
     <div
       className="absolute w-full h-screen top-0 -left-16 z-50"
@@ -36,6 +38,14 @@ export default function AdminLoginModal({ onClose }: Props) {
           <input className=" placeholder-slate-200 bg-black" placeholder="Password" />
           <div>해당 매장번호의 관리자 비밀번호를 입력해주세요.</div>
           <BasicButton buttonName="관리자 모드 시작하기" />
+          <div className="px-4">
+            <BasicButton
+              buttonName="관리자 모드 시작하기"
+              onClick={() => {
+                navigate('/admin');
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>
