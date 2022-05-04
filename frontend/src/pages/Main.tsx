@@ -14,7 +14,7 @@ function Divider() {
 
 export default function Main() {
   return (
-    <div className="flex pt-28 space-x-12 overflow-y-hidden h-full">
+    <div className="flex pt-28 pb-2 space-x-12 overflow-y-hidden h-full">
       <div className="pl-12 flex-col w-44 space-y-3 text-center">
         <div className="text-base font-bold pb-2 whitespace-nowrap">스타벅스 강남R점</div>
         {constants.CATEGORIES.map(item => (
