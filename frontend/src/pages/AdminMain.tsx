@@ -4,6 +4,7 @@ import Tap from '../components/Tap';
 import ChartBar from '../images/ChartBar';
 import Copy from '../images/Copy';
 import Document from '../images/Document';
+import Logout from '../images/Logout';
 import Notebook from '../images/Notebook';
 
 /**
@@ -42,9 +43,12 @@ export default function AdminMain() {
           <MenuBox title="매출 통계" icon={<ChartBar />} url="/admin/reports" />
         </div>
       </div>
-      <div className="fixed flex-col space-y-8 right-0 top-14">
+      <div className="fixed flex-col space-y-8 right-0 top-14 h-full">
         <Tap color="#000000" name="주문하기" link="/" />
         <Tap color="#435ca5" name="관리페이지" link="/admin" />
+        <Link className="fixed bottom-8" to="/login">
+          <Logout />
+        </Link>
       </div>
     </div>
   );
