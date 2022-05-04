@@ -4,6 +4,7 @@ import React from 'react';
 /**
  * 기본 직사각형 버튼
  * @param buttonName 버튼에 들어갈 이름을 받음
+ * @param onClick 버튼이 눌렸을 때 작동할 함수 받음
  */
 interface Props {
   buttonName: string;
