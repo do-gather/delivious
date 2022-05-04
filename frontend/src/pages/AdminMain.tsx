@@ -34,11 +34,11 @@ export default function AdminMain() {
     <div className="mx-12 py-20 overflow-y-hidden h-full">
       <div className="text-base font-bold pb-9 whitespace-nowrap">스타벅스 강남R점, 오늘도 반가워요!</div>
       <div className="flex flex-col space-y-12 h-3/4 mx-32 text-left font-bold text-3xl">
-        <div className="flex h-full justify-between gap-8 items-center">
+        <div className="flex h-full justify-center gap-8 md:gap-28 items-center">
           <MenuBox title="메뉴 관리" icon={<Notebook />} url="/admin/menu" />
           <MenuBox title="주문 관리" icon={<Document />} url="/admin/orders" />
         </div>
-        <div className="flex h-full justify-between gap-8 items-center">
+        <div className="flex h-full justify-center gap-8 md:gap-28 items-center">
           <MenuBox title="테이블 관리" icon={<Copy />} url="/admin/tables" />
           <MenuBox title="매출 통계" icon={<ChartBar />} url="/admin/reports" />
         </div>
