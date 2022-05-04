@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import React from 'react';
 
 /**
@@ -6,16 +7,19 @@ import React from 'react';
  */
 interface Props {
   buttonName: string;
+  onClick?: any;
 }
 
-export default function BasicButton({ buttonName }: Props) {
+export default function BasicButton({ buttonName, onClick = console.log('clicked basic button') }: Props) {
   return (
-    <div
+    <button
+      type="button"
       className="flex whitespace-nowrap items-center rounded text-base font-bold text-white text-center 
         px-10 object-left-top h-10"
       style={{ backgroundColor: '#435ca5' }}
+      onClick={onClick}
     >
       {buttonName}
-    </div>
+    </button>
   );
 }
