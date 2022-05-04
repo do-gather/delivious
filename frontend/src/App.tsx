@@ -4,6 +4,7 @@ import AdminMenu from './pages/AdminMenu';
 import Header from './components/Header';
 import Main from './pages/Main';
 import AdminMenuEdit from './pages/AdminMenuEdit';
+import AdminMain from './pages/AdminMain';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Main />} />
+          <Route path="/admin" element={<AdminMain />} />
           <Route path="/admin/menu" element={<AdminMenu />} />
           <Route path="/admin/menu/edit" element={<AdminMenuEdit />} />
         </Routes>
