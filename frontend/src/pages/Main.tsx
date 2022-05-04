@@ -2,6 +2,7 @@ import React from 'react';
 import MenuItem from '../components/MenuItem';
 import constants from '../utils/constants';
 import Tap from '../components/Tap';
+import AdminLogin from '../images/AdminLogin';
 
 /**
  * '/'로 연결되는 메인 페이지
@@ -41,6 +42,9 @@ export default function Main() {
           ))}
         </div>
       </div>
+      <button type="button" className="absolute right-12 top-10">
+        <AdminLogin />
+      </button>
       <div className="flex right-0 top-16">
         <Tap color="#435ca5" name="주문하기" link="/" />
         <div className="w-64 min-h-screen bg-white" />
