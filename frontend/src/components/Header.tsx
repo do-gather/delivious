@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <div className="px-14 py-9">
       <Link className="flex w-fit" to="/">
-        <MainLogo />
+        <MainLogo width="118" height="25" />
       </Link>
     </div>
   );
