@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MenuItem from '../components/MenuItem';
 import constants from '../utils/constants';
 import Tap from '../components/Tap';
 import AdminLogin from '../images/AdminLogin';
+import AdminLoginModal from '../components/AdminLoginModal';
 
 /**
  * '/'로 연결되는 메인 페이지
@@ -14,6 +15,9 @@ function Divider() {
 }
 
 export default function Main() {
+  // 어드민 로그인 모달 띄우는 기능을 위한 상태관리
+  const [adminLogin, setAdminLogin] = useState(false);
+
   return (
     <div className="flex pt-28 pb-2 space-x-12 overflow-y-hidden h-full">
       <div className="pl-12 flex-col w-44 space-y-3 text-center">
@@ -42,13 +46,14 @@ export default function Main() {
           ))}
         </div>
       </div>
-      <button type="button" className="absolute right-12 top-10">
+      <button type="button" className="absolute right-12 top-10" onClick={() => setAdminLogin(true)}>
         <AdminLogin />
       </button>
       <div className="flex right-0 top-16">
         <Tap color="#435ca5" name="주문하기" link="/" />
         <div className="w-64 min-h-screen bg-white" />
       </div>
+      {adminLogin && <AdminLoginModal onClose={() => setAdminLogin(false)} />}
     </div>
   );
 }
