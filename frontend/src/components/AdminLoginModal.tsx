@@ -14,7 +14,7 @@ export default function AdminLoginModal({ onClose }: Props) {
   const navigate = useNavigate();
   return (
     <div
-      className="absolute w-full h-screen top-0 -left-16 z-50"
+      className="w-full h-screen top-0 z-50"
       style={{ backgroundColor: 'rgba(1,1,1,0.5)', position: 'fixed', overflow: 'hidden' }}
     >
       <div
@@ -27,17 +27,25 @@ export default function AdminLoginModal({ onClose }: Props) {
           transform: 'translate(-50%, -50%)',
         }}
       >
-        <button className="w-full flex justify-end text-right font-extrabold" type="button" onClick={onClose}>
-          X
+        <button
+          className="w-fit float-right my-3 mr-6 text-gray-600 hover:text-red-600"
+          type="button"
+          onClick={onClose}
+        >
+          close
         </button>
-        <div className="px-52 py-16 w-full flex flex-col justify-center">
+        <div className="px-52 py-16 w-full flex flex-col text-center whitespace-nowrap font-bold text-xl">
           <div>매장명</div>
-          <div className="border-b-0" />
+          <div className="border-b my-3 w-full border-zinc-300" />
           <div>스타벅스 강남R점</div>
-          <div>비밀번호</div>
-          <input className=" placeholder-slate-200 bg-black" placeholder="Password" />
-          <div>해당 매장번호의 관리자 비밀번호를 입력해주세요.</div>
-          <BasicButton buttonName="관리자 모드 시작하기" />
+          <div className="w-full text-xs text-left my-8">
+            <div>비밀번호</div>
+            <input
+              className="h-9 w-full my-1 px-2 rounded placeholder-gray-400 text-white bg-black"
+              placeholder="Password"
+            />
+            <div className="pr-3">해당 매장의 관리자 비밀번호를 입력해주세요.</div>
+          </div>
           <div className="px-4">
             <BasicButton
               buttonName="관리자 모드 시작하기"
