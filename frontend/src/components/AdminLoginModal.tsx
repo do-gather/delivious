@@ -41,12 +41,13 @@ export default function AdminLoginModal({ onClose }: Props) {
           <div className="border-b my-3 w-full border-zinc-300" />
           <div>스타벅스 강남R점</div>
 
-          <div className="w-full text-xs text-left my-8">
+          <div className="w-full text-xs text-left my-8 place-self-center">
             <div className="pl-1">비밀번호</div>
             <BlackInputBox placeholder="Password" icon={<LockIcon />} />
             <div className="pl-1 pr-3">해당 매장의 관리자 비밀번호를 입력해주세요.</div>
           </div>
-          <div className="px-4">
+
+          <div className="px-4 place-self-center">
             <BasicButton
               buttonName="관리자 모드 시작하기"
               onClick={() => {
