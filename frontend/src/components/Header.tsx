@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <header className="fixed w-full px-12 py-9 h-16" style={{ backgroundColor: '#E5E5E5' }}>
       <Link className="flex w-fit" to="/">
-        <MainLogo />
+        <MainLogo width="118" height="25" />
       </Link>
     </header>
   );
