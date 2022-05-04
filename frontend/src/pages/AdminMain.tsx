@@ -46,7 +46,7 @@ export default function AdminMain() {
       <div className="fixed flex-col space-y-8 right-0 top-14 h-full">
         <Tap color="#000000" name="주문하기" link="/" />
         <Tap color="#435ca5" name="관리페이지" link="/admin" />
-        <Link className="fixed bottom-8" to="/login">
+        <Link className="fixed bottom-8 right-1.5" to="/login">
           <Logout />
         </Link>
       </div>
