@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AdminMenu from './pages/AdminMenu';
 import Header from './components/Header';
@@ -8,7 +7,7 @@ import AdminMenuEdit from './pages/AdminMenuEdit';
 
 function App() {
   return (
-    <div style={{ backgroundColor: '#E5E5E5' }}>
+    <div style={{ backgroundColor: '#E5E5E5', overflow: 'auto', height: '100vh' }}>
       <BrowserRouter>
         <Header />
         <Routes>
