@@ -1,0 +1,16 @@
+{
+    "[typescript]": {
+      "editor.formatOnPaste": true,
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "eslint.alwaysShowStatus": true,
+    "editor.formatOnPaste": true,
+    "prettier.singleQuote": false,
+    "typescript.suggestionActions.enabled": false,
+    "javascript.suggestionActions.enabled": false,
+    "javascript.format.semicolons": "ignore"
+  }
