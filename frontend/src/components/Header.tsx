@@ -8,6 +8,8 @@ import MainLogo from '../images/MainLogo';
  */
 
 export default function Header() {
+  // const url = { navigator: String}
+
   return (
     <header className="fixed w-full mx-12 py-9 h-16" style={{ backgroundColor: '#E5E5E5' }}>
       <Link className="flex w-fit" to="/">
