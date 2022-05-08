@@ -4,6 +4,8 @@ import constants from '../utils/constants';
 import Tap from '../components/Tap';
 import AdminLogin from '../images/AdminLogin';
 import AdminLoginModal from '../components/AdminLoginModal';
+import ShopingCart from '../components/ShopingCart';
+import ShoppingCart from '../images/ShoppingCart';
 
 /**
  * '/'로 연결되는 메인 페이지
@@ -51,7 +53,15 @@ export default function Main() {
       </button>
       <div className="flex right-0 top-16">
         <Tap color="#435ca5" name="주문하기" link="/" />
-        <div className="w-64 min-h-screen bg-white" />
+        <div className="w-64 min-h-screen bg-white">
+          <div className="flex space-x-2 top-11 items-center text-left whitespace-nowrap">
+            <ShoppingCart />
+            <div className="text-lg font-bold pb-2 cursor-pointer">장바구니</div>
+          </div>
+          {constants.MENU_ITEMS.map(menu => (
+            <ShopingCart props={menu} key={menu.id} />
+          ))}
+        </div>
       </div>
       {adminLogin && <AdminLoginModal onClose={() => setAdminLogin(false)} />}
     </div>
