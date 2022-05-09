@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import BasicButton from './BasicButton';
 import { dts } from '../utils/types';
+import BasicButton from './BasicButton';
+import ToggleButton from './ToggleButton';
 
 /**
  * 주문하기 창
@@ -15,7 +16,6 @@ interface Props {
 export default function OrderModal({ onClose, orderList }: Props) {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
-  const [, setTakeout] = useState(false);
   const [finish, setFinish] = useState(false);
 
   useEffect(() => {
@@ -46,14 +46,14 @@ export default function OrderModal({ onClose, orderList }: Props) {
         </button>
         <div className="px-48 pt-10 pb-16 w-full flex flex-col whitespace-nowrap font-bold ">
           <div className="text-xl">구매 내역</div>
-          <div className="border-b my-3 w-full border-zinc-300" />
-          <div className="flex justify-between whitespace-nowrap text-xs">
+          <div className="border-b mt-1 w-full border-zinc-300" />
+          <div className="flex py-2 justify-between whitespace-nowrap text-xs">
             <div>음료</div>
             <div>수량</div>
             <div>가격</div>
           </div>
           {orderList.orders.map(item => (
-            <div className="flex justify-between whitespace-nowrap text-xs" key={item.menu.id}>
+            <div className="flex py-2 justify-between whitespace-nowrap text-xs" key={item.menu.id}>
               <div>{item.menu.name}</div>
               <div className="font-normal">{item.quantity}</div>
               <div>{item.menu.price} ₩</div>
@@ -65,18 +65,7 @@ export default function OrderModal({ onClose, orderList }: Props) {
             <div>{orderList.total} ₩</div>
           </div>
           <div className="flex w-full my-8">
-            <BasicButton
-              buttonName="매장 안에서"
-              onClick={() => {
-                setTakeout(false);
-              }}
-            />
-            <BasicButton
-              buttonName="테이크 아웃"
-              onClick={() => {
-                setTakeout(true);
-              }}
-            />
+            <ToggleButton option1="매장 안에서" option2="테이크 아웃" clickedOption={1} />
           </div>
 
           <div className="px-4 place-self-center">
