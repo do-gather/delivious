@@ -70,7 +70,7 @@ export default function Main() {
       <div className="flex fixed text-center right-14 bottom-16">
         <BasicButton buttonName="결제" onClick={() => setModal(true)} xPadding="px-14" />
       </div>
-      {modal && <OrderModal onClose={() => setModal(false)} />}
+      {modal && <OrderModal orderList={constants.ORDER} onClose={() => setModal(false)} />}
     </div>
   );
 }
