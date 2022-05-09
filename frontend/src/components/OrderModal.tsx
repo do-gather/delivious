@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BasicButton from './BasicButton';
-import LockIcon from '../images/LockIcon';
-import BlackInputBox from './BlackInputBox';
+import { dts } from '../utils/types';
 
 /**
  * 주문하기 창
@@ -10,10 +9,19 @@ import BlackInputBox from './BlackInputBox';
  */
 interface Props {
   onClose: any;
+  orderList: dts.orderList;
 }
 
-export default function OrderModal({ onClose }: Props) {
+export default function OrderModal({ onClose, orderList }: Props) {
   const navigate = useNavigate();
+  const [step, setStep] = useState(1);
+  const [, setTakeout] = useState(false);
+  const [finish, setFinish] = useState(false);
+
+  useEffect(() => {
+    if (finish) navigate('/admin');
+  }, [finish, navigate]);
+
   return (
     <div
       className="w-full h-screen top-0 z-50"
@@ -36,24 +44,43 @@ export default function OrderModal({ onClose }: Props) {
         >
           close
         </button>
-        <div className="px-52 pt-10 pb-16 w-full flex flex-col text-center whitespace-nowrap font-bold text-xl">
-          <div>매장명</div>
+        <div className="px-48 pt-10 pb-16 w-full flex flex-col whitespace-nowrap font-bold ">
+          <div className="text-xl">구매 내역</div>
           <div className="border-b my-3 w-full border-zinc-300" />
-          <div>스타벅스 강남R점</div>
-
-          <div className="w-full text-xs text-left my-8 place-self-center">
-            <div className="pl-1">비밀번호</div>
-            <BlackInputBox placeholder="Password" icon={<LockIcon />} />
-            <div className="pl-1 pr-3">해당 매장의 관리자 비밀번호를 입력해주세요.</div>
+          <div className="flex justify-between whitespace-nowrap text-xs">
+            <div>음료</div>
+            <div>수량</div>
+            <div>가격</div>
+          </div>
+          {orderList.orders.map(item => (
+            <div className="flex justify-between whitespace-nowrap text-xs" key={item.menu.id}>
+              <div>{item.menu.name}</div>
+              <div className="font-normal">{item.quantity}</div>
+              <div>{item.menu.price} ₩</div>
+            </div>
+          ))}
+          <div className="border-b my-3 w-full border-zinc-300" />
+          <div className="flex justify-between text-xs">
+            <div>총</div>
+            <div>{orderList.total} ₩</div>
+          </div>
+          <div className="flex w-full my-8">
+            <BasicButton
+              buttonName="매장 안에서"
+              onClick={() => {
+                setTakeout(false);
+              }}
+            />
+            <BasicButton
+              buttonName="테이크 아웃"
+              onClick={() => {
+                setTakeout(true);
+              }}
+            />
           </div>
 
           <div className="px-4 place-self-center">
-            <BasicButton
-              buttonName="관리자 모드 시작하기"
-              onClick={() => {
-                navigate('/admin');
-              }}
-            />
+            <BasicButton buttonName="결제 완료" onClick={() => (step === 1 ? setStep(step + 1) : setFinish(true))} />
           </div>
         </div>
       </div>
