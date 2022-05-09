@@ -6,6 +6,8 @@ import AdminLogin from '../images/AdminLogin';
 import AdminLoginModal from '../components/AdminLoginModal';
 import ShopingCart from '../components/ShopingCart';
 import ShoppingCart from '../images/ShoppingCart';
+import BasicButton from '../components/BasicButton';
+import OrderModal from '../components/OrderModal';
 
 /**
  * '/'로 연결되는 메인 페이지
@@ -19,6 +21,7 @@ function Divider() {
 export default function Main() {
   // 어드민 로그인 모달 띄우는 기능을 위한 상태관리
   const [adminLogin, setAdminLogin] = useState(false);
+  const [modal, setModal] = useState(false);
 
   return (
     <div className="flex pt-28 pb-2 gap-12 overflow-y-hidden h-full">
@@ -64,6 +67,10 @@ export default function Main() {
         </div>
       </div>
       {adminLogin && <AdminLoginModal onClose={() => setAdminLogin(false)} />}
+      <div className="flex fixed text-center right-14 bottom-16">
+        <BasicButton buttonName="결제" onClick={() => setModal(true)} xPadding="px-14" />
+      </div>
+      {modal && <OrderModal onClose={() => setModal(false)} />}
     </div>
   );
 }
