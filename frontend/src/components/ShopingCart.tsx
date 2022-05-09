@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-// import React from 'react';
-import Tap1 from './Tap1';
 import AddCircle from '../images/AddCircle';
 
 /**
@@ -58,10 +56,6 @@ export default function ShopingCart({ props }: Props) {
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="flex fixed text-center right-8 bottom-16">
-        <Tap1 color="#435ca5" name="결제" link="/" />
       </div>
     </div>
   );
