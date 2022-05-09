@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AddCircle from '../images/AddCircle';
+import { dts } from '../utils/types';
 
 /**
  * 사용자 메뉴 목록의 각 아이템
@@ -7,15 +8,7 @@ import AddCircle from '../images/AddCircle';
  * @param props 메뉴안에 들어갈 각 항목을 아래 인터페이스 형태로 묶어서 받음
  */
 interface Props {
-  props: {
-    category: string;
-    id: string;
-    name: string;
-    temp: string;
-    size: string;
-    price: string;
-    date: string;
-  };
+  props: dts.menuDto;
 }
 
 export default function ShopingCart({ props }: Props) {

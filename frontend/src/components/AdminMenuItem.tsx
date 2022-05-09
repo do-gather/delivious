@@ -5,6 +5,7 @@ import EditBox from './EditBox';
 import AddCircle from '../images/AddCircle';
 import TrashCan from '../images/TrashCan';
 import getYmd10 from '../utils/utils';
+import { dts } from '../utils/types';
 
 /**
  * 어드민 메뉴 목록의 각 아이템
@@ -14,15 +15,7 @@ import getYmd10 from '../utils/utils';
  *              새로 추가 시 'new' 전달. 전달하지 않으면 'display'로 초기화 됨
  */
 interface Props {
-  props?: {
-    category: string;
-    id: string;
-    name: string;
-    temp: string;
-    size: string;
-    price: string;
-    date: string;
-  };
+  props?: dts.menuDto;
   type?: string;
 }
 
