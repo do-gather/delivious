@@ -75,6 +75,7 @@ export default function OrderModal({ onClose, orderList }: Props) {
               <BlackInputBox placeholder="전화번호 입력" text="010-" />
             </div>
             <div className="px-4 place-self-center">
+              <BasicButton buttonName="완료하기" onClick={() => window.location.replace('/')} />
             </div>
           </div>
         )}
