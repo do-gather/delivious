@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 /**
- * 메뉴 수정 시 input box
+ * 흰색 input box
  * @param placeholder 플레이스 홀더에 들어갈 말을 변수로 받음
  * @param text input box에 채워져 있어야 할 텍스트를 변수로 받음
  */
@@ -11,7 +11,7 @@ interface Props {
   text?: string;
 }
 
-export default function EditBox({ placeholder, text = '' }: Props) {
+export default function WhiteInputBox({ placeholder, text = '' }: Props) {
   const [value, setValue] = useState(text);
 
   const handleTextChange = (e: any) => {

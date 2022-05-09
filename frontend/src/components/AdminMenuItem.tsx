@@ -1,7 +1,7 @@
 /* eslint-disable react/require-default-props */
 import React from 'react';
 import CheckBox from './CheckBox';
-import EditBox from './EditBox';
+import WhiteInputBox from './WhiteInputBox';
 import AddCircle from '../images/AddCircle';
 import TrashCan from '../images/TrashCan';
 import getYmd10 from '../utils/utils';
@@ -48,9 +48,9 @@ export default function AdminMenuItem({
 
   return type !== 'display' ? (
     <div className="grid grid-cols-7 gap-4 py-6 whitespace-nowrap text-center items-center text-base pl-10">
-      <EditBox placeholder="카테고리" text={props.category} />
+      <WhiteInputBox placeholder="카테고리" text={props.category} />
       {type === 'new' ? <div>-</div> : <div>{props.id}</div>}
-      <EditBox placeholder="메뉴 이름" text={props.name} />
+      <WhiteInputBox placeholder="메뉴 이름" text={props.name} />
       <div className="flex justify-center space-x-3">
         <CheckBox label="Hot" checked={handleChecked(props.temp, 'Hot')} />
         <CheckBox label="Ice" checked={handleChecked(props.temp, 'Ice')} />
@@ -60,7 +60,7 @@ export default function AdminMenuItem({
         <CheckBox label="Grande" checked={handleChecked(props.size, 'Grande')} />
         <CheckBox label="Venti" checked={handleChecked(props.size, 'Venti')} />
       </div>
-      <EditBox placeholder="가격" text={props.price} />
+      <WhiteInputBox placeholder="가격" text={props.price} />
       <div className="flex justify-between px-5">
         {type === 'new' ? <div>{currentDate}</div> : <div>{props.date}</div>}
         <div className="cursor-pointer">
