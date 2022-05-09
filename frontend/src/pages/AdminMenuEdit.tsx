@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import AdminMenuItem from '../components/AdminMenuItem';
 import constants from '../utils/constants';
 import BasicButton from '../components/BasicButton';
@@ -16,6 +16,7 @@ function Divider() {
 }
 
 export default function AdminMenuEdit() {
+  const navigate = useNavigate();
   return (
     <div className="w-full h-screen pl-14 pr-32 py-24 overflow-y-hidden">
       <div className="grid grid-cols-8 space-x-4 items-center pb-8 justify-between ">
@@ -23,9 +24,9 @@ export default function AdminMenuEdit() {
         <div className="col-span-5">
           <SearchBar placeholder="Search menu name or id" />
         </div>
-        <Link className="col-span-2 justify-self-end w-max" to="/admin/menu">
-          <BasicButton buttonName="편집 완료" />
-        </Link>
+        <div className="col-span-2 justify-self-end w-max">
+          <BasicButton buttonName="편집 완료" onClick={() => navigate('/admin/menu')} />
+        </div>
       </div>
       <div
         className="grid grid-cols-7 gap-4 px-10 font-semibold whitespace-nowrap text-white h-12 
