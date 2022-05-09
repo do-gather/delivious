@@ -4,15 +4,17 @@ import React, { useState } from 'react';
 /**
  * 메뉴 수정 시 input box
  * @param placeholder 플레이스 홀더에 들어갈 말을 변수로 받음
+ * @param text input box에 채워져 있어야 할 텍스트를 변수로 받음, 기본은 ''
  * @param icon input box에 아이콘이 있다면 아이콘을 받음
  */
 interface Props {
   placeholder: string;
+  text?: string;
   icon?: any;
 }
 
-export default function BlackInputBox({ placeholder, icon = 'none' }: Props) {
-  const [value, setValue] = useState('');
+export default function BlackInputBox({ placeholder, icon = 'none', text = '' }: Props) {
+  const [value, setValue] = useState(text);
 
   const handleTextChange = (e: any) => {
     setValue(e.target.value);
