@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AdminMenuItem from '../components/AdminMenuItem';
 import constants from '../utils/constants';
@@ -17,6 +17,12 @@ function Divider() {
 
 export default function AdminMenuEdit() {
   const navigate = useNavigate();
+  const [finish, setFinish] = useState(false);
+
+  useEffect(() => {
+    if (finish) navigate('/admin/menu');
+  }, [finish, navigate]);
+
   return (
     <div className="w-full h-screen pl-14 pr-32 py-24 overflow-y-hidden">
       <div className="grid grid-cols-8 space-x-4 items-center pb-8 justify-between ">
@@ -25,7 +31,7 @@ export default function AdminMenuEdit() {
           <SearchBar placeholder="Search menu name or id" />
         </div>
         <div className="col-span-2 justify-self-end w-max">
-          <BasicButton buttonName="편집 완료" onClick={() => navigate('/admin/menu')} />
+          <BasicButton buttonName="편집 완료" onClick={() => setFinish(true)} />
         </div>
       </div>
       <div

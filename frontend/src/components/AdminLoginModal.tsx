@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BasicButton from './BasicButton';
 import LockIcon from '../images/LockIcon';
@@ -14,6 +14,12 @@ interface Props {
 
 export default function AdminLoginModal({ onClose }: Props) {
   const navigate = useNavigate();
+  const [move, setMove] = useState(false);
+
+  useEffect(() => {
+    if (move) navigate('/admin');
+  }, [move, navigate]);
+
   return (
     <div
       className="w-full h-screen top-0 z-50"
@@ -51,7 +57,7 @@ export default function AdminLoginModal({ onClose }: Props) {
             <BasicButton
               buttonName="관리자 모드 시작하기"
               onClick={() => {
-                navigate('/admin');
+                setMove(true);
               }}
             />
           </div>
