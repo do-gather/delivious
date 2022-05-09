@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import { dts } from '../utils/types';
 import BasicButton from './BasicButton';
+import BlackInputBox from './BlackInputBox';
 import ToggleButton from './ToggleButton';
 
 /**
@@ -14,13 +14,7 @@ interface Props {
 }
 
 export default function OrderModal({ onClose, orderList }: Props) {
-  const navigate = useNavigate();
   const [step, setStep] = useState(1);
-  const [finish, setFinish] = useState(false);
-
-  useEffect(() => {
-    if (finish) navigate('/admin');
-  }, [finish, navigate]);
 
   return (
     <div
@@ -44,34 +38,46 @@ export default function OrderModal({ onClose, orderList }: Props) {
         >
           close
         </button>
-        <div className="px-48 pt-10 pb-16 w-full flex flex-col whitespace-nowrap font-bold ">
-          <div className="text-xl">구매 내역</div>
-          <div className="border-b mt-1 w-full border-zinc-300" />
-          <div className="flex py-2 justify-between whitespace-nowrap text-xs">
-            <div>음료</div>
-            <div>수량</div>
-            <div>가격</div>
-          </div>
-          {orderList.orders.map(item => (
-            <div className="flex py-2 justify-between whitespace-nowrap text-xs" key={item.menu.id}>
-              <div>{item.menu.name}</div>
-              <div className="font-normal">{item.quantity}</div>
-              <div>{item.menu.price} ₩</div>
+        {step === 1 ? (
+          <div className="px-48 pt-10 pb-16 w-full flex flex-col whitespace-nowrap font-bold ">
+            <div className="text-xl">구매 내역</div>
+            <div className="border-b mt-1 w-full border-zinc-300" />
+            <div className="flex py-2 justify-between whitespace-nowrap text-xs">
+              <div>음료</div>
+              <div>수량</div>
+              <div>가격</div>
             </div>
-          ))}
-          <div className="border-b my-3 w-full border-zinc-300" />
-          <div className="flex justify-between text-xs">
-            <div>총</div>
-            <div>{orderList.total} ₩</div>
-          </div>
-          <div className="flex w-full my-8">
-            <ToggleButton option1="매장 안에서" option2="테이크 아웃" clickedOption={1} />
-          </div>
+            {orderList.orders.map(item => (
+              <div className="grid grid-cols-3 py-2 whitespace-nowrap text-xs" key={item.menu.id}>
+                <div>{item.menu.name}</div>
+                <div className="font-normal text-center ">{item.quantity}</div>
+                <div className="text-right">{item.menu.price} ₩</div>
+              </div>
+            ))}
+            <div className="border-b my-3 w-full border-zinc-300" />
+            <div className="flex justify-between text-xs">
+              <div>총</div>
+              <div>{orderList.total} ₩</div>
+            </div>
+            <div className="flex w-full my-8">
+              <ToggleButton option1="매장 안에서" option2="테이크 아웃" clickedOption={1} />
+            </div>
 
-          <div className="px-4 place-self-center">
-            <BasicButton buttonName="결제 완료" onClick={() => (step === 1 ? setStep(step + 1) : setFinish(true))} />
+            <div className="px-4 place-self-center">
+              <BasicButton buttonName="결제 완료" onClick={() => setStep(step + 1)} />
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="px-48 pt-10 text-center text-xl pb-16 w-full flex flex-col whitespace-nowrap font-bold ">
+            <div>들리버스 앱으로 주문을 확인하려면,</div>
+            <div>가입한 전화번호를 입력해주세요.</div>
+            <div className="flex w-full my-8 text-xs">
+              <BlackInputBox placeholder="전화번호 입력" text="010-" />
+            </div>
+            <div className="px-4 place-self-center">
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
