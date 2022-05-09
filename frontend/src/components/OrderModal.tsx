@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { dts } from '../utils/types';
 import BasicButton from './BasicButton';
-import BlackInputBox from './BlackInputBox';
+import InputBox from './InputBox';
 import ToggleButton from './ToggleButton';
 
 /**
@@ -72,7 +72,7 @@ export default function OrderModal({ onClose, orderList }: Props) {
             <div>들리버스 앱으로 주문을 확인하려면,</div>
             <div>가입한 전화번호를 입력해주세요.</div>
             <div className="flex w-full my-8 text-xs">
-              <BlackInputBox placeholder="전화번호 입력" text="010-" />
+              <InputBox placeholder="전화번호 입력" text="010-" mode="dark" />
             </div>
             <div className="px-4 place-self-center">
               <BasicButton buttonName="완료하기" onClick={() => window.location.replace('/')} />
