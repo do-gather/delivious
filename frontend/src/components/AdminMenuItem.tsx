@@ -1,10 +1,11 @@
 /* eslint-disable react/require-default-props */
 import React from 'react';
 import CheckBox from './CheckBox';
-import EditBox from './EditBox';
+import InputBox from './InputBox';
 import AddCircle from '../images/AddCircle';
 import TrashCan from '../images/TrashCan';
 import getYmd10 from '../utils/utils';
+import { dts } from '../utils/types';
 
 /**
  * 어드민 메뉴 목록의 각 아이템
@@ -14,15 +15,7 @@ import getYmd10 from '../utils/utils';
  *              새로 추가 시 'new' 전달. 전달하지 않으면 'display'로 초기화 됨
  */
 interface Props {
-  props?: {
-    category: string;
-    id: string;
-    name: string;
-    temp: string;
-    size: string;
-    price: string;
-    date: string;
-  };
+  props?: dts.menuDto;
   type?: string;
 }
 
@@ -55,9 +48,9 @@ export default function AdminMenuItem({
 
   return type !== 'display' ? (
     <div className="grid grid-cols-7 gap-4 py-6 whitespace-nowrap text-center items-center text-base pl-10">
-      <EditBox placeholder="카테고리" text={props.category} />
+      <InputBox placeholder="카테고리" text={props.category} />
       {type === 'new' ? <div>-</div> : <div>{props.id}</div>}
-      <EditBox placeholder="메뉴 이름" text={props.name} />
+      <InputBox placeholder="메뉴 이름" text={props.name} />
       <div className="flex justify-center space-x-3">
         <CheckBox label="Hot" checked={handleChecked(props.temp, 'Hot')} />
         <CheckBox label="Ice" checked={handleChecked(props.temp, 'Ice')} />
@@ -67,7 +60,7 @@ export default function AdminMenuItem({
         <CheckBox label="Grande" checked={handleChecked(props.size, 'Grande')} />
         <CheckBox label="Venti" checked={handleChecked(props.size, 'Venti')} />
       </div>
-      <EditBox placeholder="가격" text={props.price} />
+      <InputBox placeholder="가격" text={props.price} />
       <div className="flex justify-between px-5">
         {type === 'new' ? <div>{currentDate}</div> : <div>{props.date}</div>}
         <div className="cursor-pointer">

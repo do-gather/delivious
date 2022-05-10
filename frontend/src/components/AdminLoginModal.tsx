@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BasicButton from './BasicButton';
 import LockIcon from '../images/LockIcon';
-import BlackInputBox from './BlackInputBox';
+import InputBox from './InputBox';
 
 /**
  * 어드민 로그인 모달 창
@@ -14,6 +14,12 @@ interface Props {
 
 export default function AdminLoginModal({ onClose }: Props) {
   const navigate = useNavigate();
+  const [move, setMove] = useState(false);
+
+  useEffect(() => {
+    if (move) navigate('/admin');
+  }, [move, navigate]);
+
   return (
     <div
       className="w-full h-screen top-0 z-50"
@@ -43,7 +49,7 @@ export default function AdminLoginModal({ onClose }: Props) {
 
           <div className="w-full text-xs text-left my-8 place-self-center">
             <div className="pl-1">비밀번호</div>
-            <BlackInputBox placeholder="Password" icon={<LockIcon />} />
+            <InputBox placeholder="Password" icon={<LockIcon />} mode="dark" />
             <div className="pl-1 pr-3">해당 매장의 관리자 비밀번호를 입력해주세요.</div>
           </div>
 
@@ -51,7 +57,7 @@ export default function AdminLoginModal({ onClose }: Props) {
             <BasicButton
               buttonName="관리자 모드 시작하기"
               onClick={() => {
-                navigate('/admin');
+                setMove(true);
               }}
             />
           </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AddCheck from '../images/AddCheck';
+import { dts } from '../utils/types';
 import PillButton from './PillButton';
 
 /**
@@ -9,15 +10,7 @@ import PillButton from './PillButton';
  */
 
 interface Props {
-  props: {
-    category: string;
-    id: string;
-    name: string;
-    temp: string;
-    size: string;
-    price: string;
-    date: string;
-  };
+  props: dts.menuDto;
 }
 
 export default function MenuItem({ props }: Props) {
