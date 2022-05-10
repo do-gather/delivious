@@ -1,5 +1,6 @@
 package com.delivious.backend.domain.menu.dto;
 
+import com.delivious.backend.domain.menu.entity.Img;
 import com.delivious.backend.domain.menu.entity.Menu;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,6 +16,7 @@ import java.util.UUID;
 public class MenuSaveDto {
     private UUID menu_id;
     // category img 추가
+    private Img img;
     private String menu_name;
     private int menu_price;
     private String temperature;
@@ -22,6 +24,7 @@ public class MenuSaveDto {
 
     public Menu toEntity() {
         return Menu.builder()
+                .img(img)
                 .menu_name(menu_name)
                 .menu_price(menu_price)
                 .temperature(temperature)
@@ -30,6 +33,7 @@ public class MenuSaveDto {
     }
     public static MenuSaveDto fromEntity(Menu menu) {
         return MenuSaveDto.builder()
+                .img(menu.getImg())
                 .menu_id(menu.getMenu_id())
                 //.category_id(menu.getCategory().getCategory)id())
                 .menu_name(menu.getMenu_name())

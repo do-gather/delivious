@@ -19,11 +19,13 @@ import java.sql.Timestamp;
 public class Img extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AU₩₩TO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column( nullable = false, length = 50)
     private Long img_id;
 
     @Column( nullable = false, length = 500)
     private String img_url;
 
+    @OneToOne(mappedBy = "img")
+    private Menu menu;
 }

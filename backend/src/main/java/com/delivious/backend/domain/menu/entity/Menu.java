@@ -13,6 +13,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
 @Table(name = "menu")
 public class Menu extends BaseEntity {
@@ -23,7 +24,7 @@ public class Menu extends BaseEntity {
     @Column( nullable = false, length = 50)
     private UUID menu_id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="category_id")
     private Category category;
 
@@ -58,19 +59,6 @@ public class Menu extends BaseEntity {
         this.menu_name = menu_name;
         this.menu_price = menu_price;
         this.temperature = temperature;
-        this.description = description;
-    }
-
-    @Builder
-    public Menu(String menu_name,
-                int menu_price,
-                String temperature,
-                Size size,
-                String description) {
-        this.menu_name = menu_name;
-        this.menu_price = menu_price;
-        this.temperature = temperature;
-        this.size = size;
         this.description = description;
     }
 }

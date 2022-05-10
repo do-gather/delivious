@@ -49,8 +49,8 @@ public class MenuService {
     }
 
     @Transactional
-    public Optional<Menu> findByName(String menu_name){
-        return menuRepository.findById(menu_name);
+    public Optional<Menu> findById(UUID menu_id) {
+        return menuRepository.findById(menu_id);
     }
 
 //    @Transactional(readOnly = true)
@@ -59,8 +59,8 @@ public class MenuService {
 //    }
 
     @Transactional
-    public void delete(String menu_name){
-        Menu menu = menuRepository.findById(menu_name).get();
+    public void delete(UUID menu_id){
+        Menu menu = menuRepository.findById(menu_id).get();
         menuRepository.delete(menu);
     }
 }

@@ -14,11 +14,11 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/menus")
+@RequestMapping("/menu")
 public class MenuController {
     private final MenuService menuService;
 
-    //메뉴 저장
+    //메뉴 추가
     @ResponseBody
     @PostMapping
     public MenuSaveDto save(@RequestBody MenuSaveDto menuSaveDto) {
@@ -28,10 +28,10 @@ public class MenuController {
 
     // 메뉴조회
     @ResponseBody
-    @Getter("/{menu_name}")
-    public ResponseEntity getDetail(@PathVariable String menu_name) {
+    @GetMapping("/{menu_id}")
+    public ResponseEntity getDetail(@PathVariable UUID menu_id) {
 
-        Optional<Menu> entity = menuService.findByName(menu_name);
+        Optional<Menu> entity = menuService.findById(menu_id);
         return ResponseEntity
                 .ok()
                 .body(MenuSaveDto.fromEntity(entity.get()));
@@ -43,9 +43,9 @@ public class MenuController {
 
     // 메뉴 삭제
     @ResponseBody
-    @DeleteMapping("/{menu_name}")
-    public ResponseEntity<MenuResponseDto> deleteMenu(@PathVariable String menu_name) {
-        menuService.delete(menu_name);
+    @DeleteMapping("/{menu_id}")
+    public ResponseEntity<MenuResponseDto> deleteMenu(@PathVariable UUID menu_id) {
+        menuService.delete(menu_id);
         return ResponseEntity
                 .ok()
                 .build();

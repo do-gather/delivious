@@ -30,7 +30,7 @@ public class Category extends BaseEntity {
         MenuEntity의 cate 필드에 의해 매핑
      */
 
-    @OneToMany(mappedBy = "category_id")
+    @OneToMany(mappedBy = "category")
     private List<Menu> menus = new ArrayList<Menu>();
 
 
