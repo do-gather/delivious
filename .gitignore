@@ -2,11 +2,14 @@
 
 # MAC
 /backend/.DS_Store
+.DS_Store
 
 # vscode setting
 .vscode
 
-### IntelliJ IDEA ###
+### IntelliJ IDEA ###\
+.idea
+.gradle
 /backend/.idea
 /backend/*.iws
 /backend/*.iml
