@@ -16,10 +16,10 @@ interface Props {
 export default function ToggleButton({ option1, option2, clickedOption }: Props) {
   const [clicked, setClicked] = useState(clickedOption);
   return (
-    <div className="flex -space-x-1">
+    <div className="flex -space-x-1 w-full">
       <button
         type="button"
-        className={`flex whitespace-nowrap items-center rounded-l text-base font-bold text-white text-center 
+        className={`flex w-full whitespace-nowrap items-center rounded-l text-base font-bold text-white text-center 
         ${clicked === 1 && 'rounded-r z-50'} px-10 object-left-top h-10`}
         style={{ backgroundColor: clicked === 1 ? '#000000' : '#c4c4c4' }}
         onClick={() => {
@@ -30,7 +30,7 @@ export default function ToggleButton({ option1, option2, clickedOption }: Props)
       </button>
       <button
         type="button"
-        className={`flex whitespace-nowrap items-center  rounded-r text-base font-bold text-white text-center 
+        className={`flex w-full whitespace-nowrap items-center  rounded-r text-base font-bold text-white text-center 
         ${clicked === 2 && 'rounded-l'}  px-10 object-left-top h-10`}
         style={{ backgroundColor: clicked === 2 ? '#000000' : '#c4c4c4' }}
         onClick={() => {
