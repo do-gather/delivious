@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BasicButton from './BasicButton';
-import LockIcon from '../images/LockIcon';
 import InputBox from './InputBox';
+import PasswordIcon from '../images/PasswordIcon';
 
 /**
  * 어드민 로그인 모달 창
@@ -49,7 +49,7 @@ export default function AdminLoginModal({ onClose }: Props) {
 
           <div className="w-full text-xs text-left my-8 place-self-center">
             <div className="pl-1">비밀번호</div>
-            <InputBox placeholder="Password" icon={<LockIcon />} mode="dark" />
+            <InputBox placeholder="Password" icon={<PasswordIcon width={15} height={15} />} mode="dark" />
             <div className="pl-1 pr-3">해당 매장의 관리자 비밀번호를 입력해주세요.</div>
           </div>
 
