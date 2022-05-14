@@ -19,7 +19,7 @@ function App() {
           <Route path="/admin/menu" element={<AdminMenu />} />
           <Route path="/admin/menu/edit" element={<AdminMenuEdit />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/signUp" element={<SignUp />} />
+          <Route path="/sign-up" element={<SignUp />} />
         </Routes>
       </BrowserRouter>
     </div>
