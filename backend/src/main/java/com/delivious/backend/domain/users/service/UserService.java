@@ -23,8 +23,8 @@ public class UserService {
     }
 
     @Transactional
-    public UserDto signup(UserDto userDto) { // 이런거 다 바꿔야돼요 username -> id
-        if (userRepository.findOneWithAuthoritiesByUsername(userDto.getUsername()).orElse(null) != null) {
+    public UserDto signup(UserDto userDto) {                      
+        if (userRepository.findOneWithAuthoritiesByUserid(userDto.getId()).orElse(null) != null) {
             throw new DuplicateMemberException("이미 가입되어 있는 유저입니다.");
         }
 
@@ -33,9 +33,10 @@ public class UserService {
                 .build();
 
         User user = User.builder()
-                .username(userDto.getUsername())
+                .id(userDto.getId())
                 .password(passwordEncoder.encode(userDto.getPassword()))
-                .nickname(userDto.getNickname())
+                .name(userDto.getName())
+                .phone_num(userDto.getPhone_num())
                 .birth(userDto.getBirth())
                 .authorities(Collections.singleton(authority))
                 .activated(true)
@@ -45,12 +46,12 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public UserDto getUserWithAuthorities(String username) {
-        return UserDto.from(userRepository.findOneWithAuthoritiesByUsername(username).orElse(null));
+    public UserDto getUserWithAuthorities(String id) {
+        return UserDto.from(userRepository.findOneWithAuthoritiesByUserid(id).orElse(null));
     }
 
     @Transactional(readOnly = true)
     public UserDto getMyUserWithAuthorities() {
-        return UserDto.from(SecurityUtil.getCurrentUsername().flatMap(userRepository::findOneWithAuthoritiesByUsername).orElse(null));
+        return UserDto.from(SecurityUtil.getCurrentUserid().flatMap(userRepository::findOneWithAuthoritiesByUserid).orElse(null));
     }
 }

@@ -19,7 +19,7 @@ public class UserDto {
 
    @NotNull
    @Size(min = 3, max = 50)
-   private String username;
+   private String id;
 
    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
    @NotNull
@@ -28,7 +28,10 @@ public class UserDto {
 
    @NotNull
    @Size(min = 3, max = 50)
-   private String nickname;
+   private String name;
+
+   @NotNull
+   private String phone_num;
 
    @NotNull
    @Size(min =3, max = 50)
@@ -40,8 +43,9 @@ public class UserDto {
       if(user == null) return null;
 
       return UserDto.builder()
-              .username(user.getUsername())
-              .nickname(user.getNickname())
+              .id(user.getId())
+              .name(user.getName())
+              .phone_num(user.getPhone_num())
               .birth(user.getBirth())
               .authorityDtoSet(user.getAuthorities().stream()
                       .map(authority -> AuthorityDto.builder().authorityName(authority.getAuthorityName()).build())
