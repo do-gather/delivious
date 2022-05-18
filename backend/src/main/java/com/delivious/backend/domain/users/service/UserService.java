@@ -24,7 +24,7 @@ public class UserService {
 
     @Transactional
     public UserDto signup(UserDto userDto) {                      
-        if (userRepository.findOneWithAuthoritiesByUserid(userDto.getId()).orElse(null) != null) {
+        if (userRepository.findOneWithAuthoritiesByid(userDto.getId()).orElse(null) != null) {
             throw new DuplicateMemberException("이미 가입되어 있는 유저입니다.");
         }
 
@@ -47,11 +47,11 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public UserDto getUserWithAuthorities(String id) {
-        return UserDto.from(userRepository.findOneWithAuthoritiesByUserid(id).orElse(null));
+        return UserDto.from(userRepository.findOneWithAuthoritiesByid(id).orElse(null));
     }
 
     @Transactional(readOnly = true)
     public UserDto getMyUserWithAuthorities() {
-        return UserDto.from(SecurityUtil.getCurrentUserid().flatMap(userRepository::findOneWithAuthoritiesByUserid).orElse(null));
+        return UserDto.from(SecurityUtil.getCurrentUserid().flatMap(userRepository::findOneWithAuthoritiesByid).orElse(null));
     }
 }

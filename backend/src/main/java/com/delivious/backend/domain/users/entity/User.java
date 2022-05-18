@@ -1,5 +1,6 @@
 package com.delivious.backend.domain.users.entity;
 
+import com.delivious.backend.global.common.BaseEntity;
 import lombok.*;
 import javax.persistence.*;
 import java.util.Set;
@@ -11,7 +12,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class User extends BaseEntity {
 
    @Id
    @Column(name = "user_id")
