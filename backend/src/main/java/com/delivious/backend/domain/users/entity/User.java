@@ -3,6 +3,7 @@ package com.delivious.backend.domain.users.entity;
 import com.delivious.backend.global.common.BaseEntity;
 import lombok.*;
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -19,9 +20,6 @@ public class User extends BaseEntity {
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long userId;
 
-//   @Column(name = "username", length = 50, unique = true)
-//   private String username;
-
    @Column(name = "id", length = 50, unique = true)
    private String id;
 
@@ -35,7 +33,8 @@ public class User extends BaseEntity {
    private String phone_num;
 
    @Column(name ="birth")
-   private String birth;
+   @Temporal(TemporalType.DATE)
+   private Date birth;
 
    @Column(name = "activated")
    private boolean activated;
