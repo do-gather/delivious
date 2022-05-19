@@ -1,3 +1,6 @@
+/*
+   토큰 없이 접근 - 401
+ */
 package com.delivious.backend.domain.users.jwt;
 
 import org.springframework.security.core.AuthenticationException;

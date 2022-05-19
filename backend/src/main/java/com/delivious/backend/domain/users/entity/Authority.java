@@ -1,3 +1,6 @@
+/*
+   사용자 권한 엔티티
+ */
 package com.delivious.backend.domain.users.entity;
 
 import lombok.*;

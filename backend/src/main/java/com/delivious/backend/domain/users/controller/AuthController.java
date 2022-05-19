@@ -1,3 +1,6 @@
+/*
+    권한 관련 controller - 로그인시 토큰 발급
+ */
 package com.delivious.backend.domain.users.controller;
 
 import com.delivious.backend.domain.users.dto.LoginDto;
@@ -29,6 +32,8 @@ public class AuthController {
         this.authenticationManagerBuilder = authenticationManagerBuilder;
     }
 
+
+    // id, password 를 입력받아 객체 생성 -> loadUserByUsername 메소드가 수행되며 유저 정보를 조회해서 인증 정보를 생성
     @PostMapping("/authenticate")
     public ResponseEntity<TokenDto> authorize(@Valid @RequestBody LoginDto loginDto) {
 

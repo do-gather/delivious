@@ -1,3 +1,7 @@
+/*
+   사용자 id 를 기준으로 사용자 정보 가져옴 - authorities 포함
+ */
+
 package com.delivious.backend.domain.users.repository;
 
 

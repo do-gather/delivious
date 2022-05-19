@@ -1,3 +1,6 @@
+/*
+   토큰 실행 - 인증 정보 저장 & http 헤더에서 토큰 가져오기
+ */
 package com.delivious.backend.domain.users.jwt;
 
 import org.slf4j.Logger;
@@ -27,6 +30,7 @@ public class JwtFilter extends GenericFilterBean {
    }
 
    @Override
+   // jwt 토큰의 인증 정보를 현재 실행중인 스레드에 저장
    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
       throws IOException, ServletException {
       HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
@@ -42,8 +46,11 @@ public class JwtFilter extends GenericFilterBean {
       }
 
       filterChain.doFilter(servletRequest, servletResponse);
+
    }
 
+
+   // HttpServletRequest 객체의 Header에서 token을 가져온다
    private String resolveToken(HttpServletRequest request) {
       String bearerToken = request.getHeader(AUTHORIZATION_HEADER);
       if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {

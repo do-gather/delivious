@@ -1,3 +1,8 @@
+/*
+   토큰 생성과 토큰 검증
+ */
+
+
 package com.delivious.backend.domain.users.jwt;
 
 import io.jsonwebtoken.*;
@@ -33,11 +38,12 @@ public class TokenProvider implements InitializingBean {
    private Key key;
 
 
+
    public TokenProvider(
       @Value("${jwt.secret}") String secret,
       @Value("${jwt.token-validity-in-seconds}") long tokenValidityInSeconds) {
       this.secret = secret;
-      this.tokenValidityInMilliseconds = tokenValidityInSeconds * 1000;
+      this.tokenValidityInMilliseconds = tokenValidityInSeconds * 1000;      // 토큰 유효 시간
    }
 
    @Override
@@ -46,6 +52,7 @@ public class TokenProvider implements InitializingBean {
       this.key = Keys.hmacShaKeyFor(keyBytes);
    }
 
+   // 토큰 생성
    public String createToken(Authentication authentication) {
       String authorities = authentication.getAuthorities().stream()
          .map(GrantedAuthority::getAuthority)
@@ -62,6 +69,8 @@ public class TokenProvider implements InitializingBean {
          .compact();
    }
 
+
+   // 토큰에 담겨있는 권한 정보들을 이용해 Authentication 객체를 리턴
    public Authentication getAuthentication(String token) {
       Claims claims = Jwts
               .parserBuilder()
@@ -80,6 +89,8 @@ public class TokenProvider implements InitializingBean {
       return new UsernamePasswordAuthenticationToken(principal, token, authorities);
    }
 
+
+   // 토큰 검증
    public boolean validateToken(String token) {
       try {
          Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);

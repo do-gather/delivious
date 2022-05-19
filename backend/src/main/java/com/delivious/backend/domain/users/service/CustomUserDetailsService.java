@@ -1,3 +1,6 @@
+/*
+   User Repository 에서 받아와 user정보 조회
+ */
 package com.delivious.backend.domain.users.service;
 
 
@@ -24,12 +27,15 @@ public class CustomUserDetailsService implements UserDetailsService {
 
    @Override
    @Transactional
+   // 로그인 시 authenticate 메소드를 수행할때 Database에서 User 정보를 조회
    public UserDetails loadUserByUsername(final String id) {
       return userRepository.findOneWithAuthoritiesByid(id)
          .map(user -> createUser(id, user))
          .orElseThrow(() -> new UsernameNotFoundException(id + " -> 데이터베이스에서 찾을 수 없습니다."));
    }
 
+
+   // Database에서 조회해온 User 및 권한 정보를 org.springframework.security.core.userdetails.User 객체로 변환
    private org.springframework.security.core.userdetails.User createUser(String id, User user) {
       if (!user.isActivated()) {
          throw new RuntimeException(id + " -> 활성화되어 있지 않습니다.");
