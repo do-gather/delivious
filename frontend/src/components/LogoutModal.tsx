@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BasicButton from './BasicButton';
-import LockIcon from '../images/LockIcon';
-import InputBox from './InputBox';
 
 /**
  * 어드민 로그인 모달 창
@@ -15,9 +13,10 @@ interface Props {
 export default function LogoutModal({ onClose }: Props) {
   const navigate = useNavigate();
   const [move, setMove] = useState(false);
+  const d = new Date();
 
   useEffect(() => {
-    if (move) navigate('/admin');
+    if (move) navigate('/login');
   }, [move, navigate]);
 
   return (
@@ -42,25 +41,21 @@ export default function LogoutModal({ onClose }: Props) {
         >
           close
         </button>
-        <div className="px-52 pt-10 pb-16 w-full flex flex-col text-center whitespace-nowrap font-bold text-xl">
-          <div>매장명</div>
-          <div className="border-b my-3 w-full border-zinc-300" />
-          <div>스타벅스 강남R점</div>
-
-          <div className="w-full text-xs text-left my-8 place-self-center">
-            <div className="pl-1">비밀번호</div>
-            <InputBox placeholder="Password" icon={<LockIcon />} mode="dark" />
-            <div className="pl-1 pr-3">해당 매장의 관리자 비밀번호를 입력해주세요.</div>
-          </div>
-
-          <div className="px-4 place-self-center">
-            <BasicButton
-              buttonName="관리자 모드 시작하기"
-              onClick={() => {
-                setMove(true);
-              }}
-            />
-          </div>
+        <div
+          className="px-4 md:px-44 pt-10 pb-24 w-full 
+        flex flex-col text-center whitespace-nowrap text-2xl space-y-3"
+        >
+          {d.toLocaleDateString()}
+          &nbsp; &nbsp;
+          {d.toLocaleTimeString()}
+          <div className="pt-4 pb-12">로그아웃 하시겠습니까? </div>
+          <BasicButton
+            buttonName="로그아웃"
+            onClick={() => {
+              setMove(true);
+            }}
+          />
+          <BasicButton buttonName="취소" onClick={() => onClose()} />
         </div>
       </div>
     </div>
