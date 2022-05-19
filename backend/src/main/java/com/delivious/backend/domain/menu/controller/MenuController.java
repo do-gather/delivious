@@ -18,7 +18,7 @@ import java.util.UUID;
 public class MenuController {
     private final MenuService menuService;
 
-    //메뉴 추가
+    // 메뉴 추가
     @ResponseBody
     @PostMapping
     public MenuSaveDto save(@RequestBody MenuSaveDto menuSaveDto) {
