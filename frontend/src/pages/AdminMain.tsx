@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import LogoutModal from '../components/LogoutModal';
 import Tap from '../components/Tap';
 import ChartBar from '../images/ChartBar';
 import Copy from '../images/Copy';
@@ -30,6 +31,7 @@ function MenuBox({ title, icon, url }: Props) {
 }
 
 export default function AdminMain() {
+  const [logoutModal, setLogoutModal] = useState(false);
   return (
     <div className="mx-12 py-20 overflow-y-hidden h-full">
       <div className="text-base font-bold pb-9 whitespace-nowrap">스타벅스 강남R점, 오늘도 반가워요!</div>
@@ -46,9 +48,10 @@ export default function AdminMain() {
       <div className="fixed flex-col space-y-8 right-0 top-14 h-full">
         <Tap color="#000000" name="주문하기" link="/" />
         <Tap color="#435ca5" name="관리페이지" link="/admin" />
-        <Link className="fixed bottom-8 right-1.5" to="/login">
+        <button type="button" className="fixed bottom-8 right-1.5" onClick={() => setLogoutModal(true)}>
           <Logout />
-        </Link>
+        </button>
+        {logoutModal && <LogoutModal onClose={() => setLogoutModal(false)} />}
       </div>
     </div>
   );
