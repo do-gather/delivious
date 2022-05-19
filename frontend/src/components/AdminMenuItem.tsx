@@ -6,13 +6,14 @@ import AddCircle from '../images/AddCircle';
 import TrashCan from '../images/TrashCan';
 import getYmd10 from '../utils/utils';
 import { dts } from '../utils/types';
+import Save from '../images/Save';
 
 /**
  * 어드민 메뉴 목록의 각 아이템
  * 수정 모드일 경우 수정 전 메뉴 아이템 값이 기본으로 들어가 있게 됨
  * @param props 메뉴안에 들어갈 각 항목을 아래 인터페이스 형태로 묶어서 받음
- * @param type 아이템이 수정 상태인지 아닌지 입력, 기본은 'display'. 수정 시 'edit'을 전달.
- *              새로 추가 시 'new' 전달. 전달하지 않으면 'display'로 초기화 됨
+ * @param type 아이템이 수정 상태인지 아닌지 입력, 기본은 'display'. 수정 전일 때 'edit'을 전달.
+ *              새로 추가 시 'new' 전달, 수정이 되었을 때 'edited'를 전달. 전달하지 않으면 'display'로 초기화 됨
  */
 interface Props {
   props?: dts.menuDto;
@@ -66,6 +67,7 @@ export default function AdminMenuItem({
         <div className="cursor-pointer">
           {type === 'edit' && <TrashCan />}
           {type === 'new' && <AddCircle />}
+          {type === 'edited' && <Save />}
         </div>
       </div>
     </div>
