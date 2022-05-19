@@ -51,7 +51,6 @@ export default function AdminMain() {
         <button type="button" className="fixed bottom-8 right-1.5" onClick={() => setLogoutModal(true)}>
           <Logout />
         </button>
-        {logoutModal && <LogoutModal onClose={() => setLogoutModal(false)} />}
       </div>
       {logoutModal && <LogoutModal onClose={() => setLogoutModal(false)} />}
     </div>
