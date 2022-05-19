@@ -33,8 +33,8 @@ function MenuBox({ title, icon, url }: Props) {
 export default function AdminMain() {
   const [logoutModal, setLogoutModal] = useState(false);
   return (
-    <div className="mx-12 py-20 overflow-y-hidden h-full">
-      <div className="text-base font-bold pb-9 whitespace-nowrap">스타벅스 강남R점, 오늘도 반가워요!</div>
+    <div className="py-20 overflow-y-hidden h-full">
+      <div className="mx-12 text-base font-bold pb-9 whitespace-nowrap">스타벅스 강남R점, 오늘도 반가워요!</div>
       <div className="flex flex-col space-y-12 h-3/4 mx-32 text-left font-bold text-3xl">
         <div className="flex h-full justify-center gap-8 md:gap-28 items-center">
           <MenuBox title="메뉴 관리" icon={<Notebook />} url="/admin/menu" />
@@ -51,8 +51,8 @@ export default function AdminMain() {
         <button type="button" className="fixed bottom-8 right-1.5" onClick={() => setLogoutModal(true)}>
           <Logout />
         </button>
-        {logoutModal && <LogoutModal onClose={() => setLogoutModal(false)} />}
       </div>
+      {logoutModal && <LogoutModal onClose={() => setLogoutModal(false)} />}
     </div>
   );
 }
