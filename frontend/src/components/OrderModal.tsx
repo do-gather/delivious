@@ -63,7 +63,7 @@ export default function OrderModal({ onClose, orderList }: Props) {
               <ToggleButton option1="매장 안에서" option2="테이크 아웃" clickedOption={1} />
             </div>
 
-            <div className="px-4 place-self-center">
+            <div className="place-self-center w-40">
               <BasicButton buttonName="결제 완료" onClick={() => setStep(step + 1)} />
             </div>
           </div>
