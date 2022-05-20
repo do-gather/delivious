@@ -5,6 +5,7 @@ package com.delivious.backend.domain.users.controller;
 
 import com.delivious.backend.domain.users.dto.UserDto;
 import com.delivious.backend.domain.users.service.UserService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,7 @@ public class UserController {
         response.sendRedirect("/api/user");
     }
 
+    @ApiOperation(value = "회원가입 메서드")
     @PostMapping("/signup")
     public ResponseEntity<UserDto> signup(
             @Valid @RequestBody UserDto userDto
@@ -40,12 +42,14 @@ public class UserController {
         return ResponseEntity.ok(userService.signup(userDto));
     }
 
+    @ApiOperation(value = "사용자 정보 조회 메서드")
     @GetMapping("/user")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ResponseEntity<UserDto> getMyUserInfo(HttpServletRequest request) {
         return ResponseEntity.ok(userService.getMyUserWithAuthorities());
     }
 
+    @ApiOperation(value = "특정 사용자 정보 조회 메서드(관리자만)")
     @GetMapping("/user/{id}")
     @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<UserDto> getUserInfo(@PathVariable String id) {
