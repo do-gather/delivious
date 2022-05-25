@@ -1,6 +1,6 @@
 import * as React from "react"
 
-function IdIcon (){
+function UserIcon (){
     return(
         <svg
     width={24}
@@ -19,4 +19,4 @@ function IdIcon (){
     );
 }
 
-export default IdIcon
+export default UserIcon
