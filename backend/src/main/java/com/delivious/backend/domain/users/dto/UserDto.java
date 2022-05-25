@@ -32,7 +32,7 @@ public class UserDto {
    private String name;
 
    @NotNull
-   private String phone_num;
+   private String phoneNum;
 
    @NotNull
    private Date birth;
@@ -45,7 +45,7 @@ public class UserDto {
       return UserDto.builder()
               .id(user.getId())
               .name(user.getName())
-              .phone_num(user.getPhone_num())
+              .phoneNum(user.getPhoneNum())
               .birth(user.getBirth())
               .authorityDtoSet(user.getAuthorities().stream()
                       .map(authority -> AuthorityDto.builder().authorityName(authority.getAuthorityName()).build())

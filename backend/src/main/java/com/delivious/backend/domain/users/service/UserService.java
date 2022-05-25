@@ -34,14 +34,14 @@ public class UserService {
         }
 
         Authority authority = Authority.builder()
-                .authorityName("ROLE_USER")
+                .authorityName("ROLE_USER")   // 회원가입시 유저 권한
                 .build();
 
         User user = User.builder()
                 .id(userDto.getId())
                 .password(passwordEncoder.encode(userDto.getPassword()))
                 .name(userDto.getName())
-                .phone_num(userDto.getPhone_num())
+                .phoneNum(userDto.getPhoneNum())
                 .birth(userDto.getBirth())
                 .authorities(Collections.singleton(authority))
                 .activated(true)
