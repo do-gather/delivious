@@ -64,6 +64,8 @@ export default function Main() {
           {constants.MENU_ITEMS.map(menu => (
             <ShopingCart props={menu} key={menu.id} />
           ))}
+            <BasicButton buttonName="결제" onClick={() => setOrderModal(true)} xPadding="px-14" />
+          </div>
         </div>
       </div>
       {adminLogin && <AdminLoginModal onClose={() => setAdminLogin(false)} />}
