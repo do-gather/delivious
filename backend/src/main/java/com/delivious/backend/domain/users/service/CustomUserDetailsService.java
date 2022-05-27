@@ -1,6 +1,6 @@
 /*
    User Repository 에서 받아와 user정보 조회
- */
+
 package com.delivious.backend.domain.users.service;
 
 
@@ -35,6 +35,7 @@ public class CustomUserDetailsService implements UserDetailsService {
    }
 
 
+
    // Database에서 조회해온 User 및 권한 정보를 org.springframework.security.core.userdetails.User 객체로 변환
    private org.springframework.security.core.userdetails.User createUser(String id, User user) {
       if (!user.isActivated()) {
@@ -48,3 +49,6 @@ public class CustomUserDetailsService implements UserDetailsService {
               grantedAuthorities);
    }
 }
+
+
+ */

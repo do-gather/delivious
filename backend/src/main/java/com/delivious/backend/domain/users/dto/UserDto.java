@@ -4,7 +4,6 @@ import com.delivious.backend.domain.users.entity.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -32,12 +31,15 @@ public class UserDto {
    private String name;
 
    @NotNull
+   private String type;
+
+   @NotNull
    private String phoneNum;
 
    @NotNull
    private Date birth;
 
-   private Set<AuthorityDto> authorityDtoSet;
+   //private Set<AuthorityDto> authorityDtoSet;
 
    public static UserDto from(User user) {
       if(user == null) return null;
@@ -45,11 +47,12 @@ public class UserDto {
       return UserDto.builder()
               .id(user.getId())
               .name(user.getName())
+              .type(user.getType())
               .phoneNum(user.getPhoneNum())
               .birth(user.getBirth())
-              .authorityDtoSet(user.getAuthorities().stream()
-                      .map(authority -> AuthorityDto.builder().authorityName(authority.getAuthorityName()).build())
-                      .collect(Collectors.toSet()))
+              //.authorityDtoSet(user.getAuthorities().stream()
+              //        .map(authority -> AuthorityDto.builder().authorityName(authority.getAuthorityName()).build())
+              //        .collect(Collectors.toSet()))
               .build();
    }
 

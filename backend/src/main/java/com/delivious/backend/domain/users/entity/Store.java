@@ -3,13 +3,19 @@
  */
 package com.delivious.backend.domain.users.entity;
 
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.UUID;
 
+@Entity
+@Table(name = "store")
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Store {
 
     @Id
@@ -18,10 +24,16 @@ public class Store {
     @Column(name = "store_id", columnDefinition = "BINARY(16)")
     private UUID storeId;
 
-    @Column(name = "owner_id", length = 50)
-    private String ownerId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")        //오류 발생안하면 owner_id 로도 수정해보기
+    User user;
 
     @Column(name = "store_name", length = 50)
     private String storeName;
 
+
+
+
 }
+
+

@@ -1,5 +1,7 @@
 package com.delivious.backend.domain.users.exception;
 
+
+
 public class DuplicateMemberException extends RuntimeException {
     public DuplicateMemberException() {
         super();
@@ -14,3 +16,5 @@ public class DuplicateMemberException extends RuntimeException {
         super(cause);
     }
 }
+
+

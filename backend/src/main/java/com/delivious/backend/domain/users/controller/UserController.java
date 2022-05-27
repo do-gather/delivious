@@ -3,7 +3,9 @@
  */
 package com.delivious.backend.domain.users.controller;
 
+import com.delivious.backend.domain.users.dto.StoreDto;
 import com.delivious.backend.domain.users.dto.UserDto;
+import com.delivious.backend.domain.users.service.StoreService;
 import com.delivious.backend.domain.users.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -33,22 +35,21 @@ public class UserController {
         response.sendRedirect("/api/user");
     }
 
-    @PostMapping("/signup")
-    public ResponseEntity<UserDto> signup(
+    @PostMapping("/signup?type=ROLE_USER")                  // 사용자 회원가입
+    public ResponseEntity<UserDto> userSignup(
             @Valid @RequestBody UserDto userDto
     ) {
         return ResponseEntity.ok(userService.signup(userDto));
     }
 
-    @GetMapping("/user")
-    @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ResponseEntity<UserDto> getMyUserInfo(HttpServletRequest request) {
-        return ResponseEntity.ok(userService.getMyUserWithAuthorities());
+    @PostMapping("/signup?type=ROLE_ADMIN")                    // 관리자 회원가입
+    public ResponseEntity<UserDto> adminSignup(
+            @Valid @RequestBody UserDto userDto) {
+        return ResponseEntity.ok(userService.signup(userDto));
+    }
+            @Vaild @RequestBody StoreDto storeDto){
+        return ResponseEntity.ok(StoreService.checkin(storeDto));
     }
 
-    @GetMapping("/user/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN')")
-    public ResponseEntity<UserDto> getUserInfo(@PathVariable String id) {
-        return ResponseEntity.ok(userService.getUserWithAuthorities(id));
-    }
+
 }

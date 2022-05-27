@@ -1,4 +1,6 @@
+/*
 package com.delivious.backend.domain.users.dto;
+
 
 import lombok.*;
 
@@ -10,3 +12,6 @@ import lombok.*;
 public class AuthorityDto {
    private String authorityName;
 }
+
+
+ */

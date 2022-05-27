@@ -4,7 +4,6 @@
 package com.delivious.backend.domain.users.service;
 
 import com.delivious.backend.domain.users.dto.UserDto;
-import com.delivious.backend.domain.users.entity.Authority;
 import com.delivious.backend.domain.users.entity.User;
 import com.delivious.backend.domain.users.exception.DuplicateMemberException;
 import com.delivious.backend.domain.users.repository.UserRepository;
@@ -33,9 +32,7 @@ public class UserService {
             throw new DuplicateMemberException("이미 가입되어 있는 유저입니다.");
         }
 
-        Authority authority = Authority.builder()
-                .authorityName("ROLE_USER")   // 회원가입시 유저 권한
-                .build();
+
 
         User user = User.builder()
                 .id(userDto.getId())
@@ -43,7 +40,7 @@ public class UserService {
                 .name(userDto.getName())
                 .phoneNum(userDto.getPhoneNum())
                 .birth(userDto.getBirth())
-                .authorities(Collections.singleton(authority))
+                .type(userDto.getType())
                 .activated(true)
                 .build();
 
@@ -52,14 +49,16 @@ public class UserService {
 
 
     // id 를 파라미터로 받아 해당 유저의 정보 및 권한 정보를 리턴합니다.
-    @Transactional(readOnly = true)
-    public UserDto getUserWithAuthorities(String id) {
-        return UserDto.from(userRepository.findOneWithAuthoritiesByid(id).orElse(null));
-    }
+//    @Transactional(readOnly = true)
+//    public UserDto getUserWithAuthorities(String id) {
+//        return UserDto.from(userRepository.findOneWithAuthoritiesByid(id).orElse(null));
+//    }
 
     // SecurityUtil의 getCurrentUserId() 메소드가 리턴하는 user id 의 유저 및 권한 정보를 리턴
-    @Transactional(readOnly = true)
-    public UserDto getMyUserWithAuthorities() {
-        return UserDto.from(SecurityUtil.getCurrentUserid().flatMap(userRepository::findOneWithAuthoritiesByid).orElse(null));
-    }
+//    @Transactional(readOnly = true)
+//    public UserDto getMyUserWithAuthorities() {
+//        return UserDto.from(SecurityUtil.getCurrentUserid().flatMap(userRepository::findOneWithAuthoritiesByid).orElse(null));
+//    }
+
+
 }
