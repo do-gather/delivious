@@ -7,6 +7,7 @@ import AdminMenuEdit from './pages/AdminMenuEdit';
 import AdminMain from './pages/AdminMain';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import MyOrderlist from './pages/MyOrderlist';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/admin/menu/edit" element={<AdminMenuEdit />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/mypage/orderlist" element={<MyOrderlist />} />
         </Routes>
       </BrowserRouter>
     </div>
