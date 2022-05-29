@@ -41,7 +41,7 @@ public class UserService {
                 .id(userDto.getId())
                 .password(passwordEncoder.encode(userDto.getPassword()))
                 .name(userDto.getName())
-                .phone_num(userDto.getPhone_num())
+                .phoneNum(userDto.getPhoneNum())
                 .birth(userDto.getBirth())
                 .authorities(Collections.singleton(authority))
                 .activated(true)

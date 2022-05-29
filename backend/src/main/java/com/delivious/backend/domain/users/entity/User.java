@@ -33,7 +33,7 @@ public class User extends BaseEntity {
    private String name;
 
    @Column(name = "phone_num", length = 50)
-   private String phone_num;
+   private String phoneNum;
 
    @Column(name ="birth")
    @Temporal(TemporalType.DATE)
