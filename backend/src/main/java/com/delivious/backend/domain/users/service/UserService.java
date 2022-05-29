@@ -43,6 +43,7 @@ public class UserService {
                 .name(userDto.getName())
                 .phoneNum(userDto.getPhoneNum())
                 .birth(userDto.getBirth())
+                .type(userDto.getType())
                 .authorities(Collections.singleton(authority))
                 .activated(true)
                 .build();

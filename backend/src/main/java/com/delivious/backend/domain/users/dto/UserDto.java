@@ -37,6 +37,9 @@ public class UserDto {
    @NotNull
    private Date birth;
 
+   @NotNull
+   private String type;
+
    private Set<AuthorityDto> authorityDtoSet;
 
    public static UserDto from(User user) {
@@ -47,6 +50,7 @@ public class UserDto {
               .name(user.getName())
               .phoneNum(user.getPhoneNum())
               .birth(user.getBirth())
+              .type(user.getType())
               .authorityDtoSet(user.getAuthorities().stream()
                       .map(authority -> AuthorityDto.builder().authorityName(authority.getAuthorityName()).build())
                       .collect(Collectors.toSet()))

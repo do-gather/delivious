@@ -5,6 +5,8 @@ package com.delivious.backend.domain.users.entity;
 
 import com.delivious.backend.global.common.BaseEntity;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -41,6 +43,10 @@ public class User extends BaseEntity {
 
    @Column(name = "activated")
    private boolean activated;
+
+   @Column(name = "type", columnDefinition = "varchar(255) default 'ROLE_USER'")
+   private String type;
+
 
    @ManyToMany
    @JoinTable(
