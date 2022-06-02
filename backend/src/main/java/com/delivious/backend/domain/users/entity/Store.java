@@ -24,11 +24,11 @@ public class Store {
     @Column(columnDefinition = "BINARY(16)" , name = "store_id")
     private UUID storeId;
 
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    User user;
 
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(columnDefinition = "BINARY(16)" , name = "owner_id")
-    private UUID ownerId;
+
 
     @Column(name = "store_name", length = 50)
     private String storeName;

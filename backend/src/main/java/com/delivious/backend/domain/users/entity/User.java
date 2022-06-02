@@ -6,24 +6,26 @@ package com.delivious.backend.domain.users.entity;
 import com.delivious.backend.global.common.BaseEntity;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "users")
 @Getter
-@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class User extends BaseEntity {
 
    @Id
-   @Column(name = "user_id")
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long userId;
+   @GeneratedValue(strategy = GenerationType.IDENTITY , generator = "uuid2")
+   @GenericGenerator(name = "uuid2", strategy = "uuid2")
+   @Column(columnDefinition = "BINARY(16)" , name = "user_id")
+   private UUID userId;
 
    @Column(name = "id", length = 50, unique = true)
    private String id;
@@ -48,10 +50,11 @@ public class User extends BaseEntity {
    private String type;
 
 
-   @ManyToMany
-   @JoinTable(
-      name = "user_authority",
-      joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
-      inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "authority_name")})
-   private Set<Authority> authorities;
+   // Store entity 와 조인
+   @Setter
+   @OneToOne(mappedBy = "user")
+   @JoinColumn(name = "user_id")
+   private Store store;
+
+
 }

@@ -1,6 +1,8 @@
+/*
 package com.delivious.backend.domain.users.dto;
 
-import lombok.*;
+
+import lombok. *;
 
 @Getter
 @Setter
@@ -8,5 +10,11 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthorityDto {
-   private String authorityName;
+    private String authorityName;
 }
+
+
+
+
+ */
+

@@ -4,7 +4,6 @@
 package com.delivious.backend.domain.users.service;
 
 import com.delivious.backend.domain.users.dto.UserDto;
-import com.delivious.backend.domain.users.entity.Authority;
 import com.delivious.backend.domain.users.entity.User;
 import com.delivious.backend.domain.users.exception.DuplicateMemberException;
 import com.delivious.backend.domain.users.repository.UserRepository;
@@ -33,10 +32,6 @@ public class UserService {
             throw new DuplicateMemberException("이미 가입되어 있는 유저입니다.");
         }
 
-        Authority authority = Authority.builder()
-                .authorityName("ROLE_USER")
-                .build();
-
         User user = User.builder()
                 .id(userDto.getId())
                 .password(passwordEncoder.encode(userDto.getPassword()))
@@ -44,13 +39,14 @@ public class UserService {
                 .phoneNum(userDto.getPhoneNum())
                 .birth(userDto.getBirth())
                 .type(userDto.getType())
-                .authorities(Collections.singleton(authority))
+                //.authorities(Collections.singleton(authority))
                 .activated(true)
                 .build();
 
         return UserDto.from(userRepository.save(user));
     }
 
+/*
 
     // id 를 파라미터로 받아 해당 유저의 정보 및 권한 정보를 리턴합니다.
     @Transactional(readOnly = true)
@@ -58,9 +54,12 @@ public class UserService {
         return UserDto.from(userRepository.findOneWithAuthoritiesByid(id).orElse(null));
     }
 
-    // SecurityUtil의 getCurrentUserId() 메소드가 리턴하는 user id 의 유저 및 권한 정보를 리턴
+    // SecurityUtil의 getCurrentUserId() 메소드가 리턴하는 user id 의 유저 및 권한 정보를 리턴 -> 이부분을 사용안해서 오류가 발생하는 것 같다.
     @Transactional(readOnly = true)
     public UserDto getMyUserWithAuthorities() {
         return UserDto.from(SecurityUtil.getCurrentUserid().flatMap(userRepository::findOneWithAuthoritiesByid).orElse(null));
     }
+
+
+ */
 }
