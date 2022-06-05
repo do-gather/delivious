@@ -1,4 +1,4 @@
-/*
+
 
 package com.delivious.backend.domain.users.repository;
 
@@ -10,4 +10,4 @@ public interface AuthorityRepository extends JpaRepository<Authority, String> {
 
 
 
- */
+

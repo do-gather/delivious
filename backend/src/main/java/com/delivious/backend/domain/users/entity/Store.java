@@ -29,7 +29,6 @@ public class Store {
     User user;
 
 
-
     @Column(name = "store_name", length = 50)
     private String storeName;
 

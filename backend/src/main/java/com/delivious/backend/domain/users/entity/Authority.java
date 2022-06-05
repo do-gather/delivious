@@ -1,4 +1,4 @@
-/*
+
 //   사용자 권한 엔티티
 
 package com.delivious.backend.domain.users.entity;
@@ -21,8 +21,8 @@ public class Authority {
 
     @Id
     @Column(name = "authority_name", length = 50)
-    private String authorityName;
+    private String authorityName;     // 얘가 type인걸로
 }
 
 
- */
+

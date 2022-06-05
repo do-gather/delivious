@@ -51,8 +51,8 @@ public class UserController {
         return ResponseEntity.ok(storeService.checkin(storeDto));
     }
 
-    /*
 
+/*
     @GetMapping("/user")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ResponseEntity<UserDto> getMyUserInfo(HttpServletRequest request) {
@@ -66,7 +66,8 @@ public class UserController {
     }
 
 
-     */
+
+ */
 
 
 

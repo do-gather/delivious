@@ -1,4 +1,4 @@
-/*
+
 //   User Repository 에서 받아와 user정보 조회
 
 
@@ -18,10 +18,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component("userDetailsService")
-public class CustomerUserDetailsService implements UserDetailsService {
+public class CustomerUserService implements UserDetailsService {
     private final UserRepository userRepository;
 
-    public CustomerUserDetailsService(UserRepository userRepository) {
+    public CustomerUserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -40,6 +40,7 @@ public class CustomerUserDetailsService implements UserDetailsService {
         if (!user.isActivated()) {
             throw new RuntimeException(id + " -> 활성화되어 있지 않습니다.");
         }
+
         List<GrantedAuthority> grantedAuthorities = user.getAuthorities().stream()
                 .map(authority -> new SimpleGrantedAuthority(authority.getAuthorityName()))
                 .collect(Collectors.toList());
@@ -50,4 +51,3 @@ public class CustomerUserDetailsService implements UserDetailsService {
 }
 
 
- */

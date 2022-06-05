@@ -1,5 +1,5 @@
 /*
-   토큰 생성과 토큰 검증
+   토큰 생성과 토큰의 유효성 검증
  */
 
 
@@ -49,17 +49,18 @@ public class TokenProvider implements InitializingBean {
    @Override
    public void afterPropertiesSet() {
       byte[] keyBytes = Decoders.BASE64.decode(secret);
+      // 빈이 생성되고 주입받으 후에 위에 secret값을 BASE64에 decord 해서 아래 key 변수에 할당
       this.key = Keys.hmacShaKeyFor(keyBytes);
    }
 
-   // 토큰 생성
+   // Authenticate 객체의 권한 정보를 이용해서 토큰 생성
    public String createToken(Authentication authentication) {
       String authorities = authentication.getAuthorities().stream()
          .map(GrantedAuthority::getAuthority)
          .collect(Collectors.joining(","));
 
       long now = (new Date()).getTime();
-      Date validity = new Date(now + this.tokenValidityInMilliseconds);
+      Date validity = new Date(now + this.tokenValidityInMilliseconds);  // application.yml에서 설정한 토큰의 만료시간 설정
 
       return Jwts.builder()
          .setSubject(authentication.getName())
@@ -71,6 +72,7 @@ public class TokenProvider implements InitializingBean {
 
 
    // 토큰에 담겨있는 권한 정보들을 이용해 Authentication 객체를 리턴
+   //토큰을 이용해서 claims를 만들고 -> 유저 객체를 만들어 authenticate 객체 리턴
    public Authentication getAuthentication(String token) {
       Claims claims = Jwts
               .parserBuilder()

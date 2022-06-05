@@ -5,6 +5,7 @@ package com.delivious.backend.domain.users.service;
 
 import com.delivious.backend.domain.users.dto.UserDto;
 import com.delivious.backend.domain.users.entity.User;
+import com.delivious.backend.domain.users.entity.Authority;
 import com.delivious.backend.domain.users.exception.DuplicateMemberException;
 import com.delivious.backend.domain.users.repository.UserRepository;
 import com.delivious.backend.domain.users.util.SecurityUtil;
@@ -25,6 +26,10 @@ public class UserService {
     }
 
 
+    Authority authority = Authority.builder()
+            //.authorityName("ROLE_USER")
+            .build();
+
     // 이미 같은 id 로 가입된 유저가 있는 지 확인하고, UserDto 객체의 정보들을 기반으로 권한 객체와 유저 객체를 생성하여 Database에 저장
     @Transactional
     public UserDto signup(UserDto userDto) {                      
@@ -38,16 +43,16 @@ public class UserService {
                 .name(userDto.getName())
                 .phoneNum(userDto.getPhoneNum())
                 .birth(userDto.getBirth())
-                .type(userDto.getType())
-                //.authorities(Collections.singleton(authority))
+                //.type(userDto.getType())
+                .authorities(Collections.singleton(authority))
                 .activated(true)
                 .build();
 
         return UserDto.from(userRepository.save(user));
     }
 
-/*
 
+    /*
     // id 를 파라미터로 받아 해당 유저의 정보 및 권한 정보를 리턴합니다.
     @Transactional(readOnly = true)
     public UserDto getUserWithAuthorities(String id) {
@@ -61,5 +66,7 @@ public class UserService {
     }
 
 
- */
+     */
+
+
 }

@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.filter.CorsFilter;
 
-@EnableWebSecurity
+@EnableWebSecurity                                          // 기본적인 web 보안 활성화
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final TokenProvider tokenProvider;
@@ -25,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
 
     public SecurityConfig(
-            TokenProvider tokenProvider,
+            TokenProvider tokenProvider,                                      // JWT 패키지에서 만든 클래스를 주입받는다
             CorsFilter corsFilter,
             JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint,
             JwtAccessDeniedHandler jwtAccessDeniedHandler
@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
 
                 .exceptionHandling()
-                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                .authenticationEntryPoint(jwtAuthenticationEntryPoint)           // jwt 패키지에서 만든 클래스
                 .accessDeniedHandler(jwtAccessDeniedHandler)
 
                 // enable h2-console
@@ -75,13 +75,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
                 .and()
-                .authorizeRequests()
+                .authorizeRequests()                // httpServletRequest 를 사용하는 요청들에 대한 접근 제한 설정
                 .antMatchers("/api/hello").permitAll()
                 .antMatchers("/api/authenticate").permitAll()
                 .antMatchers("/api/signup").permitAll()
                 .antMatchers("/api/store").permitAll()                      //추가한 부분
 
-                .anyRequest().authenticated()
+                .anyRequest().authenticated()         // 위에 서버를 제외한 나머지는 인증을 받아야 한다
 
                 .and()
                 .apply(new JwtSecurityConfig(tokenProvider));

@@ -1,5 +1,5 @@
 /*
-    JwtFilter를 Security 로직에 적용
+    TokenProvider , JwtFilter를 SecurityConfig 에 등록(합쳐주는 역할)
  */
 
 package com.delivious.backend.domain.users.jwt;
