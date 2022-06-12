@@ -41,6 +41,7 @@ public class AuthController {
                 new UsernamePasswordAuthenticationToken(loginDto.getId(), loginDto.getPassword());
 
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+        // authenticate 실행시 - customer user detail service 실행
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = tokenProvider.createToken(authentication);

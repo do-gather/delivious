@@ -3,8 +3,13 @@
  */
 package com.delivious.backend.domain.users.controller;
 
+import com.delivious.backend.domain.users.dto.StoreMapper;
 import com.delivious.backend.domain.users.dto.UserDto;
+import com.delivious.backend.domain.users.dto.StoreDto;
+import com.delivious.backend.domain.users.entity.Store;
+import com.delivious.backend.domain.users.entity.User;
 import com.delivious.backend.domain.users.service.UserService;
+import com.delivious.backend.domain.users.service.StoreService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +24,14 @@ import java.io.IOException;
 public class UserController {
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    private final StoreService storeService;
+    private final StoreMapper storeMapper;
+
+    public UserController(UserService userService,StoreService storeService,StoreMapper storeMapper) {
+
         this.userService = userService;
+        this.storeService = storeService;
+        this.storeMapper = storeMapper;
     }
 
     @GetMapping("/hello")
@@ -39,6 +50,28 @@ public class UserController {
     ) {
         return ResponseEntity.ok(userService.signup(userDto));
     }
+
+
+    // API ("/store") 추가 할 자리
+    @PostMapping("/store")
+    public ResponseEntity<StoreDto> checkin(
+            @Valid @RequestBody StoreDto storeDto
+    ){
+        User user = userService.findById(storeDto.getUserId());
+        Store store = storeService.checkin(storeDto,user);
+        /*
+        try {
+            return new ResponseEntity<>(orderMapper.toResponseDto(entity), HttpStatus.CREATED);
+        }
+        catch(Exception e) {
+            return new ResponseEntity(ErrorResponseDto.fromEntity("FORBIDDEN", "주문 생성에 오류가 발생하였습니다."), HttpStatus.BAD_REQUEST);
+        }
+
+         */
+
+        return ResponseEntity.ok(storeMapper.toResponseDto(store));
+    }
+
 
     @GetMapping("/user")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")

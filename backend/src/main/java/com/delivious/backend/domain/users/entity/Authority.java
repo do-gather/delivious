@@ -20,6 +20,6 @@ import javax.persistence.Table;
 public class Authority {
 
    @Id
-   @Column(name = "authority_name", length = 50)
+   @Column(name = "authority_name", length = 50)     // 요게 나중에 타입
    private String authorityName;
 }

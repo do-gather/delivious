@@ -38,7 +38,7 @@ public class CustomUserDetailsService implements UserDetailsService {
    // Database에서 조회해온 User 및 권한 정보를 org.springframework.security.core.userdetails.User 객체로 변환
    private org.springframework.security.core.userdetails.User createUser(String id, User user) {
       if (!user.isActivated()) {
-         throw new RuntimeException(id + " -> 활성화되어 있지 않습니다.");
+         throw new RuntimeException(id + " -> 계정이 활성화되어 있지 않습니다.");
       }
       List<GrantedAuthority> grantedAuthorities = user.getAuthorities().stream()
               .map(authority -> new SimpleGrantedAuthority(authority.getAuthorityName()))
