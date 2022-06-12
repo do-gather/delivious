@@ -3,6 +3,7 @@
  */
 package com.delivious.backend.domain.users.service;
 
+import com.delivious.backend.domain.users.dto.AuthorityDto;
 import com.delivious.backend.domain.users.dto.UserDto;
 import com.delivious.backend.domain.users.dto.UserMapper;
 import com.delivious.backend.domain.users.dto.UserResponseDto;
@@ -49,6 +50,7 @@ public class UserService {
         Authority authority = Authority.builder()
                 .authorityName(authorityName)
                 .build();
+
 
         User user = User.builder()
                 .username(userDto.getUsername())
