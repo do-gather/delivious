@@ -23,6 +23,11 @@ public class Store {
     @Column(columnDefinition = "BINARY(16)" , name = "store_id")
     private UUID storeId;
 
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(columnDefinition = "BINARY(16)" , name = "owner_id")
+    private UUID ownerId;
+
     // User랑 Join
     @OneToOne
     @JoinColumn(name = "id")
