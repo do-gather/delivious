@@ -2,37 +2,59 @@ package com.delivious.backend.domain.menu.entity;
 
 
 import com.delivious.backend.global.common.BaseEntity;
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.validation.constraints.NotNull;
+import java.util.Set;
 import java.util.UUID;
 
-
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter @Setter
 @Entity
-@Builder
 @Table(name = "category")
 
 public class Category extends BaseEntity {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column( nullable = false, length = 50)
-    private UUID category_id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(columnDefinition = "BINARY(16)",name = "category_id")
+    private UUID categoryId;
 
-    private String category_name;
+    @NotNull
+    @Column(name="category_name")
+    private String categoryName;
 
-    /*Menu Entity에서 Category를 ManyToOne으로 매핑
-        Category Entity에서는 OneToMany로 매핑 후
-        MenuEntity의 cate 필드에 의해 매핑
-     */
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<Menu> menuItemsOfCategory;
 
-    @OneToMany(mappedBy = "category")
-    private List<Menu> menus = new ArrayList<Menu>();
+    public Category(){
+
+    }
+
+    public Category(@NotNull String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public UUID getCategoryId() {
+        return categoryId;
+    }
 
 
+    public String getCategoryName() {
+        return categoryName;
+    }
 
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public Set<Menu> getMenuItemsOfCategory() {
+        return menuItemsOfCategory;
+    }
+
+    public void setMenuItemsOfCategory(Set<Menu> menuItemsOfCategory) {
+        this.menuItemsOfCategory = menuItemsOfCategory;
+    }
 }
