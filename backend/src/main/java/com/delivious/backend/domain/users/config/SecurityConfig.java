@@ -51,6 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         ,"/categories/**"
                         ,"/menus/**"
 
+                        ,"/api/hello"
                 );
     }
 
