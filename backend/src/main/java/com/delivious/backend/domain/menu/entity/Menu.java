@@ -1,12 +1,16 @@
 package com.delivious.backend.domain.menu.entity;
+import com.delivious.backend.domain.category.entity.Category;
 import com.delivious.backend.global.common.BaseEntity;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Entity
 @Table(name = "menus")
 public class Menu extends BaseEntity {
@@ -30,11 +34,7 @@ public class Menu extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
-    @JsonBackReference // 순환참조 방지
     private Category category;
-
-    @Transient //categoryId 제외
-    private UUID categoryId;
 
     @NotNull
     private String temperature;
@@ -45,10 +45,8 @@ public class Menu extends BaseEntity {
     @NotNull
     private String description;
 
-    public Menu() {
 
-    }
-
+    @Builder
     public Menu(String menuName, Float price, String menuImage, String temperature, Size size, String description) {
         this.menuName = menuName;
         this.price = price;
@@ -58,71 +56,4 @@ public class Menu extends BaseEntity {
         this.description = description;
     }
 
-    public UUID getMenuId() {
-        return menuId;
-    }
-
-    public String getMenuName() {
-        return menuName;
-    }
-
-    public void setMenuName(String menuName) {
-        this.menuName = menuName;
-    }
-
-    public Float getPrice() {
-        return price;
-    }
-
-    public void setPrice(Float price) {
-        this.price = price;
-    }
-
-    public String getMenuImage() {
-        return menuImage;
-    }
-
-    public void setMenuImage(String menuImage) {
-        this.menuImage = menuImage;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public UUID getCategoryId() {
-        return getCategory().getCategoryId();
-    }
-
-    public void setCategoryId(UUID categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public String getTemperature() {
-        return temperature;
-    }
-
-    public void setTemperature(String temperature) {
-        this.temperature = temperature;
-    }
-
-    public Size getSize() {
-        return size;
-    }
-
-    public void setSize(Size size) {
-        this.size = size;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }
