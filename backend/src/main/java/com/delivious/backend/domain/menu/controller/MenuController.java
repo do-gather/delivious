@@ -1,8 +1,11 @@
 //package com.delivious.backend.domain.menu.controller;
+//import com.delivious.backend.domain.menu.entity.Category;
 //import com.delivious.backend.domain.menu.entity.Menu;
+//import com.delivious.backend.domain.menu.service.CategoryService;
 //import com.delivious.backend.domain.menu.service.MenuService;
 //import com.delivious.backend.global.ErrorResponseDto;
 //import lombok.RequiredArgsConstructor;
+//import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.http.HttpStatus;
 //import org.springframework.http.ResponseEntity;
 //import org.springframework.stereotype.Controller;
@@ -13,20 +16,23 @@
 //import java.util.UUID;
 //import java.util.stream.Collectors;
 //
-//@Controller
 //@RestController
-//@RequiredArgsConstructor
 //@RequestMapping("/menu")
 //public class MenuController {
-//    private final MenuService menuService;
+//    private MenuService menuService;
+//    private CategoryService categoryService;
 //
-//    // 메뉴 추가
-//    // body에 받기
-//    @ResponseBody
+//    @Autowired
+//    public MenuController(MenuService menuService, CategoryService categoryService){
+//        this.menuService = menuService;
+//        this.categoryService = categoryService;
+//    }
+//
 //    @PostMapping
-//    public MenuSaveDto save(@RequestBody MenuSaveDto menuSaveDto) {
-//        Menu menu = menuService.save(menuSaveDto);
-//        return MenuSaveDto.fromEntity(menu);
+//    public ResponseEntity<Menu> createMenu(@PathVariable UUID categoryId, @RequestBody Menu menu) {
+//        Category category = categoryService.getCategory(categoryId);
+//        menu.setCategory(category);
+//        return ResponseEntity.ok(menuService.createMenu(categoryId, menu));
 //    }
 //
 //    // 메뉴조회
