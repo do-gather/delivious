@@ -38,7 +38,6 @@ public class OrderEntity {
 
 
     @Builder
-
     public OrderEntity(UUID order_id, UUID user_id, UUID table_id, Long total_count, Long total_price, String status_now, Timestamp created_at) {
         this.order_id = order_id;
         this.user_id = user_id;
