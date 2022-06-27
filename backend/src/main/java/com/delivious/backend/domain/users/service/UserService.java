@@ -42,9 +42,15 @@ public class UserService {
             throw new DuplicateMemberException("이미 가입되어 있는 유저입니다.");
         }
 
+        String authorityName;
+        if (userDto.getType().equals("admin")) {
+            authorityName = "ROLE_ADMIN";
+        } else {
+            authorityName = "ROLE_USER";
+        }
 
         Authority authority = Authority.builder()
-                .authorityName("ROLE_USER")      // ***여기 수정해야 함, 여기 코드로 권한이 유저권한만 부여
+                .authorityName(authorityName)
                 .build();
 
         User user = User.builder()
