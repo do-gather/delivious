@@ -54,6 +54,7 @@ public class UserController {
 
 
     @PostMapping("/store")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<StoreDto> checkin(
             @Valid @RequestBody StoreDto storeDto
     ){
