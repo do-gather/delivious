@@ -1,20 +1,15 @@
 package com.delivious.backend.domain.users.entity;
 
-
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.UUID;
 
-
 @Entity
 @Table(name = "store")
 @Getter
-@Setter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Store {
 
     @Id
@@ -23,12 +18,16 @@ public class Store {
     @Column(columnDefinition = "BINARY(16)" , name = "store_id")
     private UUID storeId;
 
-    // User랑 Join
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "user_id")
     User user;
 
     @Column(name = "store_name", length = 50)
     private String storeName;
 
+    @Builder
+    public Store(User user, String storeName) {
+        this.user = user;
+        this.storeName = storeName;
+    }
 }

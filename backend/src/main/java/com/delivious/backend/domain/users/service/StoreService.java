@@ -1,7 +1,6 @@
 package com.delivious.backend.domain.users.service;
 
 import com.delivious.backend.domain.users.dto.StoreDto;
-import com.delivious.backend.domain.users.dto.UserDto;
 import com.delivious.backend.domain.users.entity.Store;
 import com.delivious.backend.domain.users.entity.User;
 import com.delivious.backend.domain.users.exception.DuplicateStoreException;
@@ -29,14 +28,11 @@ public class StoreService {
             throw new DuplicateStoreException("이미 가입되어 있는 매장입니다.");
         }
 
-
         Store store = Store.builder()
+                .user(user)
                 .storeName(storeDto.getStoreName())
                 .build();
 
-        store.setUser(user);
         return storeRepository.save(store);
     }
-
-
 }
