@@ -1,5 +1,6 @@
 package com.delivious.backend.domain.menu.entity;
 import com.delivious.backend.domain.category.entity.Category;
+import com.delivious.backend.domain.menu.dto.MenuRequest;
 import com.delivious.backend.global.common.BaseEntity;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
@@ -8,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
+@Builder
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -45,15 +47,27 @@ public class Menu extends BaseEntity {
     @NotNull
     private String description;
 
-
     @Builder
-    public Menu(String menuName, Float price, String menuImage, String temperature, Size size, String description) {
+    public Menu(Category category, String menuName, Float price, String menuImage, String temperature, Size size, String description) {
         this.menuName = menuName;
         this.price = price;
         this.menuImage = menuImage;
+        this.category = category;
         this.temperature = temperature;
         this.size = size;
         this.description = description;
     }
 
+    public void updateMenu(MenuRequest menuRequest) {
+        this.menuName = menuRequest.getMenuName();
+        this.price = menuRequest.getPrice();
+        this.menuImage = menuRequest.getMenuImage();
+        this.category = menuRequest.getCategory();
+        this.temperature = menuRequest.getTemperature();
+        this.size = menuRequest.getSize();
+        this.description = menuRequest.getDescription();
+    }
+
+    public void removeMenu(){
+    }
 }

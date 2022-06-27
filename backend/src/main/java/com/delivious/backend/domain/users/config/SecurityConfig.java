@@ -49,6 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         ,"/favicon.ico"
                         ,"/error"
                         ,"/categories/**"
+                        ,"/menus/**"
+
                 );
     }
 
