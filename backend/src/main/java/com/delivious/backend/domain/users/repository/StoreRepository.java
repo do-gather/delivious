@@ -9,6 +9,6 @@ import java.util.Optional;
 
 
 public interface StoreRepository extends JpaRepository<Store, Long> {
-    @EntityGraph(attributePaths = "stores")
+    @EntityGraph(attributePaths = "user")
     Optional<Store> findOneWithStoresBystoreName(String storeName);
 }
