@@ -24,7 +24,7 @@ public class StoreDto {
     @Size(min = 3, max = 50)
     private String storeName;
 
-    public static StoreDto from(Store store, User user){   //user 을 추가해버리면 스토어서비스에서 에러가 생긴다..
+    public static StoreDto from(Store store, User user){
         if(store == null) return null;
 
         return StoreDto.builder()
