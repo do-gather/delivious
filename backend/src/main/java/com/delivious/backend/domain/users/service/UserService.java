@@ -3,7 +3,6 @@
  */
 package com.delivious.backend.domain.users.service;
 
-import com.delivious.backend.domain.users.dto.AuthorityDto;
 import com.delivious.backend.domain.users.dto.UserDto;
 import com.delivious.backend.domain.users.dto.UserMapper;
 import com.delivious.backend.domain.users.dto.UserResponseDto;
@@ -30,15 +29,13 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User findById(UUID userId) {
-        return userRepository.findById(userId);
+        return userRepository.findByUserId(userId);
     }
 
-    ;
-
-    // 이미 같은 id 로 가입된 유저가 있는 지 확인하고, UserDto 객체의 정보들을 기반으로 권한 객체와 유저 객체를 생성하여 Database에 저장
+    // 이미 같은 username으로 가입된 유저가 있는 지 확인하고, UserDto 객체의 정보들을 기반으로 권한 객체와 유저 객체를 생성하여 Database에 저장
     @Transactional
     public UserResponseDto signup(UserDto userDto) {
-        if (userRepository.findOneWithAuthoritiesByid(userDto.getId()).orElse(null) != null) {
+        if (userRepository.findOneWithAuthoritiesByUsername(userDto.getUsername()).orElse(null) != null) {
             throw new DuplicateMemberException("이미 가입되어 있는 유저입니다.");
         }
 
@@ -54,7 +51,7 @@ public class UserService {
                 .build();
 
         User user = User.builder()
-                .id(userDto.getId())
+                .username(userDto.getUsername())
                 .password(passwordEncoder.encode(userDto.getPassword()))
                 .name(userDto.getName())
                 .phoneNum(userDto.getPhoneNum())
@@ -67,16 +64,15 @@ public class UserService {
         return userMapper.toResponseDto(userRepository.save(user));
     }
 
-
-    // id 를 파라미터로 받아 해당 유저의 정보 및 권한 정보를 리턴합니다.
+    // username을 파라미터로 받아 해당 유저의 정보 및 권한 정보를 리턴합니다.
     @Transactional(readOnly = true)
-    public UserResponseDto getUserWithAuthorities(String id) {
-        return userMapper.toResponseDto(userRepository.findOneWithAuthoritiesByid(id).orElse(null));
+    public UserResponseDto getUserWithAuthorities(String username) {
+        return userMapper.toResponseDto(userRepository.findOneWithAuthoritiesByUsername(username).orElse(null));
     }
 
-    // SecurityUtil의 getCurrentUserId() 메소드가 리턴하는 user id 의 유저 및 권한 정보를 리턴
+    // SecurityUtil의 getCurrentUserId() 메소드가 리턴하는 username의 유저 및 권한 정보를 리턴
     @Transactional(readOnly = true)
     public UserResponseDto getMyUserWithAuthorities() {
-        return userMapper.toResponseDto(SecurityUtil.getCurrentUserid().flatMap(userRepository::findOneWithAuthoritiesByid).orElse(null));
+        return userMapper.toResponseDto(SecurityUtil.getCurrentUserid().flatMap(userRepository::findOneWithAuthoritiesByUsername).orElse(null));
     }
 }

@@ -13,8 +13,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-   @EntityGraph(attributePaths = "authorities")
-   Optional<User> findOneWithAuthoritiesByid(String id);
 
-  User findById(UUID userId);
+    @EntityGraph(attributePaths = "authorities")
+    Optional<User> findOneWithAuthoritiesByUsername(String username);
+
+    User findByUserId(UUID userId);
 }

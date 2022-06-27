@@ -23,8 +23,8 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/api")
 public class UserController {
-    private final UserService userService;
 
+    private final UserService userService;
     private final StoreService storeService;
     private final StoreMapper storeMapper;
 
@@ -53,7 +53,6 @@ public class UserController {
     }
 
 
-    // API ("/store") 추가 할 자리
     @PostMapping("/store")
     public ResponseEntity<StoreDto> checkin(
             @Valid @RequestBody StoreDto storeDto
@@ -80,9 +79,9 @@ public class UserController {
         return ResponseEntity.ok(userService.getMyUserWithAuthorities());
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/user/{username}")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public ResponseEntity<UserResponseDto> getUserInfo(@PathVariable String id) {
-        return ResponseEntity.ok(userService.getUserWithAuthorities(id));
+    public ResponseEntity<UserResponseDto> getUserInfo(@PathVariable String username) {
+        return ResponseEntity.ok(userService.getUserWithAuthorities(username));
     }
 }

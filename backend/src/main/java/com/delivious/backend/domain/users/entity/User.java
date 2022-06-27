@@ -29,8 +29,8 @@ public class User extends BaseEntity {
    @Column(columnDefinition = "BINARY(16)" , name = "user_id")
    private UUID userId;
 
-   @Column(name = "id", length = 50, unique = true)
-   private String id;
+   @Column(name = "username", length = 50, unique = true)
+   private String username;
 
    @Column(name = "password", length = 100)
    private String password;

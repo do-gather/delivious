@@ -11,7 +11,7 @@ public class UserMapper {
     public UserResponseDto toResponseDto(User user) {
         return UserResponseDto.builder()
                 .userId(user.getUserId())
-                .id(user.getId())
+                .username(user.getUsername())
                 .name(user.getName())
                 .phoneNum(user.getPhoneNum())
                 .birth(user.getBirth())

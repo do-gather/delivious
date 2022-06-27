@@ -14,7 +14,7 @@ import java.util.UUID;
 public class UserResponseDto {
 
     private UUID userId;
-    private String id;
+    private String username;
     private String name;
     private String phoneNum;
     private Date birth;
