@@ -6,6 +6,7 @@ package com.delivious.backend.domain.users.controller;
 import com.delivious.backend.domain.users.dto.StoreMapper;
 import com.delivious.backend.domain.users.dto.UserDto;
 import com.delivious.backend.domain.users.dto.StoreDto;
+import com.delivious.backend.domain.users.dto.UserResponseDto;
 import com.delivious.backend.domain.users.entity.Store;
 import com.delivious.backend.domain.users.entity.User;
 import com.delivious.backend.domain.users.service.UserService;
@@ -45,7 +46,7 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<UserDto> signup(
+    public ResponseEntity<UserResponseDto> signup(
             @Valid @RequestBody UserDto userDto
     ) {
         return ResponseEntity.ok(userService.signup(userDto));
@@ -75,13 +76,13 @@ public class UserController {
 
     @GetMapping("/user")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ResponseEntity<UserDto> getMyUserInfo(HttpServletRequest request) {
+    public ResponseEntity<UserResponseDto> getMyUserInfo(HttpServletRequest request) {
         return ResponseEntity.ok(userService.getMyUserWithAuthorities());
     }
 
     @GetMapping("/user/{id}")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public ResponseEntity<UserDto> getUserInfo(@PathVariable String id) {
+    public ResponseEntity<UserResponseDto> getUserInfo(@PathVariable String id) {
         return ResponseEntity.ok(userService.getUserWithAuthorities(id));
     }
 }

@@ -2,6 +2,7 @@ package com.delivious.backend.domain.users.handler;
 
 import com.delivious.backend.domain.users.dto.ErrorDTO;
 import com.delivious.backend.domain.users.exception.DuplicateMemberException;
+
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

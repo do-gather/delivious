@@ -47,23 +47,4 @@ public class UserDto {
 
    private Set<AuthorityDto> authorityDtoSet;
   // private Collection<GrantedAuthority> authorities;
-
-   public static UserDto from(User user) {
-      if(user == null) return null;
-
-      return UserDto.builder()
-              //.userId(user.getUserId())
-              .id(user.getId())
-              .name(user.getName())
-              .phoneNum(user.getPhoneNum())
-              .birth(user.getBirth())
-              .type(user.getType())
-              .authorityDtoSet(user.getAuthorities().stream()
-                      .map(authority -> AuthorityDto.builder().authorityName(authority.getAuthorityName()).build())
-                      .collect(Collectors.toSet()))
-
-              //여기 추가 해야 하는데, 권한 부분....
-              .build();
-   }
-
 }
