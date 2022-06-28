@@ -1,9 +1,11 @@
 package com.delivious.backend.domain.menu.controller;
+import com.delivious.backend.domain.category.entity.Category;
 import com.delivious.backend.domain.category.service.CategoryService;
 import com.delivious.backend.domain.menu.dto.MenuRequest;
 import com.delivious.backend.domain.menu.dto.MenuResponse;
 import com.delivious.backend.domain.menu.entity.Menu;
 import com.delivious.backend.domain.menu.service.MenuService;
+import com.delivious.backend.global.ErrorResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/menus")
@@ -25,13 +28,7 @@ public class MenuController {
         this.categoryService = categoryService;
     }
 
-//    @PostMapping
-//    public ResponseEntity<Menu> createMenu(@PathVariable UUID categoryId, @RequestBody Menu menu) {
-//        Category category = categoryService.getCategory(categoryId);
-//        menu.setCategory(category);
-//        return ResponseEntity.ok(menuService.createMenu(categoryId, menu));
-//    }
-
+    // 메뉴 생성
     @PostMapping
     public ResponseEntity<HttpStatus> createMenu(@RequestBody @Valid MenuRequest menuRequest) {
         menuService.createMenu(menuRequest);
@@ -51,22 +48,7 @@ public class MenuController {
     }
 
     // 카테고리별 메뉴 목록조회
-//    @ResponseBody
-//    @GetMapping("/{categoryId}")
-//    public ResponseEntity<List<MenuResponseDto>> getByCategoryId(@RequestParam UUID categoryId) {
-//
-//        List<MenuResponseDto> entity = menuService.findAllByCategoryId(categoryId)
-//                .stream()
-//                .collect(Collectors.toList());
-//        try{
-//            return ResponseEntity
-//                    .ok()
-//                    .body(menuService.findAllByCategoryId(categoryId));
-//        }
-//        catch (Exception e) {
-//            return new ResponseEntity(ErrorResponseDto.fromEntity("FORBIDDEN", "카테고리별 메뉴 목록 조회에 오류가 발생하였습니다."), HttpStatus.BAD_REQUEST);
-//        }
-//    }
+
 
     // 메뉴 수정
     @PutMapping("/{menuId}")
