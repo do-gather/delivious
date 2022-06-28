@@ -51,6 +51,7 @@ public class MenuController {
     }
 
 
+
     // 메뉴 수정
     @PutMapping("/{menuId}")
     public ResponseEntity<HttpStatus> updateMenu(@Valid @RequestBody MenuRequest menuRequest,
