@@ -11,6 +11,7 @@ import java.util.UUID;
 
 @Builder
 @Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Entity
@@ -70,4 +71,5 @@ public class Menu extends BaseEntity {
 
     public void removeMenu(){
     }
+
 }
