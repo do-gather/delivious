@@ -16,9 +16,9 @@ public interface MenuService {
 
     public Menu findMenuById(UUID menuId);
 
-//    public List<Menu> getMenuByCategoryId(UUID categoryId);
 
     public void updateMenu(Menu menu, MenuRequest menuRequest);
 
     public void removeMenu(UUID menuId);
+
 }
