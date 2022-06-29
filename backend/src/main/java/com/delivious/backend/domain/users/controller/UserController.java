@@ -86,4 +86,6 @@ public class UserController {
     public ResponseEntity<UserResponseDto> getUserInfo(@PathVariable String username) {
         return ResponseEntity.ok(userService.getUserWithAuthorities(username));
     }
+
+
 }

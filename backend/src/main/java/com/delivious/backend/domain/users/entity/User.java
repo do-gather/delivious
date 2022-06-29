@@ -53,7 +53,7 @@ public class User extends BaseEntity {
 
    // Store entity 와 조인
    @OneToOne(mappedBy = "user")
-   @JoinColumn(name = "id")
+   @JoinColumn(name = "userId")
    private Store store;
 
 
