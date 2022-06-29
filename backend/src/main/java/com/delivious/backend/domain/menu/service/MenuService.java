@@ -3,7 +3,9 @@ package com.delivious.backend.domain.menu.service;
 import com.delivious.backend.domain.category.dto.CategoryRequest;
 import com.delivious.backend.domain.category.entity.Category;
 import com.delivious.backend.domain.menu.dto.MenuRequest;
+import com.delivious.backend.domain.menu.dto.MenuResponse;
 import com.delivious.backend.domain.menu.entity.Menu;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -16,6 +18,9 @@ public interface MenuService {
 
     public Menu findMenuById(UUID menuId);
 
+
+    // 메뉴 리스트 불러오기(by categroyId)
+//     List<MenuResponse> findAllByCategoryId(UUID categoryId);
 
     public void updateMenu(Menu menu, MenuRequest menuRequest);
 
