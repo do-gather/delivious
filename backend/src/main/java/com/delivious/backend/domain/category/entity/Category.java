@@ -10,6 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -33,8 +34,7 @@ public class Category extends BaseEntity {
     @OneToMany(mappedBy = "category",
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<Menu> menuList;
+    private Set<Menu> menus;
 
     @Builder
     public Category(String categoryName) {

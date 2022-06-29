@@ -12,5 +12,5 @@ public interface MenuRepository extends  JpaRepository<Menu,UUID> {
     List<Menu> findByCategoryId(UUID category_id);
 }
 
-    List<Menu> findByCategoryId(@Param(value = "categoryId") UUID categoryId);
+//    List<Menu> findByCategoryId(UUID categoryId);
 }

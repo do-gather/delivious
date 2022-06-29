@@ -1,6 +1,7 @@
 package com.delivious.backend.domain.menu.entity;
 import com.delivious.backend.domain.category.entity.Category;
 import com.delivious.backend.domain.menu.dto.MenuRequest;
+import com.delivious.backend.domain.users.entity.Store;
 import com.delivious.backend.global.common.BaseEntity;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
@@ -35,9 +36,14 @@ public class Menu extends BaseEntity {
     @Column(name = "menu_image")
     private String menuImage;
 
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "store_id")
+    private Store store;
 
     @NotNull
     private String temperature;
