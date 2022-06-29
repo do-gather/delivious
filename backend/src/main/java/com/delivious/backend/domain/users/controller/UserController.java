@@ -74,13 +74,13 @@ public class UserController {
     }
 
 
-    @GetMapping("/user")
+    @GetMapping("/users")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ResponseEntity<UserResponseDto> getMyUserInfo(HttpServletRequest request) {
         return ResponseEntity.ok(userService.getMyUserWithAuthorities());
     }
 
-    @GetMapping("/user/{username}")
+    @GetMapping("/users/{username}")
     @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<UserResponseDto> getUserInfo(@PathVariable String username) {
         return ResponseEntity.ok(userService.getUserWithAuthorities(username));
