@@ -3,6 +3,7 @@ package com.delivious.backend.domain.menu.dto;
 import com.delivious.backend.domain.category.entity.Category;
 import com.delivious.backend.domain.menu.entity.Menu;
 import com.delivious.backend.domain.menu.entity.Size;
+import com.delivious.backend.domain.users.entity.Store;
 import lombok.*;
 
 @Builder
@@ -17,6 +18,7 @@ public class MenuRequest {
 //    private UUID categoryId;
     private Category category;
 //    private Category categoryName;
+    private Store store;
     private String temperature;
     private Size size;
     private String description;
@@ -27,6 +29,7 @@ public class MenuRequest {
                 .price(price)
                 .menuImage(menuImage)
                 .category(category)
+                .store(store)
                 .temperature(temperature)
                 .size(size)
                 .description(description)

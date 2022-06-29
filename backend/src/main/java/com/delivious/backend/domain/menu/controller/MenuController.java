@@ -17,6 +17,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
+// 고민) /{storeId}/menus
 @RequestMapping("/menus")
 public class MenuController {
     private final MenuService menuService;
@@ -29,6 +30,8 @@ public class MenuController {
     }
 
     // 메뉴 생성
+    // 고민) 카테고리연결 - @PathVariable?
+    //  @PreAuthorize()
     @PostMapping
     public ResponseEntity<HttpStatus> createMenu(@RequestBody @Valid MenuRequest menuRequest) {
         menuService.createMenu(menuRequest);
@@ -46,8 +49,6 @@ public class MenuController {
     public ResponseEntity<MenuResponse> findMenu(@PathVariable UUID menuId) {
         return ResponseEntity.ok(MenuResponse.of(menuService.findMenuById(menuId)));
     }
-
-    // 카테고리별 메뉴 목록조회
 
 
     // 메뉴 수정

@@ -32,8 +32,10 @@ public class CategoryController {
 
     @GetMapping
     public List<Category> findAllCategory(){
+
         return categoryService.findAllCategory();
     }
+
     @GetMapping("/{categoryId}")
     public ResponseEntity<CategoryResponse> findCategory(@PathVariable UUID categoryId) {
         return ResponseEntity.ok(CategoryResponse.of(categoryService.findCategoryById(categoryId)));

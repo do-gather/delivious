@@ -9,5 +9,5 @@ import java.util.UUID;
 
 public interface MenuRepository extends  JpaRepository<Menu,UUID> {
 
-    List<Menu> findByCategoryId(@Param(value = "categoryId") UUID categoryId);
+//    List<Menu> findByCategoryId(UUID categoryId);
 }
