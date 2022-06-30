@@ -5,6 +5,8 @@ import Header from './components/Header';
 import Main from './pages/Main';
 import AdminMenuEdit from './pages/AdminMenuEdit';
 import AdminMain from './pages/AdminMain';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
           <Route path="/admin" element={<AdminMain />} />
           <Route path="/admin/menu" element={<AdminMenu />} />
           <Route path="/admin/menu/edit" element={<AdminMenuEdit />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/sign-up" element={<SignUp />} />
         </Routes>
       </BrowserRouter>
     </div>
