@@ -3,10 +3,7 @@
  */
 package com.delivious.backend.domain.users.controller;
 
-import com.delivious.backend.domain.users.dto.StoreMapper;
-import com.delivious.backend.domain.users.dto.UserDto;
-import com.delivious.backend.domain.users.dto.StoreDto;
-import com.delivious.backend.domain.users.dto.UserResponseDto;
+import com.delivious.backend.domain.users.dto.*;
 import com.delivious.backend.domain.users.entity.Store;
 import com.delivious.backend.domain.users.entity.User;
 import com.delivious.backend.domain.users.service.UserService;
@@ -55,7 +52,7 @@ public class UserController {
 
     @PostMapping("/store")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public ResponseEntity<StoreDto> checkin(
+    public ResponseEntity<StoreResponseDto> checkin(
             @Valid @RequestBody StoreDto storeDto
     ){
         User user = userService.findById(storeDto.getUserId());

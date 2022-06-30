@@ -6,17 +6,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class StoreMapper {
-    /*
-    public Store toEntity(StoreDto storeDto) {
-        return Store.builder()
-                //.user(storeDto.getUserId())
-                .storeName(storeDto.getStoreName())
-                .build();
-    }
-     */
-
-    public StoreDto toResponseDto(Store entity) {
-        return StoreDto.builder()
+    public StoreResponseDto toResponseDto(Store entity) {
+        return StoreResponseDto.builder()
+                .storeId(entity.getStoreId())
                 .storeName(entity.getStoreName())
                 .userId(entity.getUser().getUserId())
                 .build();
