@@ -5,9 +5,14 @@ package com.delivious.backend.domain.users.entity;
 
 import com.delivious.backend.global.common.BaseEntity;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "users")
@@ -19,12 +24,13 @@ import java.util.Set;
 public class User extends BaseEntity {
 
    @Id
-   @Column(name = "user_id")
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long userId;
+   @GeneratedValue(strategy = GenerationType.IDENTITY , generator = "uuid2")
+   @GenericGenerator(name = "uuid2", strategy = "uuid2")
+   @Column(columnDefinition = "BINARY(16)" , name = "user_id")
+   private UUID userId;
 
-   @Column(name = "id", length = 50, unique = true)
-   private String id;
+   @Column(name = "username", length = 50, unique = true)
+   private String username;
 
    @Column(name = "password", length = 100)
    private String password;
@@ -33,19 +39,39 @@ public class User extends BaseEntity {
    private String name;
 
    @Column(name = "phone_num", length = 50)
-   private String phone_num;
+   private String phoneNum;
 
    @Column(name ="birth")
    @Temporal(TemporalType.DATE)
    private Date birth;
 
+   @Column(name ="type")
+   private String type;
+
    @Column(name = "activated")
    private boolean activated;
 
+   // Store entity 와 조인
+   @OneToOne(mappedBy = "user")
+   @JoinColumn(name = "id")
+   private Store store;
+
+
+
    @ManyToMany
    @JoinTable(
-      name = "user_authority",
+      name = "user_authority",      // type으로 변경 예정
       joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
       inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "authority_name")})
-   private Set<Authority> authorities;
+   private Set<Authority> authorities;   // 변경 예정
+
+
+   /*
+   private Collection<GrantedAuthority> authorities;	// 권한 목록
+   public Collection<? extends GrantedAuthority> getAuthorities() {    // 해당 유저의 권한 목록
+      return authorities;
+   }
+    */
+
+
 }

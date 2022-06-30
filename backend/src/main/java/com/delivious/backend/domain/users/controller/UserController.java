@@ -3,8 +3,11 @@
  */
 package com.delivious.backend.domain.users.controller;
 
-import com.delivious.backend.domain.users.dto.UserDto;
+import com.delivious.backend.domain.users.dto.*;
+import com.delivious.backend.domain.users.entity.Store;
+import com.delivious.backend.domain.users.entity.User;
 import com.delivious.backend.domain.users.service.UserService;
+import com.delivious.backend.domain.users.service.StoreService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,10 +21,16 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/api")
 public class UserController {
-    private final UserService userService;
 
-    public UserController(UserService userService) {
+    private final UserService userService;
+    private final StoreService storeService;
+    private final StoreMapper storeMapper;
+
+    public UserController(UserService userService,StoreService storeService,StoreMapper storeMapper) {
+
         this.userService = userService;
+        this.storeService = storeService;
+        this.storeMapper = storeMapper;
     }
 
     @GetMapping("/hello")
@@ -36,23 +45,45 @@ public class UserController {
 
     @ApiOperation(value = "회원가입 메서드")
     @PostMapping("/signup")
-    public ResponseEntity<UserDto> signup(
+    public ResponseEntity<UserResponseDto> signup(
             @Valid @RequestBody UserDto userDto
     ) {
         return ResponseEntity.ok(userService.signup(userDto));
     }
 
+
+    @PostMapping("/store")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    public ResponseEntity<StoreResponseDto> checkin(
+            @Valid @RequestBody StoreDto storeDto
+    ){
+        User user = userService.findById(storeDto.getUserId());
+        Store store = storeService.checkin(storeDto,user);
+        /*
+        try {
+            return new ResponseEntity<>(orderMapper.toResponseDto(entity), HttpStatus.CREATED);
+        }
+        catch(Exception e) {
+            return new ResponseEntity(ErrorResponseDto.fromEntity("FORBIDDEN", "주문 생성에 오류가 발생하였습니다."), HttpStatus.BAD_REQUEST);
+        }
+
+         */
+
+        return ResponseEntity.ok(storeMapper.toResponseDto(store));
+    }
+
+
+    @GetMapping("/users")
     @ApiOperation(value = "사용자 정보 조회 메서드")
-    @GetMapping("/user")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ResponseEntity<UserDto> getMyUserInfo(HttpServletRequest request) {
+    public ResponseEntity<UserResponseDto> getMyUserInfo(HttpServletRequest request) {
         return ResponseEntity.ok(userService.getMyUserWithAuthorities());
     }
 
+    @GetMapping("/users/{username}")
     @ApiOperation(value = "특정 사용자 정보 조회 메서드(관리자만)")
-    @GetMapping("/user/{id}")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public ResponseEntity<UserDto> getUserInfo(@PathVariable String id) {
-        return ResponseEntity.ok(userService.getUserWithAuthorities(id));
+    public ResponseEntity<UserResponseDto> getUserInfo(@PathVariable String username) {
+        return ResponseEntity.ok(userService.getUserWithAuthorities(username));
     }
 }
