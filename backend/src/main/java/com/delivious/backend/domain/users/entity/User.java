@@ -24,7 +24,7 @@ public class User extends BaseEntity {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY , generator = "uuid2")
    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-   @Column(columnDefinition = "BINARY(16)" , name = "user_id")
+   @Column(name = "user_id")
    private UUID userId;
 
    @Column(name = "username", length = 50, unique = true)
