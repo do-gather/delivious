@@ -2,7 +2,6 @@ import React from 'react';
 import SearchBar from '../components/SearchBar';
 import constants from '../utils/constants';
 import MyOrder from '../components/MyOrder';
-// import CountMenu from '../components/CountMenu';
 
 /**
  * '/admin/menu'로 연결되는 주문목록 페이지
@@ -14,11 +13,6 @@ function Divider() {
 }
 
 export default function MyOrderlist() {
-  // const [myOrder, setMyOrder] = useState(false);
-  // const [count, setCount] = useState(0);
-  // const onIncrease = () => {
-  //   setCount(count + 1);
-  // }
 
   return (
     <div className="w-full h-full py-24 overflow-y-hidden">
@@ -37,13 +31,10 @@ text-white h-12 text-center items-center text-2xl"
         {constants.MENU_ITEMS.map(menu => (
           <div key={menu.id}>
             <MyOrder props={menu} type="display" />
-            {/* <CountMenu orderList={constants.ORDER}/> */}
-            {/* {myOrder && <MyOrder orderList={constants.ORDER} onClose={() => setMyOrder(false)} />} */}
             <Divider />
             <div>aaaa</div>
           </div>
         ))}
-        {/* <CountMenu orderList={constants.ORDER}/> */}
       </div>
     </div>
   );
