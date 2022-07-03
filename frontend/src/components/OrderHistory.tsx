@@ -1,63 +1,57 @@
-import React  from 'react';
+import React from 'react';
+// import React,{useState} from 'react';
 import { dts } from '../utils/types';
-import BasicButton from './BasicButton';
+import Cooking from '../images/Cooking'
+// import constants from '../utils/constants';
+// import MyOrder from '../components/MyOrder';
 
 /**
- * 주문하기 창
- * @param onClose 닫힘 버튼을 누를 때 실행될 함수 받음
+ * '/admin/menu'로 연결되는 주문목록 페이지
+ *
+ * @param menuDto 주문목록 기록을 확인할 수 있음
+ *
  */
 interface Props {
-  onClose: any;
   orderList: dts.orderList;
 }
 
-export default function OrderHistory({ onClose, orderList }: Props) {
+function Divider() {
+  return <div className="border-b w-full" style={{ borderColor: '#c4c4c4' }} />;
+}
 
+export default function MyOrderlist({ orderList }: Props) {
+  
+  
   return (
-    // <BasicButton buttonName="확인 완료" onClick={() => window.location.replace('/mypage/orderlist')} />
-    <div
-      className="w-full h-screen top-0 z-50"
-      style={{ backgroundColor: 'rgba(1,1,1,0.5)', position: 'fixed', overflow: 'hidden' }}
-    >
+    <div className="w-full h-full py-24 overflow-y-hidden">
+      <div className="grid grid-cols-8 pl-5 space-x-10 items-center pb-8 ">
+        <div className="col-span-1 font-bold text-3xl whitespace-nowrap">주문 상세</div>
+      </div>
       <div
-        className="rounded"
-        style={{
-          backgroundColor: '#f0f0f0',
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-        }}
+        className=" gap-4 px-10 justify-between font-semibold whitespace-nowrap
+text-white h-12 text-center items-center text-2xl"
+        style={{ backgroundColor: '#435CA5' }}
       >
-        
-        
-        <div className="px-24 pb-10 w-full flex flex-col whitespace-nowrap font-bold ">
-            <div className="text-xl pt-12 pb-2">구매 내역</div>
-            <div className="border-b mt-1 w-full border-zinc-300" />
-            <div className="flex py-2 justify-between whitespace-nowrap text-xs">
-              <div className="px-10">음료</div>
-              <div className="px-10">수량</div>
-              <div className="px-10">가격</div>
-            </div>
-            {orderList.orders.map(item => (
-              <div className="grid grid-cols-3 py-2 whitespace-nowrap text-xs" key={item.menu.id}>
-                <div>{item.menu.name}</div>
-                <div className="font-normal text-center ">{item.quantity}</div>
-                <div className="text-center">{item.menu.price} ₩</div>
-              </div>
-            ))}
-            <div className="border-b my-5 w-full border-zinc-300" />
-            <div className="px-6 flex justify-between text-xs">
-              <div className="pl-5">총</div>
-              <div>{orderList.total} ₩</div>
-            </div>
-
-            <div className="px-4 pt-8 place-self-center">
-              <BasicButton buttonName="확인 완료" onClick={onClose} />
-            </div>
+        <div className="pt-1.5">Order History</div>
+      </div>
+      <div>
+        <div className='font-bold col-span-1 text-2xl whitespace-nowrap py-5 pl-9 '>스타벅스</div>
+        <Divider />
+        {orderList.orders.map(item => (
+          <div className="grid grid-cols-3 pl-11 space-x-10 items-center pb-8" key={item.menu.id}>
+            {/* className="flex justify-between py-6 whitespace-nowrap text-center items-center text-base" */}
+            <div>{item.menu.name}</div>
+            <div className="text-center">{item.menu.price} ₩</div>
+            <Cooking/>
           </div>
+        ))}
+        
+        <Divider />
+        <div className="grid grid-cols-3 py-2 whitespace-nowrap text-xs ">
+          <div className="pl-10 col-span-1 font-bold text-xl whitespace-nowrap">Total</div>
+          <div className="pl-20 col-span-1  text-xl">{orderList.total} ₩</div>
+        </div>
       </div>
     </div>
   );
 }
-
