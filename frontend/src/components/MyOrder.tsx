@@ -1,6 +1,5 @@
 /* eslint-disable react/require-default-props */
 import React from 'react';
-import InputBox from './InputBox';
 import { dts } from '../utils/types';
 import Tap1 from './Tap1';
 
@@ -13,7 +12,6 @@ import CountMenu from './CountMenu';
  */
 interface Props {
   props?: dts.menuDto;
-  type?: string;
 }
 
 export default function MyOrder({
@@ -25,16 +23,9 @@ export default function MyOrder({
     size: '',
     price: '',
     date: '',
-  },
-  type = 'display',
+  }
 }: Props) {
-  return type !== 'display' ? (
-    <div className="grid grid-cols-7 gap-4 py-6 whitespace-nowrap text-center items-center text-base pl-10">
-      <InputBox placeholder="카테고리" text={props.category} />
-      {type === 'new' ? <div>-</div> : <div>{props.id}</div>}
-      <InputBox placeholder="메뉴 이름" text={props.name} />
-    </div>
-  ) : (
+  return (
     <div className="flex justify-between whitespace-nowrap text-center items-center text-base">
       
       <div className='pl-10'>{props.date}</div>
