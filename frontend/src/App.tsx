@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import MyOrderlist from './pages/MyOrderlist';
 import OrderHistory from './pages/OrderHistory';
+import AuthRoute from './utils/AuthRoute';
 
 function App() {
   return (
@@ -17,9 +18,11 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/admin" element={<AdminMain />} />
-          <Route path="/admin/menu" element={<AdminMenu />} />
-          <Route path="/admin/menu/edit" element={<AdminMenuEdit />} />
+          <Route element={<AuthRoute authentication />}>
+            <Route path="/admin" element={<AdminMain />} />
+            <Route path="/admin/menu" element={<AdminMenu />} />
+            <Route path="/admin/menu/edit" element={<AdminMenuEdit />} />
+          </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/mypage/orderlist" element={<MyOrderlist />} />
