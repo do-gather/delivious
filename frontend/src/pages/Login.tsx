@@ -64,7 +64,9 @@ export default function Login() {
             <Link to="/">Contact Delivious</Link>
           </div>
         </div>
-        <BasicButton buttonName="Log in" onClick={sendUserInfo} height="h-36" />
+        <div className="w-24">
+          <BasicButton buttonName="Log in" onClick={sendUserInfo} height="h-36" />
+        </div>
       </div>
     </div>
   );
