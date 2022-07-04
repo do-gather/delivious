@@ -5,7 +5,7 @@ import { authHeader, contentTypeJsonHeader } from '../utils/headerUtils';
 
 class AuthService {
   // eslint-disable-next-line class-methods-use-this
-  login(username, password) {
+  login(username: string, password: string) {
     return axios
       .post(`${API_URL}/authenticate`, { username, password })
       .then(response => {
@@ -23,7 +23,7 @@ class AuthService {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  store(store, adminToken) {
+  store(store: any, adminToken: string) {
     return axios
       .post(`${API_URL}/store`, store, {
         headers: authHeader(adminToken),
@@ -43,7 +43,7 @@ class AuthService {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  register(data) {
+  register(data: any) {
     return axios
       .post(`${API_URL}/signup`, data, { headers: contentTypeJsonHeader() })
       .then(response => {
