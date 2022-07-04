@@ -4,18 +4,20 @@ import { API_URL } from '../utils/constants';
 import { authHeader, contentTypeJsonHeader } from '../utils/headerUtils';
 
 class AuthService {
+  // eslint-disable-next-line class-methods-use-this
   login(username, password) {
     return axios
       .post(`${API_URL}/authenticate`, { username, password })
       .then(response => {
         if (response.status === 200) {
+          window.localStorage.setItem('adminToken', response.data.token);
           return response;
         }
         return response;
       })
       .catch(err => {
         console.error(err.response);
-        this.localStorage.clear();
+        window.localStorage.clear();
         window.location.reload();
       });
   }
@@ -29,15 +31,15 @@ class AuthService {
       .then(response => {
         return response;
       })
-      .catch((err: any) => {
+      .catch(err => {
         console.error(err.response);
         alert('매장명 등록에 실패했습니다.');
       });
   }
 
+  // eslint-disable-next-line class-methods-use-this
   logout() {
-    window.location.reload();
-    this.localStorage.clear();
+    window.localStorage.removeItem('adminToken');
   }
 
   // eslint-disable-next-line class-methods-use-this
