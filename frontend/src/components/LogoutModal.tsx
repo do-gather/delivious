@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../utils/store';
+import AuthService from '../services/AuthService';
 import BasicButton from './BasicButton';
 
 /**
@@ -14,6 +16,7 @@ export default function LogoutModal({ onClose }: Props) {
   const navigate = useNavigate();
   const [move, setMove] = useState(false);
   const d = new Date();
+  const { removeAccess } = useAuth();
 
   useEffect(() => {
     if (move) navigate('/login');
@@ -52,6 +55,8 @@ export default function LogoutModal({ onClose }: Props) {
           <BasicButton
             buttonName="로그아웃"
             onClick={() => {
+              removeAccess();
+              AuthService.logout();
               setMove(true);
             }}
           />
