@@ -6,8 +6,8 @@ import LinkButton from './LinkButton';
 import constants from '../utils/constants';
 import CountMenu from './CountMenu';
 /**
- * @param props 
- * @param type 
+ * @param props
+ * @param type
  */
 interface Props {
   props?: dts.menuDto;

@@ -9,11 +9,10 @@ import React, { useState } from 'react';
 interface Props {
   checked?: boolean;
   label: string;
-  onChange?: any;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-export default function CheckBox({ checked = false, label, onChange = () => {} }: Props) {
+export default function CheckBox({ checked = false, label }: Props) {
   const [mark, setMark] = useState(checked);
 
   const handleMarkChange = () => {
