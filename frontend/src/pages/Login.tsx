@@ -5,6 +5,7 @@ import InputBox from '../components/InputBox';
 import UserIcon from '../images/UserIcon';
 import PasswordIcon from '../images/PasswordIcon';
 import AuthService from '../services/AuthService';
+import useAuth from '../utils/store';
 
 /**
  * '/login'으로 연결되는 로그인 페이지
@@ -19,6 +20,8 @@ export default function Login() {
     type: 'user',
   });
 
+  const { setAccess } = useAuth();
+
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setUserInfo({ ...userInfo, [name]: value });
@@ -28,9 +31,8 @@ export default function Login() {
     e.preventDefault();
 
     AuthService.login(userInfo.username, userInfo.password).then((res: any) => {
-      console.log(res);
       if (res.status === 200) {
-        console.log(res.data);
+        setAccess(res.data.token);
         navigate('/');
       }
     });
