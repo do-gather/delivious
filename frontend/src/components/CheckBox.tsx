@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import React, { useState } from 'react';
 
 /**
@@ -6,12 +7,13 @@ import React, { useState } from 'react';
  * @param label 체크 박스 옆에 표시될 이름
  */
 interface Props {
-  // eslint-disable-next-line react/require-default-props
   checked?: boolean;
   label: string;
+  onChange?: any;
 }
 
-export default function CheckBox({ checked = false, label }: Props) {
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+export default function CheckBox({ checked = false, label, onChange = () => {} }: Props) {
   const [mark, setMark] = useState(checked);
 
   const handleMarkChange = () => {
