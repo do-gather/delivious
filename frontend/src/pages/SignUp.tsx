@@ -21,16 +21,21 @@ export default function SignUp() {
     month: '',
     date: '',
     type: 'USER',
+    storeName: '',
   });
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setUserInfo({ ...userInfo, [name]: value });
-    console.log(userInfo);
+  };
+
+  const changeAdmin = (checked: boolean) => {
+    setUserInfo({ ...userInfo, type: checked ? 'ADMIN' : 'USER' });
+    setAdmin(checked);
   };
 
   return (
-    <div className="flex justify-center mt-36">
+    <div className="flex justify-center mt-36 px-4">
       <div className="flex-col space-y-4">
         <div>
           <div className="text-base font-bold">아이디</div>
@@ -81,20 +86,14 @@ export default function SignUp() {
           <InputBox text={userInfo.phoneNum} onChange={handleChange} placeholder="phoneNum" height="h-14" mode="dark" />
         </div>
         <div>
-          <button
-            type="button"
-            className="text-base font-bold"
-            onClick={() => {
-              setAdmin(!admin);
-              setUserInfo({ ...userInfo, type: admin ? 'ADMIN' : 'USER' });
-            }}
-          >
-            <CheckBox label="관리자 회원가입" checked={admin} />
+          <button type="button" className="text-base font-bold" onClick={() => changeAdmin(!admin)}>
+            {admin && <CheckBox label="관리자 회원가입" checked />}
+            {!admin && <CheckBox label="관리자 회원가입" checked={false} />}
           </button>
           {admin && (
             <div>
               <div className="text-base font-bold">매장명</div>
-              <InputBox placeholder="Store Name" height="h-14" mode="dark" />
+              <InputBox placeholder="storeName" height="h-14" mode="dark" onChange={handleChange} />
             </div>
           )}
         </div>
@@ -105,7 +104,6 @@ export default function SignUp() {
               console.log('signup');
             }}
             height="h-14"
-            xPadding="w-full"
           />
         </div>
       </div>
