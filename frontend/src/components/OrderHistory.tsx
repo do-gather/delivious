@@ -1,9 +1,6 @@
 import React from 'react';
-// import React,{useState} from 'react';
 import { dts } from '../utils/types';
 import Cooking from '../images/Cooking'
-// import constants from '../utils/constants';
-// import MyOrder from '../components/MyOrder';
 
 /**
  * '/admin/menu'로 연결되는 주문목록 페이지
@@ -39,7 +36,6 @@ text-white h-12 text-center items-center text-2xl"
         <Divider />
         {orderList.orders.map(item => (
           <div className="grid grid-cols-3 pl-11 space-x-10 items-center pb-8" key={item.menu.id}>
-            {/* className="flex justify-between py-6 whitespace-nowrap text-center items-center text-base" */}
             <div>{item.menu.name}</div>
             <div className="text-center">{item.menu.price} ₩</div>
             <Cooking/>

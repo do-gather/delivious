@@ -30,7 +30,7 @@ text-white h-12 text-center items-center text-2xl"
       <div className="h-5/6 overflow-y-scroll">
         {constants.MENU_ITEMS.map(menu => (
           <div key={menu.id}>
-            <MyOrder props={menu} />
+            <MyOrder props={menu}/>
             <Divider />
           </div>
         ))}
