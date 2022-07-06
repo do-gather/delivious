@@ -8,18 +8,14 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.persistence.Table;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.UUID;
-
-import static javax.persistence.FetchType.LAZY;
 
 
 @Entity
 @Table(name = "order_detail")
 @Getter
 @Setter
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
 public class OrderDetail extends BaseEntity {
 
@@ -31,24 +27,25 @@ public class OrderDetail extends BaseEntity {
 
     @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "orderId")
-    Order order;
+    private Order order;
 
     // 메뉴랑 조인 필요
     @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "menuId")
     private Menu menu;
 
-    // 메뉴에서 가격 가져와야 함 - 메뉴 테이블에서
-//    @OneToOne (fetch = LAZY)
-//    @JoinColumn(name = "menu_price")
+    // 메뉴에서 가격 가져와야 하나? - 메뉴 테이블에서
+    //  @ManyToMany (fetch = FetchType.LAZY)
+    //  @JoinColumn(name = "menu_price")
+
     @Column(name = "price", nullable = false)
     private int price;
 
     private String size;
 
-    private Long count;
+    private int count;
 
-    private String inOut;
+    private InOut inOut;
 
     private String temparature;
 
@@ -58,13 +55,17 @@ public class OrderDetail extends BaseEntity {
 
 
     @Builder
-    public OrderDetail(Menu menu, Order order, int price, Long count){
+    public OrderDetail(Menu menu, Order order, int price, int count){
         this.menu = menu;
         this.order = order;
         this.price = price;
+        this.count = count;
+        this.size = size;
+        this.temparature = temparature;
+
     }
 
-    public OrderDetailBill toEntity(Long tableId, Timestamp orderDate){
+    public OrderDetailBill toEntity(Long tableId, LocalDateTime orderDate){
         return OrderDetailBill
                 .builder()
                 .tableId(tableId)
@@ -76,24 +77,29 @@ public class OrderDetail extends BaseEntity {
                 .build();
     }
 
-//    public static OrderDetail createOrderDetail (Order order, Menu menu, Long amount) {
-//        OrderDetail orderDetail = new OrderDetail();
-//        orderDetail.setOrder(order);
-//        orderDetail.setMenu(menu);
-//        orderDetail.setCount(amount);
-//        return orderDetail;
-//    }
+    // 생성 메소드 //
+    public static OrderDetail createOrderDetail ( Menu menu, int count, int price ) {
+        OrderDetail orderDetail = new OrderDetail();
+        orderDetail.setMenu(menu);
+        orderDetail.setCount(count);
+        orderDetail.setPrice(price);
 
-    // 이미 담겨 있는 메뉴를 또 담을 경우 수량 증가
-    public void addCount (int count) {
-        this.count += count;
+        return orderDetail;
     }
+
+
+
+    // 주문 상품 수량 * 가격
+    public int getDetailTotalPrice() { //상품 한개당 총 주문가격
+        return getPrice() * getCount();
+    }
+
 
     // 주문 상세 - 요리중
     public void cookOrderDetail() { this.status = OrderDetailStatus.COOK; }
 
     // 주문 상세 - 서빙 중
-    public void serveOrderDetail() { this.status = OrderDetailStatus.SERVE}
+    public void serveOrderDetail() { this.status = OrderDetailStatus.SERVE; }
 
     // 주문 상세 - 서빙 완료
     public void doneOrderDetail() { this.status = OrderDetailStatus.DONE; }

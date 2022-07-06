@@ -1,7 +1,6 @@
 package com.delivious.backend.domain.orders.dto.request;
 
 
-import com.delivious.backend.domain.orders.entity.Order;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -12,10 +11,17 @@ import java.util.UUID;
 @NoArgsConstructor
 public class OrderCreateDto {
 
-    private UUID store_id;
+    private UUID storeId;
 
-    private List<OrderDetailCreateDto> orderDetailList;
+    private String username;
+
+    private List<OrderDetailCreate> orderDetailList;
+
+    private int totalCount;
 
     private int totalPrice;
+
+
+
 
 }

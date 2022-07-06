@@ -3,7 +3,6 @@
  */
 package com.delivious.backend.domain.users.service;
 
-import com.delivious.backend.domain.users.dto.AuthorityDto;
 import com.delivious.backend.domain.users.dto.UserDto;
 import com.delivious.backend.domain.users.dto.UserMapper;
 import com.delivious.backend.domain.users.dto.UserResponseDto;
@@ -64,6 +63,11 @@ public class UserService {
                 .build();
 
         return userMapper.toResponseDto(userRepository.save(user));
+    }
+
+    // order 에서 username을 파라미터로 받아 order를 생성하도록 합니다.
+    public UserResponseDto getReferenceByName (String username){
+        return userMapper.toResponseDto(userRepository.findUserByName(username).orElse(null));
     }
 
     // username을 파라미터로 받아 해당 유저의 정보 및 권한 정보를 리턴합니다.
