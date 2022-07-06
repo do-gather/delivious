@@ -1,6 +1,5 @@
 package com.delivious.backend.domain.menu.dto;
 
-import com.delivious.backend.domain.category.dto.CategoryResponse;
 import com.delivious.backend.domain.category.entity.Category;
 import com.delivious.backend.domain.menu.entity.Menu;
 import com.delivious.backend.domain.menu.entity.Size;
