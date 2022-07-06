@@ -65,14 +65,14 @@ public class OrderDetail extends BaseEntity {
 
     }
 
-    public OrderDetailBill toEntity(Long tableId, LocalDateTime orderDate){
+    public OrderDetailBill toEntity(LocalDateTime orderDate){
         return OrderDetailBill
                 .builder()
-                .tableId(tableId)
+                //.tableId(tableId)
                 .orderdetailId(orderdetailId)
                 .orderDate(orderDate)
                 .orderId(order.getOrderId())
-                .menuName(menu.getMenu_name())  // 나중에 변수명에 맞추어 수정해야 함
+                .menuName(menu.getMenuName())  // 나중에 변수명에 맞추어 수정해야 함
                 .status(status)
                 .build();
     }

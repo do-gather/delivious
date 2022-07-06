@@ -5,7 +5,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import javax.persistence.Table;
 import java.sql.Timestamp;
+import com.delivious.backend.global.common.BaseEntity;
 import java.util.UUID;
 
 @NoArgsConstructor

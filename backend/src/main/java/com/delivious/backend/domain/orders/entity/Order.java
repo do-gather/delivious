@@ -17,7 +17,7 @@ import java.util.UUID;
 
 import static javax.persistence.FetchType.LAZY;
 
-@Builder
+
 @NoArgsConstructor
 @Getter
 @Setter
@@ -55,8 +55,8 @@ public class Order extends BaseEntity {
     private int totalPrice;
 
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<OrderDetail> orderDetails = new ArrayList<>();
+//    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+//    private List<OrderDetail> orderDetails = new ArrayList<>();
 
 
 
@@ -69,10 +69,10 @@ public class Order extends BaseEntity {
     }
 
     // 주문 상세 추가하기
-    public void addOrderDetail (OrderDetail orderDetail) {
-        orderDetails.add(orderDetail);
-        orderDetail.setOrder(this);
-    }
+//    public void addOrderDetail (OrderDetail orderDetail) {
+//        orderDetails.add(orderDetail);
+//        orderDetail.setOrder(this);
+//    }
 
 
     @Builder
@@ -82,7 +82,7 @@ public class Order extends BaseEntity {
         this.orderStatus = orderStatus;
         this.totalCount = totalCount;
         this.totalPrice = totalPrice;
-        this.orderDetails = orderDetails;
+        //this.orderDetails = orderDetails;
         this.store = store;
     }
 
@@ -108,13 +108,13 @@ public class Order extends BaseEntity {
 
 
     // 전체 주문 가격
-    public int getTotalPrice() { //주문한 상품들 각각의 가격을 불러와서 다 더해줘서 총 주문가격을 구함
-        int totalPrice = 0;
-        for(OrderDetail orderDetail : orderDetails){
-            totalPrice += orderDetail.getDetailTotalPrice();
-        }
-        return totalPrice;
-    }
+//    public int getTotalPrice() { //주문한 상품들 각각의 가격을 불러와서 다 더해줘서 총 주문가격을 구함
+//        int totalPrice = 0;
+//        for(OrderDetail orderDetail : orderDetails){
+//            totalPrice += orderDetail.getDetailTotalPrice();
+//        }
+//        return totalPrice;
+//    }
 
 
 
