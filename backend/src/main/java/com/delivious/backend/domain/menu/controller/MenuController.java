@@ -30,13 +30,11 @@ public class MenuController {
     }
 
     // 메뉴 생성
-    // 고민) 카테고리연결 - @PathVariable?
-    //  @PreAuthorize()
     @PostMapping
     public ResponseEntity<HttpStatus> createMenu(@RequestBody @Valid MenuRequest menuRequest) {
         menuService.createMenu(menuRequest);
 
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     // 메뉴조회
@@ -57,7 +55,7 @@ public class MenuController {
                                                  @PathVariable UUID menuId) {
         Menu menu = menuService.findMenuById(menuId);
         menuService.updateMenu(menu, menuRequest);
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     // 메뉴 삭제

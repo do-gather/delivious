@@ -27,7 +27,7 @@ public class CategoryController {
     public ResponseEntity<HttpStatus> createCategory(@RequestBody @Valid CategoryRequest categoryRequest) {
         categoryService.createNewCategory(categoryRequest);
 
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping
@@ -46,7 +46,7 @@ public class CategoryController {
                                                      @PathVariable UUID categoryId) {
         Category category = categoryService.findCategoryById(categoryId);
         categoryService.updateCategory(category, categoryRequest);
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @DeleteMapping("/{categoryId}")
