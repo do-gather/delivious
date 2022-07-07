@@ -22,11 +22,6 @@ public class MenuServiceImpl implements MenuService {
     @Override
     @Transactional
     public void createMenu(MenuRequest menuRequest) {
-//        Optional<Category> category = categoryRepository.findById(menuRequest.getCategory().getCategoryId());
-//        if (!category.isPresent()) {
-//            throw new EntityNotFoundException(
-//                    "카테고리가 존재하지 않습니다.");
-//        }
         Menu menu = menuRequest.toEntity();
         menuRepository.save(menu);
     }
@@ -44,13 +39,6 @@ public class MenuServiceImpl implements MenuService {
     public Menu findMenuById(UUID menuId) {
         return menuRepository.findById(menuId).orElseThrow(MenuNotFoundException::new);
     }
-
-//   // 메뉴 리스트 불러오기(by categroyId)
-//    @Override
-//    @Transactional(readOnly = true)
-//    public List<MenuResponse> findAllByCategoryId(UUID categoryId) {
-//        return menuRepository.findByCategoryId(categoryId).stream().map(MenuResponse::new).collect(Collectors.toList());
-//    }
 
     // 메뉴수정
     @Override

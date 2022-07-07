@@ -18,10 +18,6 @@ public interface MenuService {
 
     public Menu findMenuById(UUID menuId);
 
-
-    // 메뉴 리스트 불러오기(by categroyId)
-//     List<MenuResponse> findAllByCategoryId(UUID categoryId);
-
     public void updateMenu(Menu menu, MenuRequest menuRequest);
 
     public void removeMenu(UUID menuId);
