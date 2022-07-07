@@ -39,7 +39,7 @@ public class OrderDetail extends BaseEntity {
     //  @JoinColumn(name = "menu_price")
 
     @Column(name = "price", nullable = false)
-    private int price;
+    private float price;
 
     private String size;
 
@@ -55,7 +55,7 @@ public class OrderDetail extends BaseEntity {
 
 
     @Builder
-    public OrderDetail(Menu menu, Order order, int price, int count){
+    public OrderDetail(Menu menu, Order order, float price, int count){
         this.menu = menu;
         this.order = order;
         this.price = price;
@@ -78,7 +78,7 @@ public class OrderDetail extends BaseEntity {
     }
 
     // 생성 메소드 //
-    public static OrderDetail createOrderDetail ( Menu menu, int count, int price ) {
+    public static OrderDetail createOrderDetail ( Menu menu, int count, float price ) {
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setMenu(menu);
         orderDetail.setCount(count);
@@ -90,7 +90,7 @@ public class OrderDetail extends BaseEntity {
 
 
     // 주문 상품 수량 * 가격
-    public int getDetailTotalPrice() { //상품 한개당 총 주문가격
+    public float getDetailTotalPrice() { //상품 한개당 총 주문가격
         return getPrice() * getCount();
     }
 

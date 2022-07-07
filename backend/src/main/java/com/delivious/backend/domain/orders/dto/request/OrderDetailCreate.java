@@ -22,6 +22,7 @@ public class OrderDetailCreate {
 
 
 
+
     @Builder
     public OrderDetailCreate(UUID menuId, int count, String menuName, String size, String temparature ) {
         this.menuId = menuId;

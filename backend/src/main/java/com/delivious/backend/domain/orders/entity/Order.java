@@ -52,7 +52,7 @@ public class Order extends BaseEntity {
     private int totalCount;
 
     @Column( nullable = false)
-    private int totalPrice;
+    private float totalPrice;
 
 
 //    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
@@ -76,7 +76,7 @@ public class Order extends BaseEntity {
 
 
     @Builder
-    public Order(UUID orderId, User user, Store store, OrderStatus orderStatus, int totalCount, int totalPrice, List<OrderDetail> orderDetails) {
+    public Order(UUID orderId, User user, Store store, OrderStatus orderStatus, int totalCount, float totalPrice, List<OrderDetail> orderDetails) {
         this.orderId = orderId;
         this.user = user;
         this.orderStatus = orderStatus;
@@ -88,7 +88,7 @@ public class Order extends BaseEntity {
 
 
     // 생성 메서드
-    public static Order createOrder (User userReference,  int totalCount, int totalPrice) {
+    public static Order createOrder (User userReference,  int totalCount, float totalPrice) {
         return Order
             .builder()
                 .user(userReference)
