@@ -12,16 +12,16 @@ interface Props {
   buttonName: string;
   onClick: any;
   height?: string;
-  color?: string;
+  state?: string;
 }
 
-export default function BasicButton({ buttonName, onClick, height = 'h-10', color = '#435ca5' }: Props) {
+export default function BasicButton({ buttonName, state, onClick, xPadding = 'px-10', height = 'h-10' }: Props) {
   return (
     <button
       type="button"
-      className={`flex w-full justify-center whitespace-nowrap items-center rounded text-base font-bold text-white 
-      text-center object-left-top ${height}`}
-      style={{ backgroundColor: color }}
+      className={`whitespace-nowrap items-center rounded text-base font-bold text-white text-center 
+        ${xPadding} object-left-top ${height} `}
+      style={{ backgroundColor: state === 'ready' ? '#435ca5' : '#c4c4c4' }}
       onClick={onClick}
     >
       {buttonName}
