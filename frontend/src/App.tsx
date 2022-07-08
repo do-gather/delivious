@@ -7,6 +7,8 @@ import AdminMenuEdit from './pages/AdminMenuEdit';
 import AdminMain from './pages/AdminMain';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import AdminOrder from './pages/AdminOrder';
+import AdminTables from './pages/AdminTables';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route path="/admin" element={<AdminMain />} />
           <Route path="/admin/menu" element={<AdminMenu />} />
           <Route path="/admin/menu/edit" element={<AdminMenuEdit />} />
+          <Route path="/admin/orders" element={<AdminOrder />} />
+          <Route path="/admin/tables" element={<AdminTables />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
         </Routes>
