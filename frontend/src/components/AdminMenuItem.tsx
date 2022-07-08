@@ -70,7 +70,7 @@ export default function AdminMenuItem({
       </div>
     </div>
   ) : (
-    <div className="grid grid-cols-7 gap-4 py-6 whitespace-nowrap text-center items-center text-base px-10">
+    <div className="grid grid-cols-7 gap-4 py-6 whitespace-nowrap text-center items-center text-base px-10 pr-6">
       <div>{props.category}</div>
       <div>{props.id}</div>
       <div>{props.name}</div>
