@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import AdminOrder from './pages/AdminOrder';
 import AdminTables from './pages/AdminTables';
+import MyOrderlist from './pages/MyOrderlist';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/admin/tables" element={<AdminTables />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/mypage/orderlist" element={<MyOrderlist />} />
         </Routes>
       </BrowserRouter>
     </div>

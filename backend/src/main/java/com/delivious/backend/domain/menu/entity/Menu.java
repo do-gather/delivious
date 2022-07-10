@@ -1,64 +1,81 @@
 package com.delivious.backend.domain.menu.entity;
-
-
+import com.delivious.backend.domain.category.entity.Category;
+import com.delivious.backend.domain.menu.dto.MenuRequest;
+import com.delivious.backend.domain.users.entity.Store;
 import com.delivious.backend.global.common.BaseEntity;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
 import java.util.UUID;
 
-@Entity
+@Builder
 @Getter
 @Setter
-@NoArgsConstructor
-@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Table(name = "menu")
+@Entity
+@Table(name = "menus")
 public class Menu extends BaseEntity {
 
-    @NotNull
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column( nullable = false, length = 50)
-    private UUID menu_id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(columnDefinition = "BINARY(16)", name = "menu_id")
+    private UUID menuId;
 
+    @NotNull
+    @Column(name = "menu_name")
+    private String menuName;
+
+    @NotNull
+    private Float price;
+
+    @NotNull
+    @Column(name = "menu_image")
+    private String menuImage;
+
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="category_id")
+    @JoinColumn(name = "category_id")
     private Category category;
 
-    // 여기서 img_id or img_url
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="img_id")
-    private Img img;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "store_id")
+    private Store store;
 
-
-//    @Column( nullable = false, length = 50)
-//    private Long store_num;
-
-    @Column( nullable = false, length = 50)
-    private String menu_name;
-
-    // Long -> int
-    @Column( nullable = false, length = 15)
-    private int menu_price;
-
-    @Column(nullable = false)
+    @NotNull
     private String temperature;
 
-    // size를 db에 어떤식으로 넣어야 할지
     @Enumerated(EnumType.STRING)
     private Size size;
 
-    @Column( nullable = false, length = 50)
+    @NotNull
     private String description;
 
-    public void update(Img img, String menu_name, int menu_price, String temperature, String description) {
-        this.img = img;
-        this.menu_name = menu_name;
-        this.menu_price = menu_price;
+    @Builder
+    public Menu(Category category, String menuName, Float price, String menuImage, String temperature, Size size, String description) {
+        this.menuName = menuName;
+        this.price = price;
+        this.menuImage = menuImage;
+        this.category = category;
         this.temperature = temperature;
+        this.size = size;
         this.description = description;
     }
+
+    public void updateMenu(MenuRequest menuRequest) {
+        this.menuName = menuRequest.getMenuName();
+        this.price = menuRequest.getPrice();
+        this.menuImage = menuRequest.getMenuImage();
+        this.category = menuRequest.getCategory();
+        this.temperature = menuRequest.getTemperature();
+        this.size = menuRequest.getSize();
+        this.description = menuRequest.getDescription();
+    }
+
+    public void removeMenu(){
+    }
+
 }

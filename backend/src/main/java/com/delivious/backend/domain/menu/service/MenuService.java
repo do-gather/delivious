@@ -1,66 +1,29 @@
 package com.delivious.backend.domain.menu.service;
 
-
-import com.delivious.backend.domain.menu.dto.MenuResponseDto;
-import com.delivious.backend.domain.menu.dto.MenuSaveDto;
-import com.delivious.backend.domain.menu.dto.MenuUpdateDto;
+import com.delivious.backend.domain.category.dto.CategoryRequest;
+import com.delivious.backend.domain.category.entity.Category;
+import com.delivious.backend.domain.menu.dto.MenuRequest;
+import com.delivious.backend.domain.menu.dto.MenuResponse;
 import com.delivious.backend.domain.menu.entity.Menu;
-import com.delivious.backend.domain.menu.repository.CategoryRepository;
-import com.delivious.backend.domain.menu.repository.MenuRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
-import java.util.Optional;
-import javax.transaction.Transactional;
 import java.util.UUID;
-import java.util.stream.Collectors;
+
+public interface MenuService {
+
+    public void createMenu(MenuRequest menuRequest);
+
+    public List<Menu> findAllMenus();
+
+    public Menu findMenuById(UUID menuId);
 
 
-@Service
-@RequiredArgsConstructor
-public class MenuService {
+    // 메뉴 리스트 불러오기(by categroyId)
+//     List<MenuResponse> findAllByCategoryId(UUID categoryId);
 
-    private final MenuRepository menuRepository;
-    private final CategoryRepository categoryRepository;
+    public void updateMenu(Menu menu, MenuRequest menuRequest);
 
-    @Transactional //DB 상태 변경
-    public Menu save(MenuSaveDto menuSaveDto) {
-        Menu menu = menuSaveDto.toEntity();
-        //Category category = categoryRepository.
-        //
-        return menuRepository.save(menu);
-    }
+    public void removeMenu(UUID menuId);
 
-    @Transactional
-    public Menu update(UUID menu_id, MenuUpdateDto menuUpdateDto) {
-        Menu menu = menuRepository.findById(menu_id).get();
-        menu.update(
-                menuUpdateDto.getImg(),
-                menuUpdateDto.getMenu_name(),
-                menuUpdateDto.getMenu_price(),
-                menuUpdateDto.getTemperature(),
-                menuUpdateDto.getDescription());
-        return menuRepository.save(menu);
-    }
-
-    @Transactional
-    public List<MenuResponseDto> findAll() {
-        return menuRepository.findAll().stream().map(MenuResponseDto::new).collect(Collectors.toList());
-    }
-
-    @Transactional
-    public Optional<Menu> findById(UUID menu_id) {
-        return menuRepository.findById(menu_id);
-    }
-
-//    @Transactional(readOnly = true)
-//    public List<Menu> findAllByCategoryId(UUID category_id) {
-//        return menuRepository.findByCategoryId(category_id).stream().map(MenuResponseDto::new).collect(Collectors.toList());
-//    }
-
-    @Transactional
-    public void delete(UUID menu_id){
-        Menu menu = menuRepository.findById(menu_id).get();
-        menuRepository.delete(menu);
-    }
 }

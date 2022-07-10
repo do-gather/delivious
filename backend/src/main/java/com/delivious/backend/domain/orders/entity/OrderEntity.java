@@ -5,7 +5,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import javax.persistence.Table;
 import java.sql.Timestamp;
+import com.delivious.backend.global.common.BaseEntity;
 import java.util.UUID;
 
 @NoArgsConstructor
@@ -38,7 +40,6 @@ public class OrderEntity {
 
 
     @Builder
-
     public OrderEntity(UUID order_id, UUID user_id, UUID table_id, Long total_count, Long total_price, String status_now, Timestamp created_at) {
         this.order_id = order_id;
         this.user_id = user_id;

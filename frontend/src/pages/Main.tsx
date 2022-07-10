@@ -57,13 +57,15 @@ export default function Main() {
       <div className="flex right-0 top-16">
         <Tap color="#435ca5" name="주문하기" link="/" />
         <div className="w-64 min-h-screen bg-white">
-          <div className="flex space-x-2 top-11 items-center text-left whitespace-nowrap">
+          <div className="flex pt-5 pl-5 space-x-2 whitespace-nowrap">
             <ShoppingCart />
             <div className="text-lg font-bold pb-2 cursor-pointer">장바구니</div>
           </div>
-          {constants.MENU_ITEMS.map(menu => (
-            <ShopingCart props={menu} key={menu.id} />
-          ))}
+          <ShopingCart orderList={constants.ORDER} />
+
+          <div className="px-14 pb-2 place-self-center">
+            <BasicButton buttonName="결제" onClick={() => setOrderModal(true)} xPadding="px-14" />
+          </div>
         </div>
       </div>
       {adminLogin && <AdminLoginModal onClose={() => setAdminLogin(false)} />}
