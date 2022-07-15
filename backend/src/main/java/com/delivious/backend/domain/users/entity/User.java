@@ -3,16 +3,14 @@
  */
 package com.delivious.backend.domain.users.entity;
 
+import com.delivious.backend.domain.orders.entity.Order;
 import com.delivious.backend.global.common.BaseEntity;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -53,9 +51,13 @@ public class User extends BaseEntity {
 
    // Store entity 와 조인
    @OneToOne(mappedBy = "user")
-   @JoinColumn(name = "id")
+   @JoinColumn(name = "userId")
    private Store store;
 
+
+   // Order entity 와 조인
+   @OneToMany(mappedBy = "user")
+   private List<Order> orders = new ArrayList<>();
 
 
    @ManyToMany

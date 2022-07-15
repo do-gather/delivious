@@ -8,6 +8,6 @@ import java.util.UUID;
 
 
 public interface MenuRepository extends  JpaRepository<Menu,UUID> {
-
 //    List<Menu> findByCategoryId(UUID categoryId);
 }
+

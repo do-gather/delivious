@@ -13,7 +13,6 @@ function Divider() {
 }
 
 export default function MyOrderlist() {
-
   return (
     <div className="w-full h-full py-24 overflow-y-hidden">
       <div className="grid grid-cols-8 pl-5 space-x-10 items-center pb-8 ">

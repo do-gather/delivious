@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import AddCircle from '../images/AddCircle';
-import MinusCircle from '../images/SubtractCircle';
+import SubtractCircle from '../images/SubtractCircle';
 
 // SetNumber.tsx는 장바구니에서 제품수량을 설정하기 위한 코드로 ShopingCart.tsx에서 사용
 export default function SetNumber() {
@@ -14,7 +14,7 @@ export default function SetNumber() {
   return (
     <div className="flex space-x-2 items-center text-left">
       <button onClick={minusClicked} type="button">
-        <MinusCircle />
+        <SubtractCircle />
       </button>
       <p>{count}</p>
       <button onClick={plusClicked} type="button">

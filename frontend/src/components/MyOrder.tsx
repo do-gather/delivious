@@ -1,11 +1,10 @@
 /* eslint-disable react/require-default-props */
+
 import React from 'react';
 import { dts } from '../utils/types';
 import Tap1 from './Tap1';
-
 import constants from '../utils/constants';
 import CountMenu from './CountMenu';
-
 /**
  * @param props 
  * @param type 
