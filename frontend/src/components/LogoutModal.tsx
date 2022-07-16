@@ -5,7 +5,7 @@ import AuthService from '../services/AuthService';
 import BasicButton from './BasicButton';
 
 /**
- * 어드민 로그인 모달 창
+ * 로그아웃 모달 창
  * @param onClose 닫힘 버튼을 누를 때 실행될 함수 받음
  */
 interface Props {

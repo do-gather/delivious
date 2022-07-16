@@ -10,7 +10,7 @@ import { dts } from '../utils/types';
 
 /**
  * '/sign-up'로 연결되는 회원가입 페이지
- * admin의 경우 회원가입 즉시 로그인 처리 후 토큰을 받아 스토어 등록 후 로그아웃 처리
+ * admin의 경우 회원가입 즉시 로그인 처리 후 토큰을 받아 스토어 이름 등록 후 토큰 삭제
  */
 
 export default function SignUp() {

@@ -9,6 +9,7 @@ import { dts } from './types';
 /**
  * 라우터를 감싸는 권한 확인을 위한 컴포넌트
  * @param pageType 페이지 타입에 따라 접근 가능한 유저를 구분하기 위해 string으로 페이지 타입을 받음
+ * 권한 없을 시 알맞은 알림 및 페이지 이동
  */
 
 interface Props {

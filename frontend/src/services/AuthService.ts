@@ -3,6 +3,10 @@ import axios from 'axios';
 import { API_URL } from '../utils/constants';
 import { authHeader, contentTypeJsonHeader } from '../utils/headerUtils';
 
+/**
+ * login과 signup을 위한 서비스
+ * api 관련한 부분 처리
+ */
 class AuthService {
   // eslint-disable-next-line class-methods-use-this
   login(username: string, password: string, type: string) {
