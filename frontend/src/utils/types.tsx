@@ -26,4 +26,22 @@ export namespace dts {
     takeout: boolean;
     total: number;
   }
+
+  export interface tokenDto {
+    activation: boolean;
+    type: string;
+  }
+
+  export interface userInfo {
+    username: string;
+    password: string;
+    passwordConfirm: string;
+    name: string;
+    phoneNum: string;
+    year: string;
+    month: string;
+    date: string;
+    type: string;
+    storeName: string;
+  }
 }
