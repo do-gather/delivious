@@ -17,10 +17,11 @@ export default function LogoutModal({ onClose }: Props) {
   const [move, setMove] = useState(false);
   const d = new Date();
   const { removeAccess } = useAuth();
+  const url = window.location.pathname.includes('mypage') ? '/mypage/login' : '/login';
 
   useEffect(() => {
-    if (move) navigate('/login');
-  }, [move, navigate]);
+    if (move) navigate(url);
+  }, [move, navigate, url]);
 
   return (
     <div
