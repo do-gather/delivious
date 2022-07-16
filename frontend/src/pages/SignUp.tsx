@@ -10,6 +10,7 @@ import { dts } from '../utils/types';
 
 /**
  * '/sign-up'로 연결되는 회원가입 페이지
+ * admin의 경우 회원가입 즉시 로그인 처리 후 토큰을 받아 스토어 등록 후 로그아웃 처리
  */
 
 export default function SignUp() {
@@ -47,12 +48,13 @@ export default function SignUp() {
     AuthService.register(data).then((res: any) => {
       if (res.status === 201) {
         if (userInfo.type === 'admin') {
-          AuthService.login(userInfo.username, userInfo.password).then((response: any) => {
+          AuthService.login(userInfo.username, userInfo.password, userInfo.type).then((response: any) => {
             if (response.status === 200) {
               const store = {
                 userId: res.data.userId,
                 storeName: userInfo.storeName,
               };
+              window.localStorage.removeItem('adminToken');
               AuthService.store(store, response.data.token).then((storeres: any) => {
                 if (storeres.status === 200) {
                   navigate('/login');

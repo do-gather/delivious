@@ -5,12 +5,13 @@ import { authHeader, contentTypeJsonHeader } from '../utils/headerUtils';
 
 class AuthService {
   // eslint-disable-next-line class-methods-use-this
-  login(username: string, password: string) {
+  login(username: string, password: string, type: string) {
     return axios
       .post(`${API_URL}/authenticate`, { username, password })
       .then(response => {
         if (response.status === 200) {
-          window.localStorage.setItem('adminToken', response.data.token);
+          if (type === 'admin') window.localStorage.setItem('adminToken', response.data.token);
+          else window.localStorage.setItem('userToken', response.data.token);
           return response;
         }
         return response;
