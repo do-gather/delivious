@@ -45,6 +45,7 @@ class AuthService {
   // eslint-disable-next-line class-methods-use-this
   logout() {
     window.localStorage.removeItem('adminToken');
+    window.localStorage.removeItem('userToken');
   }
 
   // eslint-disable-next-line class-methods-use-this
