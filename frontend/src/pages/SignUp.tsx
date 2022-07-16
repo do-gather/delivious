@@ -6,19 +6,7 @@ import CheckBox from '../components/CheckBox';
 import UserIcon from '../images/UserIcon';
 import PasswordIcon from '../images/PasswordIcon';
 import AuthService from '../services/AuthService';
-
-interface UserInfo {
-  username: string;
-  password: string;
-  passwordConfirm: string;
-  name: string;
-  phoneNum: string;
-  year: string;
-  month: string;
-  date: string;
-  type: string;
-  storeName: string;
-}
+import { dts } from '../utils/types';
 
 /**
  * '/sign-up'로 연결되는 회원가입 페이지
@@ -27,7 +15,7 @@ interface UserInfo {
 export default function SignUp() {
   const navigate = useNavigate();
   const [admin, setAdmin] = useState(false);
-  const [userInfo, setUserInfo] = useState<UserInfo>({
+  const [userInfo, setUserInfo] = useState<dts.userInfo>({
     username: '',
     password: '',
     passwordConfirm: '',
