@@ -17,16 +17,20 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<Main />} />
-          <Route element={<AuthRoute authentication />}>
+          <Route element={<AuthRoute pageType="admin" />}>
+            <Route path="/" element={<Main />} />
             <Route path="/admin" element={<AdminMain />} />
             <Route path="/admin/menu" element={<AdminMenu />} />
             <Route path="/admin/menu/edit" element={<AdminMenuEdit />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/mypage/orderlist" element={<MyOrderlist />} />
-          <Route path="/mypage/orderhistory" element={<OrderHistory />} />
+          <Route path="/mypage/login" element={<Login />} />
+          <Route element={<AuthRoute pageType="user" />}>
+            <Route path="/mypage/orderlist" element={<MyOrderlist />} />
+            <Route path="/mypage/orderlist" element={<MyOrderlist />} />
+            <Route path="/mypage/orderhistory" element={<OrderHistory />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>

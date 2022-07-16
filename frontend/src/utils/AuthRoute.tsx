@@ -8,18 +8,21 @@ import { dts } from './types';
 
 /**
  * 라우터를 감싸는 권한 확인을 위한 컴포넌트
- * @param authentication
+ * @param pageType 페이지 타입에 따라 접근 가능한 유저를 구분하기 위해 string으로 페이지 타입을 받음
  */
 
-export function AuthRoute(): ReactElement | null {
+interface Props {
+  pageType: string;
+}
+
+export function AuthRoute({ pageType }: Props): ReactElement | null {
   const { removeAccess } = useAuth();
   const navigate = useNavigate();
-  const url = window.location.pathname;
 
   useEffect(() => {
     (async () => {
       const token: dts.tokenDto = checkToken();
-      if (!token.activation && url.includes('/admin')) {
+      if (!token.activation && pageType === 'admin') {
         navigate('/login');
         alert('로그인이 필요합니다.');
         removeAccess();
@@ -27,9 +30,13 @@ export function AuthRoute(): ReactElement | null {
         navigate('/mypage/login');
         alert('로그인이 필요합니다.');
         removeAccess();
-      } else if (token.activation && token.type === 'user' && url.includes('/admin')) {
-        navigate('/admin');
+      } else if (token.activation && token.type === 'user' && pageType === 'admin') {
+        navigate('/login');
         alert('관리자만 접근 가능합니다.');
+        removeAccess();
+      } else if (token.activation && token.type === 'admin' && pageType === 'user') {
+        navigate('/mypage/login');
+        alert('일반 사용자 계정으로만 접근 가능합니다.');
         removeAccess();
       }
     })();
