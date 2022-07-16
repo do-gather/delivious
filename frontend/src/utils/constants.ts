@@ -13,6 +13,7 @@ const constants = {
       size: 'Tall',
       price: '4,000',
       date: '2021.11.30',
+      image: 'https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png',
     },
     {
       category: 'Coffee',
@@ -22,6 +23,7 @@ const constants = {
       size: 'Tall, Grande, Venti',
       price: '6,000',
       date: '2022.4.20',
+      image: 'https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png',
     },
     {
       category: 'Non-Coffee',
@@ -31,6 +33,7 @@ const constants = {
       size: 'Tall, Grande',
       price: '5,000',
       date: '2021.1.30',
+      image: 'https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png',
     },
     {
       category: 'Coffee',
@@ -40,6 +43,7 @@ const constants = {
       size: 'Tall, Venti',
       price: '5,600',
       date: '2022.4.20',
+      image: 'https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png',
     },
     {
       category: 'Non-Coffee',
@@ -49,6 +53,7 @@ const constants = {
       size: 'Tall, Grande, Venti',
       price: '7,000',
       date: '2021.7.19',
+      image: 'https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png',
     },
     {
       category: 'Tea',
@@ -58,6 +63,7 @@ const constants = {
       size: 'Tall, Grande, Venti',
       price: '4,500',
       date: '2021.3.2',
+      image: 'https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png',
     },
     {
       category: 'Coffee',
@@ -67,6 +73,7 @@ const constants = {
       size: 'Tall, Venti',
       price: '5,500',
       date: '2022.01.01',
+      image: 'https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png',
     },
   ],
   CATEGORIES: [
@@ -94,6 +101,7 @@ const constants = {
           size: 'Tall, Grande',
           price: '5,000',
           date: '2021.1.30',
+          image: 'https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png',
         },
         quantity: 1,
       },
@@ -106,6 +114,7 @@ const constants = {
           size: 'Tall, Venti',
           price: '5,600',
           date: '2022.4.20',
+          image: 'https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png',
         },
         quantity: 2,
       },
@@ -118,6 +127,7 @@ const constants = {
           size: 'Tall, Grande, Venti',
           price: '7,000',
           date: '2021.7.19',
+          image: 'https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png',
         },
         quantity: 1,
       },
@@ -130,6 +140,7 @@ const constants = {
           size: 'Tall, Grande, Venti',
           price: '4,500',
           date: '2021.3.2',
+          image: 'https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png',
         },
         quantity: 4,
       },

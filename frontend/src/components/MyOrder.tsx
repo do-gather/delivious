@@ -22,7 +22,9 @@ export default function MyOrder({
     size: '',
     price: '',
     date: '',
-  }
+    image: '',
+  },
+  type = 'display',
 }: Props) {
   return (
     <div className="flex justify-between whitespace-nowrap text-center items-center text-base">

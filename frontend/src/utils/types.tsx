@@ -14,6 +14,7 @@ export namespace dts {
     size: string;
     price: string;
     date: string;
+    image: string;
   }
 
   export interface orderDto {
