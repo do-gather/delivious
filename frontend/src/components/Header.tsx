@@ -14,12 +14,12 @@ export default function Header() {
     <header className="fixed w-full h-16" style={{ backgroundColor: '#E5E5E5' }}>
       <div>
         {url.pathname.includes('login') && (
-          <Link className=" flex justify-center mt-64 md:mx-0 mx-4" to="/login">
+          <div className=" flex justify-center mt-64 md:mx-0 mx-4">
             <MainLogo width="576" height="122.032" />
-          </Link>
+          </div>
         )}
         {url.pathname.includes('sign-up') && (
-          <Link className=" flex justify-center mt-14" to="/sign-up">
+          <Link className=" flex justify-center mt-14" to="/">
             <MainLogo width="231" height="49" />
           </Link>
         )}
