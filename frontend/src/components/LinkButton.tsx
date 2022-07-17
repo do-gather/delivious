@@ -13,7 +13,7 @@ interface Props {
   link: string;
 }
 
-export default function Tap({ color, link, name }: Props) {
+export default function LinkButton({ color, link, name }: Props) {
   return (
     <Link
       className="flex flex-wrap items-center px-5 w-24 h-11 text-white text-center 
