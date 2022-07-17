@@ -51,13 +51,11 @@ public class User extends BaseEntity {
 
    // Store entity 와 조인
    @OneToOne(mappedBy = "user")
-   @JoinColumn(name = "userId")
+   @JoinColumn(name = "user_id")
    private Store store;
 
 
-   // Order entity 와 조인
-   @OneToMany(mappedBy = "user")
-   private List<Order> orders = new ArrayList<>();
+
 
 
    @ManyToMany

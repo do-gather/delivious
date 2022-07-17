@@ -31,93 +31,73 @@ public class Order extends BaseEntity {
     @Column(columnDefinition = "BINARY(16)" , name = "order_id")
     private UUID orderId;
 
-    @OneToOne (fetch = FetchType.EAGER)
-    @JoinColumn(name = "userId")
-    User user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @ManyToMany (fetch = FetchType.EAGER)
-    @JoinColumn(name = "storeId")
+    /*
+    테이블 연동 -> 보류
+    @OneToOne(fetch = LAZY)
+    @JoinColumn(name = "tableId")
+    private Table table;
+    */
+
+    @ManyToOne (fetch = FetchType.LAZY)
+    @JoinColumn(name = "store_id")
     private Store store;
 
-//    테이블 연동 -> 보류
-//    @OneToOne(fetch = LAZY)  // mappedBy = "order", cascade = CascadeType.ALL
-//    @JoinColumn(name = "tableId")
-//    private Table table;
-
     @Enumerated(EnumType.STRING)
-    @Column(name = "order_status", length = 50)
-    private OrderStatus orderStatus;                      // SEND, DONE
+    @Column(name = "order_status")
+    private OrderStatus orderStatus;   // SEND, DONE
 
-    @Column( nullable = false)
-    private int totalCount;
-
-    @Column( nullable = false)
-    private int totalPrice;
-
-
-//    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-//    private List<OrderDetail> orderDetails = new ArrayList<>();
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL
+            , orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<OrderDetail> orderDetails = new ArrayList<>();
 
 
 
-
-    // 연관 관계 메서드
-    // 주문을 받았을 때, user 랑 연결
-    public void setUser (User user) {
-        user.getOrders().add(this);
-        this.user = user;
+    public void addOrderDetail (OrderDetail orderDetail) {
+        orderDetails.add(orderDetail);
+        orderDetail.setOrder(this);
     }
 
-    // 주문 상세 추가하기
-//    public void addOrderDetail (OrderDetail orderDetail) {
-//        orderDetails.add(orderDetail);
-//        orderDetail.setOrder(this);
-//    }
+    public static Order createOrder (User user,Store store, List<OrderDetail> orderDetailList) {
+        //store 연결
+        Order order = new Order();
+        order.setUser(user);
+        order.setStore(store);
 
+        for(OrderDetail orderDetail : orderDetailList){
+            order.addOrderDetail(orderDetail);
+        }
 
-    @Builder
-    public Order(UUID orderId, User user, Store store, OrderStatus orderStatus, int totalCount, int totalPrice, List<OrderDetail> orderDetails) {
-        this.orderId = orderId;
-        this.user = user;
-        this.orderStatus = orderStatus;
-        this.totalCount = totalCount;
-        this.totalPrice = totalPrice;
-        //this.orderDetails = orderDetails;
-        this.store = store;
+        order.setOrderStatus(OrderStatus.SEND);
+        return order;
     }
 
 
-    // 생성 메서드
-    public static Order createOrder (User userReference,  int totalCount, int totalPrice) {
-        return Order
-            .builder()
-                .user(userReference)
-                .orderStatus(OrderStatus.SEND)
-                //.store(store)
-                .totalCount(totalCount)
-                .totalPrice(totalPrice)
-                .orderStatus(OrderStatus.SEND)
-                .build();
-//        for (OrderDetail orderDetail : orderDetails) {              // 여러개의 상품을 주문했을 때
-//            order.addOrderDetail(orderDetail);
-//        }
-
-
-        // 나중에 테이블 추가
+    public int getTotalCount () {
+        int totalCount = 0;
+        for(OrderDetail orderDetail : orderDetails) {
+            totalCount += orderDetail.getCount();
+        }
+        return totalCount;
     }
 
 
-    // 전체 주문 가격
-//    public int getTotalPrice() { //주문한 상품들 각각의 가격을 불러와서 다 더해줘서 총 주문가격을 구함
-//        int totalPrice = 0;
-//        for(OrderDetail orderDetail : orderDetails){
-//            totalPrice += orderDetail.getDetailTotalPrice();
-//        }
-//        return totalPrice;
-//    }
+    public float getTotalPrice() {
+        float totalPrice = 0;
+        for(OrderDetail orderDetail : orderDetails) {
+            totalPrice += orderDetail.getDetailTotalPrice();
+        }
+        return totalPrice;
+    }
 
-
-
-
+    public void doneOrder() {
+        this.orderStatus = OrderStatus.DONE;
+        for(OrderDetail orderDetail : orderDetails) {
+            orderDetail.doneOrderDetail();
+        }
+    }
 
 }
