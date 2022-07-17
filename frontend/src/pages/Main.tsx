@@ -62,7 +62,7 @@ export default function Main() {
             <div className="text-lg font-bold pb-2 cursor-pointer">장바구니</div>
           </div>
           <ShopingCart orderList={constants.ORDER} />
-          <div className="flex fixed text-center right-12 bottom-16 w-40">
+          <div className="px-14 pb-2 place-self-center">
             <BasicButton buttonName="결제" onClick={() => setOrderModal(true)} />
           </div>
         </div>
