@@ -8,6 +8,7 @@ import AdminMain from './pages/AdminMain';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import MyOrderlist from './pages/MyOrderlist';
+import OrderHistory from './pages/OrderHistory';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/mypage/orderlist" element={<MyOrderlist />} />
+          <Route path="/mypage/orderhistory" element={<OrderHistory />} />
         </Routes>
       </BrowserRouter>
     </div>
