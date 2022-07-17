@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         ,"/error"
                         ,"/categories/**"
                         ,"/menus/**"
-
+                        ,"/api/hello"
                 );
     }
 

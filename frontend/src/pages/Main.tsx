@@ -69,8 +69,8 @@ export default function Main() {
         </div>
       </div>
       {adminLogin && <AdminLoginModal onClose={() => setAdminLogin(false)} />}
-      <div className="flex fixed text-center right-14 bottom-16">
-        <BasicButton buttonName="결제" onClick={() => setOrderModal(true)} xPadding="px-14" />
+      <div className="flex fixed text-center right-12 bottom-16 w-40">
+        <BasicButton buttonName="결제" onClick={() => setOrderModal(true)} />
       </div>
       {orderModal && <OrderModal orderList={constants.ORDER} onClose={() => setOrderModal(false)} />}
     </div>

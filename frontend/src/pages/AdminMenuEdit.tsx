@@ -30,7 +30,7 @@ export default function AdminMenuEdit() {
         <div className="col-span-5">
           <SearchBar placeholder="Search menu name or id" />
         </div>
-        <div className="col-span-2 justify-self-end w-max">
+        <div className="col-span-2 justify-self-end w-36">
           <BasicButton buttonName="편집 완료" onClick={() => setFinish(true)} />
         </div>
       </div>

@@ -2,6 +2,7 @@
  * 테스트를 위해 임포트 하여 사용할 데이터 및 상수 모음
  */
 
+export const API_URL = 'http://localhost:8080/api';
 const constants = {
   MENU_ITEMS: [
     {
