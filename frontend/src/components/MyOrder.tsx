@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { dts } from '../utils/types';
-import Tap1 from './Tap1';
+import LinkButton from './LinkButton';
 import constants from '../utils/constants';
 import CountMenu from './CountMenu';
 /**
@@ -33,7 +33,7 @@ export default function MyOrder({
         </div>
 
       <div className="flex text-center pr-10">
-      <Tap1 color="#435ca5" name="상세보기" link="/mypage/orderhistory" />
+      <LinkButton color="#435ca5" name="상세보기" link="/mypage/orderhistory" />
       </div>
     </div>
   );
