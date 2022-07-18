@@ -37,9 +37,9 @@ public class OrderService {
         // 유저이름으로 엔티티 가져오기
         User user = userRepository.findUserByName(username);
 
-        Menu menu = menuRepository.findByName(menuName);
+        Menu menu = menuRepository.findByMenuName(menuName);
 
-        Store store = storeRepository.findStoreByName(storeName);
+        Store store = storeRepository.findStoreByStoreName(storeName);
 
         // 주문할 상품
         OrderDetail orderDetail = OrderDetail.createOrderDetail(menu, menu.getPrice(), count);

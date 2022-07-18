@@ -16,10 +16,10 @@ import java.util.List;
 public interface OrderRepository extends JpaRepository<Order, Long>{
 
 
-    @Query("select o from Order o" +
-            "where o.user.username = :username" +
-            "order by o.created_at desc"
-    )
-    List<Order> findOrders (@Param("username") String username, Pageable pageable);
+//    @Query("select o from Order o" +
+//            "where o.user.username = :username" +
+//            "order by o.created_at desc"
+//    )
+//    List<Order> findOrders (@Param("username") String username, Pageable pageable);
 
 }
