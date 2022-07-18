@@ -24,5 +24,5 @@ public class OrderResponse {
     private int totalCount;
     private float totalPrice;
     private OrderStatus orderStatus;
-
+    
 }

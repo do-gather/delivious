@@ -3,7 +3,6 @@ package com.delivious.backend.domain.orders.service;
 
 import com.delivious.backend.domain.menu.entity.Menu;
 import com.delivious.backend.domain.menu.repository.MenuRepository;
-import com.delivious.backend.domain.orders.dto.request.OrderRequest;
 import com.delivious.backend.domain.orders.entity.Order;
 import com.delivious.backend.domain.orders.entity.OrderDetail;
 import com.delivious.backend.domain.orders.repository.OrderRepository;
