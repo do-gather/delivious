@@ -5,6 +5,7 @@ package com.delivious.backend.domain.users.entity;
 
 import com.delivious.backend.domain.orders.entity.Order;
 import com.delivious.backend.global.common.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
@@ -55,6 +56,10 @@ public class User extends BaseEntity {
    private Store store;
 
 
+   // Order entity 와 조인
+   @JsonIgnore
+   @OneToMany (mappedBy = "user")  //읽기 전용
+   private List<Order> orders = new ArrayList<>();
 
 
 
@@ -64,6 +69,8 @@ public class User extends BaseEntity {
       joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
       inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "authority_name")})
    private Set<Authority> authorities;   // 변경 예정
+
+
 
 
    /*

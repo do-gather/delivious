@@ -11,6 +11,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -55,19 +56,18 @@ public class Order extends BaseEntity {
     private List<OrderDetail> orderDetails = new ArrayList<>();
 
 
-
     public void addOrderDetail (OrderDetail orderDetail) {
         orderDetails.add(orderDetail);
         orderDetail.setOrder(this);
     }
 
-    public static Order createOrder (User user,Store store, List<OrderDetail> orderDetailList) {
+    public static Order createOrder (User user,Store store, OrderDetail... orderDetails) {
         //store 연결
         Order order = new Order();
         order.setUser(user);
         order.setStore(store);
 
-        for(OrderDetail orderDetail : orderDetailList){
+        for(OrderDetail orderDetail : orderDetails){
             order.addOrderDetail(orderDetail);
         }
 
@@ -76,13 +76,15 @@ public class Order extends BaseEntity {
     }
 
 
-    public int getTotalCount () {
-        int totalCount = 0;
-        for(OrderDetail orderDetail : orderDetails) {
-            totalCount += orderDetail.getCount();
-        }
-        return totalCount;
-    }
+
+
+//    public int getTotalCount () {
+//        int totalCount = 0;
+//        for(OrderDetail orderDetail : orderDetails) {
+//            totalCount += orderDetail.getCount();
+//        }
+//        return totalCount;
+//    }
 
 
     public float getTotalPrice() {
@@ -99,5 +101,23 @@ public class Order extends BaseEntity {
             orderDetail.doneOrderDetail();
         }
     }
+
+
+    //==연관 관계 메서드 ==//
+//    public void setUser (User user) {
+//        this.user = user;
+//        User.getOrders().add(this);
+//    }
+
+
+
+//    @Builder
+//    public Order(UUID orderId, User user, Store store, OrderStatus orderStatus, List<OrderDetail> orderDetails) {
+//        this.orderId = orderId;
+//        this.user = user;
+//        this.store = store;
+//        this.orderStatus = orderStatus;
+//        this.orderDetails = orderDetails;
+//    }
 
 }

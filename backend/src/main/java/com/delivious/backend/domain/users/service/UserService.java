@@ -65,10 +65,11 @@ public class UserService {
         return userMapper.toResponseDto(userRepository.save(user));
     }
 
+
     // order 에서 username을 파라미터로 받아 order를 생성하도록 합니다.
-    public UserResponseDto getReferenceByName (String username){
-        return userMapper.toResponseDto(userRepository.findUserByName(username).orElse(null));
-    }
+//    public UserResponseDto getReferenceByName (String username){
+//        return userMapper.toResponseDto(userRepository.findUserByName(username).orElse(null));
+//    }
 
     // username을 파라미터로 받아 해당 유저의 정보 및 권한 정보를 리턴합니다.
     @Transactional(readOnly = true)
