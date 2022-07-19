@@ -6,9 +6,10 @@ package com.delivious.backend.domain.users.controller;
 import com.delivious.backend.domain.users.dto.*;
 import com.delivious.backend.domain.users.entity.Store;
 import com.delivious.backend.domain.users.entity.User;
-import com.delivious.backend.domain.users.service.UserService;
 import com.delivious.backend.domain.users.service.StoreService;
+import com.delivious.backend.domain.users.service.UserService;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -48,7 +49,8 @@ public class UserController {
     public ResponseEntity<UserResponseDto> signup(
             @Valid @RequestBody UserDto userDto
     ) {
-        return ResponseEntity.ok(userService.signup(userDto));
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(userService.signup(userDto));
     }
 
 

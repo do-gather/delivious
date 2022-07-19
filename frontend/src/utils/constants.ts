@@ -2,6 +2,7 @@
  * 테스트를 위해 임포트 하여 사용할 데이터 및 상수 모음
  */
 
+export const API_URL = 'http://localhost:8080/api';
 const constants = {
   MENU_ITEMS: [
     {
@@ -12,6 +13,7 @@ const constants = {
       size: 'Tall',
       price: '4,000',
       date: '2021.11.30',
+      image: 'https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png',
     },
     {
       category: 'Coffee',
@@ -21,6 +23,7 @@ const constants = {
       size: 'Tall, Grande, Venti',
       price: '6,000',
       date: '2022.4.20',
+      image: 'https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png',
     },
     {
       category: 'Non-Coffee',
@@ -30,6 +33,7 @@ const constants = {
       size: 'Tall, Grande',
       price: '5,000',
       date: '2021.1.30',
+      image: 'https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png',
     },
     {
       category: 'Coffee',
@@ -39,6 +43,7 @@ const constants = {
       size: 'Tall, Venti',
       price: '5,600',
       date: '2022.4.20',
+      image: 'https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png',
     },
     {
       category: 'Non-Coffee',
@@ -48,6 +53,7 @@ const constants = {
       size: 'Tall, Grande, Venti',
       price: '7,000',
       date: '2021.7.19',
+      image: 'https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png',
     },
     {
       category: 'Tea',
@@ -57,6 +63,7 @@ const constants = {
       size: 'Tall, Grande, Venti',
       price: '4,500',
       date: '2021.3.2',
+      image: 'https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png',
     },
     {
       category: 'Coffee',
@@ -66,6 +73,7 @@ const constants = {
       size: 'Tall, Venti',
       price: '5,500',
       date: '2022.01.01',
+      image: 'https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png',
     },
   ],
   CATEGORIES: [
@@ -93,6 +101,7 @@ const constants = {
           size: 'Tall, Grande',
           price: '5,000',
           date: '2021.1.30',
+          image: 'https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png',
         },
         quantity: 1,
       },
@@ -105,6 +114,7 @@ const constants = {
           size: 'Tall, Venti',
           price: '5,600',
           date: '2022.4.20',
+          image: 'https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png',
         },
         quantity: 2,
       },
@@ -117,6 +127,7 @@ const constants = {
           size: 'Tall, Grande, Venti',
           price: '7,000',
           date: '2021.7.19',
+          image: 'https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png',
         },
         quantity: 1,
       },
@@ -129,6 +140,7 @@ const constants = {
           size: 'Tall, Grande, Venti',
           price: '4,500',
           date: '2021.3.2',
+          image: 'https://myauto.shinhancard.com/conts/images/event/evt_181001_02_gift04.png',
         },
         quantity: 4,
       },
@@ -136,5 +148,83 @@ const constants = {
     takeout: false,
     total: 40000,
   },
+  ORDER_ITEMS: [
+    {
+      order_number: '30',
+      time: '15:30:43',
+      table: 1,
+      history: '아이스 아메리카노 에이드/Ice/Venti 크로플',
+      state: 'ready',
+      price: '16,000',
+    },
+    {
+      order_number: '29',
+      time: '15:27:03',
+      table: 3,
+      history: '카페라떼/Hot/Tall 블루베리마카롱',
+      state: 'ready',
+      price: '9 ,000',
+    },
+    {
+      order_number: '28',
+      time: '14:50:21',
+      table: 7,
+      history: '카페라떼/Hot/Tall 카푸치노/Hot/Venti',
+      state: 'done',
+      price: '11,000',
+    },
+    {
+      order_number: '27',
+      time: '14:10:46',
+      table: 5,
+      history: '아이스아메리카노 레몬크림마카롱',
+      state: 'ready',
+      price: '8,000',
+    },
+    {
+      order_number: '26',
+      time: '14:08:06',
+      table: 6,
+      history: '카모마일 티',
+      state: 'done',
+      price: '4,500',
+    },
+    {
+      order_number: '25',
+      time: '14:08:06',
+      table: 2,
+      history: '아이스 아메리카노/Tall 아이스티/Tall',
+      state: 'done',
+      price: '7,500',
+    },
+    {
+      order_number: '25',
+      time: '14:08:06',
+      table: 2,
+      history: '아이스 아메리카노/Tall 아이스티/Tall',
+      state: 'done',
+      price: '7,500',
+    },
+    {
+      order_number: '25',
+      time: '14:08:06',
+      table: 2,
+      history: '아이스 아메리카노/Tall 아이스티/Tall',
+      state: 'ready',
+      price: '7,500',
+    },
+    {
+      order_number: '25',
+      time: '14:08:06',
+      table: 2,
+      history: '아이스 아메리카노/Tall 아이스티/Tall',
+      state: 'ready',
+      price: '7,500',
+    },
+    {
+      table: 10,
+      state: 'empty',
+    },
+  ],
 };
 export default constants;

@@ -53,7 +53,7 @@ export default function AdminLoginModal({ onClose }: Props) {
             <div className="pl-1 pr-3">해당 매장의 관리자 비밀번호를 입력해주세요.</div>
           </div>
 
-          <div className="px-4 place-self-center">
+          <div className="w-56 place-self-center">
             <BasicButton
               buttonName="관리자 모드 시작하기"
               onClick={() => {

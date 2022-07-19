@@ -13,12 +13,11 @@ function Divider() {
 }
 
 export default function MyOrderlist() {
-  // const [myOrder, setMyOrder] = useState(false);
   return (
     <div className="w-full h-full py-24 overflow-y-hidden">
       <div className="grid grid-cols-8 pl-5 space-x-10 items-center pb-8 ">
-        <div className="col-span-1 font-bold text-3xl whitespace-nowrap">주문목록</div>
-        <SearchBar placeholder="Year/ Month/ Date" />
+        <div className="col-span-1 font-bold text-3xl whitespace-nowrap pr-3">주문목록</div>
+        <SearchBar barWidth='18rem' placeholder="Year/ Month/ Date" />
       </div>
       <div
         className=" gap-4 px-10 justify-between font-semibold whitespace-nowrap
@@ -30,8 +29,7 @@ text-white h-12 text-center items-center text-2xl"
       <div className="h-5/6 overflow-y-scroll">
         {constants.MENU_ITEMS.map(menu => (
           <div key={menu.id}>
-            <MyOrder props={menu} type="display" />
-            {/* {myOrder && <MyOrder orderList={constants.ORDER} onClose={() => setMyOrder(false)} />} */}
+            <MyOrder props={menu}/>
             <Divider />
           </div>
         ))}

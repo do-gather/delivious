@@ -7,7 +7,11 @@ import AdminMenuEdit from './pages/AdminMenuEdit';
 import AdminMain from './pages/AdminMain';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import AdminOrder from './pages/AdminOrder';
+import AdminTables from './pages/AdminTables';
 import MyOrderlist from './pages/MyOrderlist';
+import OrderHistory from './pages/OrderHistory';
+import AuthRoute from './utils/AuthRoute';
 
 function App() {
   return (
@@ -15,13 +19,20 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/admin" element={<AdminMain />} />
-          <Route path="/admin/menu" element={<AdminMenu />} />
-          <Route path="/admin/menu/edit" element={<AdminMenuEdit />} />
+          <Route element={<AuthRoute pageType="admin" />}>
+            <Route path="/" element={<Main />} />
+            <Route path="/admin" element={<AdminMain />} />
+            <Route path="/admin/menu" element={<AdminMenu />} />
+            <Route path="/admin/menu/edit" element={<AdminMenuEdit />} />
+          </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/mypage/orderlist" element={<MyOrderlist />} />
+          <Route path="/mypage/login" element={<Login />} />
+          <Route element={<AuthRoute pageType="user" />}>
+            <Route path="/mypage/orderlist" element={<MyOrderlist />} />
+            <Route path="/mypage/orderlist" element={<MyOrderlist />} />
+            <Route path="/mypage/orderhistory" element={<OrderHistory />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>

@@ -20,7 +20,7 @@ export default function ToggleButton({ option1, option2, clickedOption }: Props)
       <button
         type="button"
         className={`flex w-full whitespace-nowrap items-center rounded-l text-base font-bold text-white text-center 
-        ${clicked === 1 && 'rounded-r z-50'} px-10 object-left-top h-10`}
+        ${clicked === 1 && 'rounded-r z-50'} justify-center px-10 h-10`}
         style={{ backgroundColor: clicked === 1 ? '#000000' : '#c4c4c4' }}
         onClick={() => {
           setClicked(1);
@@ -31,7 +31,7 @@ export default function ToggleButton({ option1, option2, clickedOption }: Props)
       <button
         type="button"
         className={`flex w-full whitespace-nowrap items-center  rounded-r text-base font-bold text-white text-center 
-        ${clicked === 2 && 'rounded-l'}  px-10 object-left-top h-10`}
+        ${clicked === 2 && 'rounded-l'}  justify-center px-10 h-10`}
         style={{ backgroundColor: clicked === 2 ? '#000000' : '#c4c4c4' }}
         onClick={() => {
           setClicked(2);

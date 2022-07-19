@@ -1,8 +1,14 @@
+/* eslint-disable react/require-default-props */
 import * as React from 'react';
 
-function TrashCan() {
+interface Props {
+  height?: number;
+  width?: number;
+}
+
+function TrashCan({ height = 24, width = 24 }: Props) {
   return (
-    <svg width={30} height={30} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={width} height={height} viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M17.5 12.5v8.75m-5-8.75v8.75"
         stroke="#000"
