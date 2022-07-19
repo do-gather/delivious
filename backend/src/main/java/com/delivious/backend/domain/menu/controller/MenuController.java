@@ -1,11 +1,9 @@
 package com.delivious.backend.domain.menu.controller;
-import com.delivious.backend.domain.category.entity.Category;
 import com.delivious.backend.domain.category.service.CategoryService;
 import com.delivious.backend.domain.menu.dto.MenuRequest;
 import com.delivious.backend.domain.menu.dto.MenuResponse;
 import com.delivious.backend.domain.menu.entity.Menu;
 import com.delivious.backend.domain.menu.service.MenuService;
-import com.delivious.backend.global.ErrorResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @RestController
-// 고민) /{storeId}/menus
 @RequestMapping("/menus")
 public class MenuController {
     private final MenuService menuService;
@@ -30,13 +26,11 @@ public class MenuController {
     }
 
     // 메뉴 생성
-    // 고민) 카테고리연결 - @PathVariable?
-    //  @PreAuthorize()
     @PostMapping
     public ResponseEntity<HttpStatus> createMenu(@RequestBody @Valid MenuRequest menuRequest) {
         menuService.createMenu(menuRequest);
 
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     // 메뉴조회

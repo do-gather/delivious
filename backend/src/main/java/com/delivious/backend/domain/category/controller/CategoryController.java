@@ -3,7 +3,6 @@ package com.delivious.backend.domain.category.controller;
 import com.delivious.backend.domain.category.dto.CategoryRequest;
 import com.delivious.backend.domain.category.dto.CategoryResponse;
 import com.delivious.backend.domain.category.entity.Category;
-import com.delivious.backend.domain.category.repository.CategoryRepository;
 import com.delivious.backend.domain.category.service.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,10 +23,11 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<HttpStatus> createCategory(@RequestBody @Valid CategoryRequest categoryRequest) {
+    public ResponseEntity<CategoryResponse> createCategory(@RequestBody @Valid CategoryRequest categoryRequest) {
         categoryService.createNewCategory(categoryRequest);
 
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.ok(CategoryResponse.of(categoryService.createNewCategory(categoryRequest)));
+//        return ResponseEntity.status(HttpStatus.CREATED).body(categoryService.createNewCategory(categoryRequest));
     }
 
     @GetMapping
@@ -46,7 +46,7 @@ public class CategoryController {
                                                      @PathVariable UUID categoryId) {
         Category category = categoryService.findCategoryById(categoryId);
         categoryService.updateCategory(category, categoryRequest);
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @DeleteMapping("/{categoryId}")
