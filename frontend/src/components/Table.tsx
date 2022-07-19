@@ -14,15 +14,11 @@ interface Props {
   history?: string;
 }
 
-export default function Table({ TableNumber, state, icon, history }: Props) {
+export default function Table({ TableNumber, state = 'empty', icon = '', history = '' }: Props) {
   return (
     <div>
-      {/* {state === 'ready' && <div style={{ backgroundColor: '#435ca5' }} />}
-      {state === 'done' && <div style={{ backgroundColor: '#adbdd4' }} />}
-      {state !== 'ready' && state !== 'done' && <div style={{ backgroundColor: '#c4c4c4' }} />} */}
       <div
-        className={`w-32 h-32 mx-8 flex-shrink-0 text-white px-2 py-2
-          text-base rounded`}
+        className=" w-32 h-32 mx-8 flex-shrink-0 text-white px-2 py-2 text-base rounded "
         style={{ background: state === 'ready' ? '#435ca5' : '#adbdd4' }}
       >
         <div className="flex">

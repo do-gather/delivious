@@ -15,11 +15,11 @@ interface Props {
   iconRight?: any;
 }
 
-export default function SearchBar({ placeholder, icon=<SearchIcon />, iconRight=false }: Props) {
+export default function SearchBar({ placeholder, icon = <SearchIcon />, iconRight = false }: Props) {
   return (
     <div className="relative h-10" style={{ width: '28.75rem' }}>
       <div className="absolute left-3.5 top-3"> {icon} </div>
-      <div className="absolute right-3.5 top-2"> {iconRight} </div>
+      <div className={`absolute" ${iconRight ? 'right-3.5 top-2' : 'left-3.5 top-3'}`} />
       <input
         type="text"
         className="rounded-3xl bg-white pl-10 text-sm placeholder-gray-500 py-2.5 object-left-top h-10"

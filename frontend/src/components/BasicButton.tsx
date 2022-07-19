@@ -15,7 +15,13 @@ interface Props {
   state?: string;
 }
 
-export default function BasicButton({ buttonName, state, onClick, xPadding = 'px-10', height = 'h-10' }: Props) {
+export default function BasicButton({
+  buttonName,
+  state = 'ready',
+  onClick,
+  xPadding = 'px-10',
+  height = 'h-10',
+}: Props) {
   return (
     <button
       type="button"
