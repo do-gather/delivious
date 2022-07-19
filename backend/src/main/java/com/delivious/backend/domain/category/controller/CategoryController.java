@@ -23,10 +23,11 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<Category> createCategory(@RequestBody @Valid CategoryRequest categoryRequest) {
+    public ResponseEntity<CategoryResponse> createCategory(@RequestBody @Valid CategoryRequest categoryRequest) {
         categoryService.createNewCategory(categoryRequest);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(categoryService.createNewCategory(categoryRequest));
+        return ResponseEntity.ok(CategoryResponse.of(categoryService.createNewCategory(categoryRequest)));
+//        return ResponseEntity.status(HttpStatus.CREATED).body(categoryService.createNewCategory(categoryRequest));
     }
 
     @GetMapping

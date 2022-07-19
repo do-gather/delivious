@@ -51,7 +51,7 @@ public class MenuController {
                                                  @PathVariable UUID menuId) {
         Menu menu = menuService.findMenuById(menuId);
         menuService.updateMenu(menu, menuRequest);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     // 메뉴 삭제
