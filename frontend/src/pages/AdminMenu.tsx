@@ -5,6 +5,7 @@ import constants from '../utils/constants';
 import EditButton from '../images/EditButton';
 import SearchBar from '../components/SearchBar';
 import Tap from '../components/Tap';
+import SearchIcon from '../images/SearchIcon';
 
 /**
  * '/admin/menu'로 연결되는 어드민 메뉴 페이지
@@ -21,7 +22,7 @@ export default function AdminMenu() {
       <div className="grid grid-cols-8 space-x-4 items-center pb-8 justify-between ">
         <div className="col-span-1 font-bold text-3xl whitespace-nowrap">메뉴관리</div>
         <div className="col-span-5">
-          <SearchBar placeholder="Search menu name or id" />
+          <SearchBar placeholder="Search menu name or id" icon={<SearchIcon/>}/>
         </div>
       </div>
       <div
