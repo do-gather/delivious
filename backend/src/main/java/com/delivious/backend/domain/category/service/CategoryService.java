@@ -12,7 +12,7 @@ public interface CategoryService {
 
     public Category findCategoryById(UUID categoryId);
 
-    public void createNewCategory(CategoryRequest categoryRequest);
+    public Category createNewCategory(CategoryRequest categoryRequest);
 
     public void updateCategory(Category category, CategoryRequest categoryRequest);
 
