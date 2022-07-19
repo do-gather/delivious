@@ -1,15 +1,4 @@
 spring:
-#
-#  h2:
-#    console:
-#      enabled: true
-#
-#  datasource:
-#    url: jdbc:h2:mem:testdb
-#    driver-class-name: org.h2.Driver
-#    username: sa
-#    password:
-
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/delivious
@@ -25,16 +14,6 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     open-in-view: false
     generate-ddl: true
-
-#  jpa:
-#    database-platform: org.hibernate.dialect.H2Dialect
-#    hibernate:
-#      ddl-auto: create-drop
-#    properties:
-#      hibernate:
-#        format_sql: true
-#        show_sql: true
-#    defer-datasource-initialization: true
 
 jwt:
   header: Authorization
