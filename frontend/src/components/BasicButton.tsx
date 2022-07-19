@@ -6,20 +6,22 @@ import React from 'react';
  * @param buttonName 버튼에 들어갈 이름을 받음
  * @param onClick 버튼이 눌렸을 때 작동할 함수 받음
  * @param height 버튼의 높이를 받음, 기본은 h-10
+ * @param color 버튼의 색상을 받음, 기본은 '#435ca5'
  */
 interface Props {
   buttonName: string;
   onClick: any;
   height?: string;
+  color?: string;
 }
 
-export default function BasicButton({ buttonName, onClick, height = 'h-10' }: Props) {
+export default function BasicButton({ buttonName, onClick, height = 'h-10', color = '#435ca5' }: Props) {
   return (
     <button
       type="button"
       className={`flex w-full justify-center whitespace-nowrap items-center rounded text-base font-bold text-white 
       text-center object-left-top ${height}`}
-      style={{ backgroundColor: '#435ca5' }}
+      style={{ backgroundColor: color }}
       onClick={onClick}
     >
       {buttonName}

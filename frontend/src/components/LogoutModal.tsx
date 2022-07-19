@@ -5,7 +5,7 @@ import AuthService from '../services/AuthService';
 import BasicButton from './BasicButton';
 
 /**
- * 어드민 로그인 모달 창
+ * 로그아웃 모달 창
  * @param onClose 닫힘 버튼을 누를 때 실행될 함수 받음
  */
 interface Props {
@@ -17,10 +17,11 @@ export default function LogoutModal({ onClose }: Props) {
   const [move, setMove] = useState(false);
   const d = new Date();
   const { removeAccess } = useAuth();
+  const url = window.location.pathname.includes('mypage') ? '/mypage/login' : '/login';
 
   useEffect(() => {
-    if (move) navigate('/login');
-  }, [move, navigate]);
+    if (move) navigate(url);
+  }, [move, navigate, url]);
 
   return (
     <div

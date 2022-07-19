@@ -35,7 +35,7 @@ export default function AdminMenuEdit() {
         </div>
       </div>
       <div
-        className="grid grid-cols-7 gap-4 px-10 font-semibold whitespace-nowrap text-white h-12 
+        className="grid grid-cols-7 gap-4 px-12 font-semibold whitespace-nowrap text-white h-12 
             text-center items-center text-2xl"
         style={{ backgroundColor: '#435CA5' }}
       >
