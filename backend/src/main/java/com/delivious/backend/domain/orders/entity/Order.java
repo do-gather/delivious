@@ -1,6 +1,7 @@
 package com.delivious.backend.domain.orders.entity;
 
 
+import com.delivious.backend.domain.orders.dto.request.OrderRequest;
 import com.delivious.backend.domain.users.dto.UserResponseDto;
 import com.delivious.backend.domain.users.entity.Store;
 import com.delivious.backend.domain.users.entity.User;
@@ -61,30 +62,14 @@ public class Order extends BaseEntity {
         orderDetail.setOrder(this);
     }
 
-    public static Order createOrder (User user,Store store, OrderDetail... orderDetails) {
-        //store 연결
-        Order order = new Order();
-        order.setUser(user);
-        order.setStore(store);
 
-        for(OrderDetail orderDetail : orderDetails){
-            order.addOrderDetail(orderDetail);
+    public int getTotalCount () {
+        int totalCount = 0;
+        for(OrderDetail orderDetail : orderDetails) {
+            totalCount += orderDetail.getCount();
         }
-
-        order.setOrderStatus(OrderStatus.SEND);
-        return order;
+        return totalCount;
     }
-
-
-
-
-//    public int getTotalCount () {
-//        int totalCount = 0;
-//        for(OrderDetail orderDetail : orderDetails) {
-//            totalCount += orderDetail.getCount();
-//        }
-//        return totalCount;
-//    }
 
 
     public float getTotalPrice() {
@@ -110,14 +95,34 @@ public class Order extends BaseEntity {
 //    }
 
 
+    @Builder
+    public Order(UUID orderId, User user, Store store, OrderStatus orderStatus, List<OrderDetail> orderDetails) {
+        this.orderId = orderId;
+        this.user = user;
+        this.store = store;
+        this.orderStatus = orderStatus;
+        this.orderDetails = orderDetails;
+    }
 
-//    @Builder
-//    public Order(UUID orderId, User user, Store store, OrderStatus orderStatus, List<OrderDetail> orderDetails) {
-//        this.orderId = orderId;
-//        this.user = user;
-//        this.store = store;
-//        this.orderStatus = orderStatus;
-//        this.orderDetails = orderDetails;
+//    public static Order createOrder (User user,Store store, OrderDetail... orderDetails) {
+//        //store 연결
+//        Order order = new Order();
+//        order.setUser(user);
+//        order.setStore(store);
+//
+//        for(OrderDetail orderDetail : orderDetails){
+//            order.addOrderDetail(orderDetail);
+//        }
+//
+//        order.setOrderStatus(OrderStatus.SEND);
+//        return order;
 //    }
+
+    public void createOrder (OrderRequest orderRequest) {
+        this.user = orderRequest.getUser();
+        this.store = orderRequest.getStore();
+        this.orderStatus = orderRequest.getOrderStatus();
+        //this.orderDetailRequst = orderRequest.getOrderDetailRequstLists();
+    }
 
 }

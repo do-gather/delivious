@@ -3,6 +3,8 @@ package com.delivious.backend.domain.orders.service;
 
 import com.delivious.backend.domain.menu.entity.Menu;
 import com.delivious.backend.domain.menu.repository.MenuRepository;
+import com.delivious.backend.domain.orders.dto.request.OrderRequest;
+import com.delivious.backend.domain.orders.dto.response.OrderResponse;
 import com.delivious.backend.domain.orders.entity.Order;
 import com.delivious.backend.domain.orders.entity.OrderDetail;
 import com.delivious.backend.domain.orders.repository.OrderRepository;
@@ -24,38 +26,24 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class OrderService {
 
-    private final MenuRepository menuRepository;
-    private final UserRepository userRepository;
-    private final StoreRepository storeRepository;
-    private final OrderRepository orderRepository;
+//    private final MenuRepository menuRepository;
+//    private final UserRepository userRepository;
+//    private final StoreRepository storeRepository;
+//    private final OrderRepository orderRepository;
 
 
-    // 주문하기
-    @Transactional
-    public UUID order (String menuName, String username, String storeName, int count) {
+//    @Override
+//    @Transactional
+//    public OrderResponse createorder (OrderRequest orderRequest) {
+//
+//        User user = userRepository.findUserByName(username);
+//        Menu menu = menuRepository.findByMenuName(menuName);
+//        Store store = storeRepository.findStoreByStoreName(storeName);
 
-        // 유저이름으로 엔티티 가져오기
-        User user = userRepository.findUserByName(username);
+//        OrderDetail orderDetail = OrderDetail.createOrderDetail(orderDetailRequest);
 
-        Menu menu = menuRepository.findByMenuName(menuName);
-
-        Store store = storeRepository.findStoreByStoreName(storeName);
-
-        // 주문할 상품
-        OrderDetail orderDetail = OrderDetail.createOrderDetail(menu, menu.getPrice(), count);
-
-        // 주문 생성
-        Order order = Order.createOrder(user,store,orderDetail);
-        orderRepository.save(order);
-
-        return order.getOrderId();
-
+//        Order order = orderRequest.toEntity();
+//        return orderRepository.save(order);
     }
 
 
-    // 주문 검색하기
-
-
-
-
-}

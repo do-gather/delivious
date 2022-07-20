@@ -27,25 +27,14 @@ public class orderController {
     private final UserService userService;
     private final MenuService menuService;
 
-    @PostMapping("/order")
-    public String order (@RequestParam(value = "menuName")String menuName,
-                         @RequestParam(value = "username")String username,
-                         @RequestParam(value ="storeName")String storeName,
-                         @RequestParam(value="count")int count) {
-        orderService.order(menuName, username, storeName, count);
-        return "/order";
-    }
+//    @PostMapping("/order")
+//    public ResponseEntity<OrderRequest> createOrder(
+//            @Valid @RequestBody OrderRequest orderRequest
+//    ){
+//        return ResponseEntity.status(HttpStatus.CREATED)
+//                .body(orderService.createorder(orderRequest));
+//    }
 
 }
 
-// Principal은 시스템을 사용하는 사용자 통칭
 
-/*
-    @PostMapping("/signup")
-    public ResponseEntity<UserResponseDto> signup(
-            @Valid @RequestBody UserDto userDto
-    ) {
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(userService.signup(userDto));
-    }
- */

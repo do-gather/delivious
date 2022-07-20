@@ -2,6 +2,7 @@ package com.delivious.backend.domain.orders.entity;
 
 import com.delivious.backend.domain.menu.entity.Menu;
 import com.delivious.backend.domain.menu.entity.Size;
+import com.delivious.backend.domain.orders.dto.request.OrderDetailRequest;
 import com.delivious.backend.global.common.BaseEntity;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
@@ -42,30 +43,50 @@ public class OrderDetail extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private InOut inOut;
 
-    private String temparature;
+    @Enumerated(EnumType.STRING)
+    private Temparature temparature;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status",length = 30, nullable = false)
     private OrderDetailStatus status = OrderDetailStatus.COOK;
 
 
-
-    // 생성 메소드 //
-    public static OrderDetail createOrderDetail ( Menu menu, float price, int count) {
-        OrderDetail orderDetail = new OrderDetail();
-        orderDetail.setMenu(menu);
-        orderDetail.setCount(count);
-        orderDetail.setPrice(price);
-        // 사이즈, 테이크아웃, 온도 추가
-
-        return orderDetail;
-    }
-
-
     // 주문 상품 수량 * 가격
     public float getDetailTotalPrice() { //상품 한개당 총 주문가격
         return getPrice() * getCount();
     }
+
+
+    // 생성 메소드 //
+    @Builder
+    public OrderDetail(UUID orderdetailId, Order order, Menu menu, Size size, int count, float price, InOut inOut, Temparature temparature, OrderDetailStatus status) {
+        this.orderdetailId = orderdetailId;
+        this.order = order;
+        this.menu = menu;
+        this.size = size;
+        this.count = count;
+        this.price = price;
+        this.inOut = inOut;
+        this.temparature = temparature;
+        this.status = status;
+    }
+
+    public void createOrderDetail (OrderDetailRequest orderDetailRequest) {
+
+        this.order = order;
+        this.menu = menu;
+        this.size = size;
+        this.count = count;
+        this.price = price;
+        this.inOut = inOut;
+        this.temparature = temparature;
+
+
+
+    }
+
+
+
 
 
 
