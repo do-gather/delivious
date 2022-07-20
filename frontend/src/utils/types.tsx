@@ -14,6 +14,7 @@ export namespace dts {
     size: string;
     price: string;
     date: string;
+    image: string;
   }
 
   export interface orderDto {
@@ -25,5 +26,23 @@ export namespace dts {
     orders: Array<orderDto>;
     takeout: boolean;
     total: number;
+  }
+
+  export interface tokenDto {
+    activation: boolean;
+    type: string;
+  }
+
+  export interface userInfo {
+    username: string;
+    password: string;
+    passwordConfirm: string;
+    name: string;
+    phoneNum: string;
+    year: string;
+    month: string;
+    date: string;
+    type: string;
+    storeName: string;
   }
 }

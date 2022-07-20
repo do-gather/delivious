@@ -1,3 +1,9 @@
+/**
+ * jwt를 읽고 토큰의 유효성을 검사
+ * @param token jwt token을 받아옴
+ * @returns jwt token의 payload를 반환
+ */
+
 function decodeJwt(token: string) {
   const base64Url = token.split('.')[1];
   const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');

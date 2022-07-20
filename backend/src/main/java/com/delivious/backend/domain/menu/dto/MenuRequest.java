@@ -15,9 +15,7 @@ public class MenuRequest {
     private String menuName;
     private Float price;
     private String menuImage;
-//    private UUID categoryId;
     private Category category;
-//    private Category categoryName;
     private Store store;
     private String temperature;
     private Size size;
