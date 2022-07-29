@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AdminMenuItem from '../components/AdminMenuItem';
@@ -17,8 +19,58 @@ function Divider() {
 }
 
 export default function AdminMenuEdit() {
+  const [categories, setCategories] = useState([]);
+  const [categoryid, setCategoryid] = useState([]);
   const navigate = useNavigate();
   const [finish, setFinish] = useState(false);
+  const [keywords, setKeywords] = useState('');
+
+  // keyword 변화를 위한 함수
+  const onChange = (e: any) => {
+    setKeywords(e.target.value);
+  };
+
+  const handleKeyword = (text: any) => {
+    console.log('text', text);
+    // 카테고리 전체 조회
+    axios.get('http://localhost:8080/categories').then(response => {
+      setCategories(response.data);
+    });
+  };
+
+  // 카테고리 생성
+  useEffect(() => {
+    axios.post('http://localhost:8080/categories', {
+      categoryName: keywords,
+    });
+  }, []);
+
+  // 특정 카테고리 조회
+  useEffect(() => {
+    axios.get('http://localhost:8080/categories/{categoryId}').then(response => {
+      setCategories(response.data);
+    });
+  }, []);
+
+  // 카테고리 수정
+  useEffect(() => {
+    axios
+      .put('http://localhost:8080/categories', {
+        categoryName: keywords,
+      })
+      .then(response => {
+        setCategories(response.data);
+      });
+  }, []);
+
+  // 카테고리 삭제
+  useEffect(() => {
+    axios.delete('http://localhost:8080/categories', {
+      data: {
+        categoryName: keywords,
+      },
+    });
+  }, []);
 
   useEffect(() => {
     if (finish) navigate('/admin/menu');
@@ -29,7 +81,7 @@ export default function AdminMenuEdit() {
       <div className="grid grid-cols-8 space-x-4 items-center pb-8 justify-between ">
         <div className="col-span-1 font-bold text-3xl whitespace-nowrap">메뉴관리</div>
         <div className="col-span-5">
-          <SearchBar placeholder="Search menu name or id" icon={<SearchIcon/>} />
+          <SearchBar placeholder="Search menu name or id" icon={<SearchIcon />} onAddKeyword={handleKeyword} />
         </div>
         <div className="col-span-2 justify-self-end w-36">
           <BasicButton buttonName="편집 완료" onClick={() => setFinish(true)} />

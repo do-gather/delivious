@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/require-default-props */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import SearchIcon from '../images/SearchIcon';
 
 /**
@@ -13,9 +15,35 @@ interface Props {
   placeholder: string;
   icon?: any;
   iconRight?: any;
+  barWidth?: string;
+  onAddKeyword?: any;
 }
 
-export default function SearchBar({ placeholder, icon = <SearchIcon />, iconRight = false }: Props) {
+export default function SearchBar({
+  barWidth = '18rem',
+  placeholder,
+  icon = <SearchIcon />,
+  iconRight = false,
+  onAddKeyword,
+}: Props) {
+  const [text, setText] = useState('');
+  const navigate = useNavigate();
+
+  const handleKeyword = (e: any) => {
+    setText(e.target.value);
+  };
+
+  const handleEnter = (e: any) => {
+    if (text && e.keyCode === 13) {
+      onAddKeyword(text);
+      setText('');
+    }
+  };
+
+  const handleClearKeyword = () => {
+    setText('');
+  };
+
   return (
     <div className="relative h-10" style={{ width: '28.75rem' }}>
       <div className="absolute left-3.5 top-3"> {icon} </div>
@@ -25,6 +53,8 @@ export default function SearchBar({ placeholder, icon = <SearchIcon />, iconRigh
         className="rounded-3xl bg-white pl-10 text-sm placeholder-gray-500 py-2.5 object-left-top h-10"
         style={{ width: barWidth }}
         placeholder={placeholder}
+        onChange={handleKeyword}
+        onKeyDown={handleEnter}
       />
     </div>
   );
