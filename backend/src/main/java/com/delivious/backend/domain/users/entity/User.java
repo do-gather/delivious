@@ -7,7 +7,6 @@ import com.delivious.backend.domain.orders.entity.Order;
 import com.delivious.backend.global.common.BaseEntity;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.util.*;
@@ -25,7 +24,7 @@ public class User extends BaseEntity {
    @GeneratedValue(strategy = GenerationType.IDENTITY , generator = "uuid2")
    @GenericGenerator(name = "uuid2", strategy = "uuid2")
    @Column(name = "user_id")
-   private UUID userId;
+   private UUID id;
 
    @Column(name = "username", length = 50, unique = true)
    private String username;

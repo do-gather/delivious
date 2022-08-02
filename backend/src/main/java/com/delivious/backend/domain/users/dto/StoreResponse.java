@@ -1,7 +1,6 @@
 package com.delivious.backend.domain.users.dto;
 
 import com.delivious.backend.domain.users.entity.Store;
-import com.delivious.backend.domain.users.entity.User;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
@@ -13,7 +12,7 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class StoreResponseDto {
+public class StoreResponse {
 
     private UUID storeId;
 
@@ -23,4 +22,11 @@ public class StoreResponseDto {
     @Size(min = 3, max = 50)
     private String storeName;
 
+    public static StoreResponse of(Store store) {
+        return StoreResponse.builder()
+                .storeId(store.getId())
+                .userId(store.getUser().getId())
+                .storeName(store.getStoreName())
+                .build();
+    }
 }
