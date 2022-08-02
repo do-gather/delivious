@@ -8,9 +8,10 @@ import com.delivious.backend.domain.users.dto.UserMapper;
 import com.delivious.backend.domain.users.dto.UserResponseDto;
 import com.delivious.backend.domain.users.entity.Authority;
 import com.delivious.backend.domain.users.entity.User;
-import com.delivious.backend.domain.users.exception.DuplicateMemberException;
+import com.delivious.backend.domain.users.exception.UserDuplicateException;
+import com.delivious.backend.domain.users.exception.UserNotFoundException;
 import com.delivious.backend.domain.users.repository.UserRepository;
-import com.delivious.backend.domain.users.util.SecurityUtil;
+import com.delivious.backend.global.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -29,14 +30,15 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User findById(UUID userId) {
-        return userRepository.findByUserId(userId);
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException(userId));
     }
 
     // 이미 같은 username으로 가입된 유저가 있는 지 확인하고, UserDto 객체의 정보들을 기반으로 권한 객체와 유저 객체를 생성하여 Database에 저장
     @Transactional
     public UserResponseDto signup(UserDto userDto) {
         if (userRepository.findOneWithAuthoritiesByUsername(userDto.getUsername()).orElse(null) != null) {
-            throw new DuplicateMemberException("이미 가입되어 있는 유저입니다.");
+            throw new UserDuplicateException();
         }
 
         String authorityName;
@@ -66,7 +68,7 @@ public class UserService {
     }
 
     // order 에서 username을 파라미터로 받아 order를 생성하도록 합니다.
-    public UserResponseDto getReferenceByName (String username){
+    public UserResponseDto getReferenceByName(String username) {
         return userMapper.toResponseDto(userRepository.findUserByName(username).orElse(null));
     }
 
