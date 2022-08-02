@@ -56,24 +56,21 @@ public class UserController {
 
     @PostMapping("/store")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<StoreResponseDto> checkin(
+    public ResponseEntity<StoreResponse> checkin(
             @Valid @RequestBody StoreDto storeDto
     ){
         User user = userService.findById(storeDto.getUserId());
         Store store = storeService.checkin(storeDto,user);
-        /*
-        try {
-            return new ResponseEntity<>(orderMapper.toResponseDto(entity), HttpStatus.CREATED);
-        }
-        catch(Exception e) {
-            return new ResponseEntity(ErrorResponseDto.fromEntity("FORBIDDEN", "주문 생성에 오류가 발생하였습니다."), HttpStatus.BAD_REQUEST);
-        }
-
-         */
-
         return ResponseEntity.ok(storeMapper.toResponseDto(store));
     }
 
+    @GetMapping("/store/{username}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<StoreResponse> getStoreInfo(@PathVariable String username){
+        User user = userService.findById(userService.getUserWithAuthorities(username).getUserId());
+        Store store = storeService.findStoreName(user);
+        return ResponseEntity.ok(storeMapper.toResponseDto(store));
+    }
 
     @GetMapping("/users")
     @ApiOperation(value = "사용자 정보 조회 메서드")

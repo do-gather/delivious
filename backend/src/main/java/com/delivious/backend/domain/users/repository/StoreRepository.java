@@ -12,6 +12,5 @@ public interface StoreRepository extends JpaRepository<Store, UUID> {
 
     @EntityGraph(attributePaths = "user")
     Optional<Store> findOneWithStoresBystoreName(String storeName);
-
-    Optional<Store> findByUser_userId(UUID userId);
+    Optional<Store> findOneWihtStoresByuserId(UUID userId);
 }
