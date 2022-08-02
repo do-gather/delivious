@@ -22,7 +22,11 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional
     public Category createNewCategory(CategoryRequest categoryRequest) {
         Category category = categoryRequest.toEntity();
-       return categoryRepository.save(category);
+//        if (categoryRepository.existsByCategoryName(categoryRequest.getCategoryName())) {
+//            throw new
+//        }
+
+        return categoryRepository.save(category);
     }
 
     @Override
@@ -32,8 +36,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     @Transactional(readOnly = true)
-    public Category findCategoryById(UUID categoryId) {
-        return categoryRepository.findById(categoryId).orElseThrow(CategoryNotFoundException::new);
+    public Category findCategoryByCategoryName(String categoryName) {
+        return categoryRepository.findByCategoryName(categoryName)
+                .orElseThrow(CategoryNotFoundException::new);
     }
 
     @Override
@@ -44,7 +49,6 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void removeCategory(Category category) {
-        category.removeCategory();
-        categoryRepository.save(category);
+        categoryRepository.delete(category);
     }
 }

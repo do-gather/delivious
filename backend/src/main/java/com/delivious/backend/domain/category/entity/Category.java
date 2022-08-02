@@ -44,7 +44,4 @@ public class Category extends BaseEntity {
     public void updateCategory(CategoryRequest categoryRequest){
         this.categoryName = categoryRequest.getCategoryName();
     }
-
-    public void removeCategory() {
-    }
 }

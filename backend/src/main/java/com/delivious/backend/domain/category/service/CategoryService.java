@@ -10,7 +10,7 @@ public interface CategoryService {
 
     public List<Category> findAllCategory();
 
-    public Category findCategoryById(UUID categoryId);
+    public Category findCategoryByCategoryName(String categoryName);
 
     public Category createNewCategory(CategoryRequest categoryRequest);
 
