@@ -31,7 +31,7 @@ public class MenuResponse {
 
     public static MenuResponse of(Menu menu) {
         return MenuResponse.builder()
-                .menuId(menu.getMenuId())
+                .menuId(menu.getId())
                 .menuName(menu.getMenuName())
                 .price(menu.getPrice())
                 .menuImage(menu.getMenuImage())
