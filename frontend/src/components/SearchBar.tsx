@@ -17,7 +17,7 @@ interface Props {
   barWidth?: string;
 }
 
-export default function SearchBar({ barWidth, placeholder, icon = <SearchIcon />, iconRight = false }: Props) {
+export default function SearchBar({ barWidth = 'full', placeholder, icon = <SearchIcon />, iconRight = false }: Props) {
   return (
     <div className="relative h-10" style={{ width: '28.75rem' }}>
       <div className="absolute left-3.5 top-3"> {icon} </div>

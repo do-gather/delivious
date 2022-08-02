@@ -1,6 +1,6 @@
 package com.delivious.backend.domain.users.handler;
 
-import com.delivious.backend.domain.users.dto.ErrorDTO;
+import com.delivious.backend.domain.users.dto.ErrorDto;
 import com.delivious.backend.domain.users.exception.DuplicateMemberException;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -18,7 +18,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     @ResponseStatus(CONFLICT)
     @ExceptionHandler(value = { DuplicateMemberException.class })
     @ResponseBody
-    protected ErrorDTO badRequest(RuntimeException ex, WebRequest request) {
-        return new ErrorDTO(CONFLICT.value(), ex.getMessage());
+    protected ErrorDto badRequest(RuntimeException ex, WebRequest request) {
+        return new ErrorDto(CONFLICT.value(), ex.getMessage());
     }
 }

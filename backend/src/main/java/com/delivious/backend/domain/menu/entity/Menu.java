@@ -1,4 +1,5 @@
 package com.delivious.backend.domain.menu.entity;
+
 import com.delivious.backend.domain.category.entity.Category;
 import com.delivious.backend.domain.menu.dto.MenuRequest;
 import com.delivious.backend.domain.users.entity.Store;
@@ -23,7 +24,7 @@ public class Menu extends BaseEntity {
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "menu_id")
-    private UUID menuId;
+    private UUID id;
 
     @NotNull
     @Column(name = "menu_name")
@@ -75,7 +76,7 @@ public class Menu extends BaseEntity {
         this.description = menuRequest.getDescription();
     }
 
-    public void removeMenu(){
+    public void removeMenu() {
+        // TODO
     }
-
 }

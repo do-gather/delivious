@@ -20,7 +20,7 @@ public class Store {
 
     @OneToOne
     @JoinColumn(name = "user_id")
-    User user;
+    private User user;
 
     @Column(name = "store_name", length = 50)
     private String storeName;
