@@ -8,12 +8,9 @@ import org.springframework.stereotype.Component;
 public class StoreMapper {
     public StoreResponseDto toResponseDto(Store entity) {
         return StoreResponseDto.builder()
-                .storeId(entity.getStoreId())
+                .storeId(entity.getId())
                 .storeName(entity.getStoreName())
                 .userId(entity.getUser().getUserId())
                 .build();
     }
 }
-
-
-

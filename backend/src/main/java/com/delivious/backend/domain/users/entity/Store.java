@@ -16,7 +16,7 @@ public class Store {
     @GeneratedValue(strategy = GenerationType.IDENTITY , generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column( name = "store_id")
-    private UUID storeId;
+    private UUID id;
 
     @OneToOne
     @JoinColumn(name = "user_id")

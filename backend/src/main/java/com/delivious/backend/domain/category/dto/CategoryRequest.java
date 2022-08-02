@@ -1,9 +1,10 @@
 package com.delivious.backend.domain.category.dto;
 
-import com.delivious.backend.domain.category.entity.Category;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 @Builder
 @Getter
@@ -11,12 +12,9 @@ import javax.validation.constraints.NotEmpty;
 @AllArgsConstructor
 public class CategoryRequest {
 
+    @NotNull
+    private UUID storeId;
+
     @NotEmpty
     private String categoryName;
-
-    public Category toEntity() {
-        return Category.builder()
-                .categoryName(categoryName)
-                .build();
-    }
 }

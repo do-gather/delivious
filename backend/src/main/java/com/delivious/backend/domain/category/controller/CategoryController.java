@@ -6,11 +6,13 @@ import com.delivious.backend.domain.category.entity.Category;
 import com.delivious.backend.domain.category.service.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/categories")
@@ -29,29 +31,30 @@ public class CategoryController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Category>> findAllCategory() {
-        return ResponseEntity.ok(categoryService.findAllCategory());
+    public ResponseEntity<List<CategoryResponse>> findAllCategory(
+            @RequestParam(value = "store-id") UUID storeId,
+            @RequestParam(value = "category-name", required = false) String categoryName) {
+        List<Category> categories = categoryService.searchCategories(storeId, categoryName);
+        List<CategoryResponse> result = categories.stream().map(CategoryResponse::of).collect(Collectors.toList());
+        return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/{categoryName}")
-    public ResponseEntity<CategoryResponse> findCategory(@PathVariable String categoryName) {
-        return ResponseEntity.ok(CategoryResponse.of(categoryService.findCategoryByCategoryName(categoryName)));
+    @GetMapping("/{categoryId}")
+    public ResponseEntity<CategoryResponse> findCategory(@PathVariable UUID categoryId) {
+        return ResponseEntity.ok(CategoryResponse.of(categoryService.findCategoryById(categoryId)));
     }
 
     @PutMapping("/{categoryId}")
     public ResponseEntity<HttpStatus> updateCategory(@Valid @RequestBody CategoryRequest categoryRequest,
                                                      @PathVariable UUID categoryId) {
-        Category category = categoryService.findCategoryById(categoryId);
-        categoryService.updateCategory(category, categoryRequest);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        categoryService.updateCategory(categoryId, categoryRequest);
+        return ResponseEntity.ok()
+                .build();
     }
 
     @DeleteMapping("/{categoryId}")
     public ResponseEntity<HttpStatus> deleteCategory(@PathVariable UUID categoryId) {
-        Category category = categoryService.findCategoryById(categoryId);
-
-        categoryService.removeCategory(category);
-
-        return ResponseEntity.status(HttpStatus.OK).build();
+        categoryService.removeCategory(categoryId);
+        return ResponseEntity.noContent().build();
     }
 }
