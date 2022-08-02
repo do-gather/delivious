@@ -2,6 +2,7 @@ package com.delivious.backend.domain.category.controller;
 
 import com.delivious.backend.domain.category.dto.CategoryRequest;
 import com.delivious.backend.domain.category.dto.CategoryResponse;
+import com.delivious.backend.domain.category.dto.CategoryUpdateRequest;
 import com.delivious.backend.domain.category.entity.Category;
 import com.delivious.backend.domain.category.service.CategoryService;
 import org.springframework.http.HttpStatus;
@@ -45,9 +46,9 @@ public class CategoryController {
     }
 
     @PutMapping("/{categoryId}")
-    public ResponseEntity<HttpStatus> updateCategory(@Valid @RequestBody CategoryRequest categoryRequest,
+    public ResponseEntity<HttpStatus> updateCategory(@Valid @RequestBody CategoryUpdateRequest categoryUpdateRequest,
                                                      @PathVariable UUID categoryId) {
-        categoryService.updateCategory(categoryId, categoryRequest);
+        categoryService.updateCategory(categoryId, categoryUpdateRequest);
         return ResponseEntity.ok()
                 .build();
     }

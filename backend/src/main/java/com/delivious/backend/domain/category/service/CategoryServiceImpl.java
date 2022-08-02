@@ -1,6 +1,7 @@
 package com.delivious.backend.domain.category.service;
 
 import com.delivious.backend.domain.category.dto.CategoryRequest;
+import com.delivious.backend.domain.category.dto.CategoryUpdateRequest;
 import com.delivious.backend.domain.category.entity.Category;
 import com.delivious.backend.domain.category.exception.CategoryDuplicateException;
 import com.delivious.backend.domain.category.exception.CategoryNotFoundException;
@@ -50,9 +51,9 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void updateCategory(UUID categoryId, CategoryRequest categoryRequest) {
+    public void updateCategory(UUID categoryId, CategoryUpdateRequest categoryUpdateRequestRequest) {
         Category category = findCategoryById(categoryId);
-        category.update(categoryRequest.getCategoryName());
+        category.update(categoryUpdateRequestRequest.getCategoryName());
         categoryRepository.save(category);
     }
 
