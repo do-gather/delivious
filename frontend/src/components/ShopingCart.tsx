@@ -1,6 +1,6 @@
 import React from 'react';
 import { dts } from '../utils/types';
-import SetNumber from './SetNumber'
+import SetNumber from './SetNumber';
 // ShopingCart.tsx는 Main화면에서 장바구니를 구현하는 코드로 Main.tsx에서 사용
 
 /**
@@ -13,13 +13,12 @@ interface Props {
 }
 
 export default function ShopingCart({ orderList }: Props) {
-  
   return (
     <div className="text-center text-xs">
       <div>
         <div>
           {orderList.orders.map(item => (
-            <div className="flex">
+            <div key={item.menu.id} className="flex">
               <div
                 className="w-36 h-36 bg-white whitespace-nowrap items-center bg-contain bg-center"
                 style={{
@@ -38,7 +37,7 @@ export default function ShopingCart({ orderList }: Props) {
                     <div>price</div>
                     <div> {item.menu.price} ₩</div>
                   </div>
-                  <SetNumber/>
+                  <SetNumber />
                 </div>
               </div>
             </div>
