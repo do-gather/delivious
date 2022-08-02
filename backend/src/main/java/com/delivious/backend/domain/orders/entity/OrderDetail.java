@@ -1,24 +1,19 @@
 package com.delivious.backend.domain.orders.entity;
 
 import com.delivious.backend.domain.menu.entity.Menu;
-import com.delivious.backend.domain.orders.dto.request.OrderDetailBill;
 import com.delivious.backend.global.common.BaseEntity;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Table;
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 @Entity
 @Table(name = "order_detail")
 @Getter
-@Setter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrderDetail extends BaseEntity {
 
     @Id
@@ -28,87 +23,46 @@ public class OrderDetail extends BaseEntity {
     private UUID id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "orderId")
+    @JoinColumn(name = "order_id")
+    @Setter
     private Order order;
 
-    // 메뉴랑 조인 필요
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "menuId")
+    @JoinColumn(name = "menu_id")
     private Menu menu;
 
-    // 메뉴에서 가격 가져와야 하나? - 메뉴 테이블에서
-    //  @ManyToMany (fetch = FetchType.LAZY)
-    //  @JoinColumn(name = "menu_price")
-
-    @Column(name = "price", nullable = false)
+    @NotNull
+    @Column(name = "price")
     private int price;
 
     private String size;
 
+    @NotNull
     private int count;
 
-    private InOut inOut;
-
-    private String temparature;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status", length = 30, nullable = false)
-    private OrderDetailStatus status = OrderDetailStatus.COOK;
-
+    private String temperature;
 
     @Builder
-    public OrderDetail(Menu menu, Order order, int price, int count) {
-        this.menu = menu;
+    public OrderDetail(Order order, Menu menu, int price, String size, int count, String temperature) {
         this.order = order;
+        this.menu = menu;
         this.price = price;
-        this.count = count;
         this.size = size;
-        this.temparature = temparature;
-
+        this.count = count;
+        this.temperature = temperature;
     }
 
-    public OrderDetailBill toEntity(LocalDateTime orderDate) {
-        return OrderDetailBill
-                .builder()
-                //.tableId(tableId)
-                .orderdetailId(id)
-                .orderDate(orderDate)
-                .orderId(order.getOrderId())
-                .menuName(menu.getMenuName())  // 나중에 변수명에 맞추어 수정해야 함
-                .status(status)
-                .build();
+    public void update(Order order, Menu menu, int price, String size, int count, String temperature) {
+        this.order = order;
+        this.menu = menu;
+        this.price = price;
+        this.size = size;
+        this.count = count;
+        this.temperature = temperature;
     }
-
-    // 생성 메소드 //
-    public static OrderDetail createOrderDetail(Menu menu, int count, int price) {
-        OrderDetail orderDetail = new OrderDetail();
-        orderDetail.setMenu(menu);
-        orderDetail.setCount(count);
-        orderDetail.setPrice(price);
-
-        return orderDetail;
-    }
-
 
     // 주문 상품 수량 * 가격
     public int getDetailTotalPrice() { //상품 한개당 총 주문가격
-        return getPrice() * getCount();
+        return price * count;
     }
-
-
-    // 주문 상세 - 요리중
-    public void cookOrderDetail() {
-        this.status = OrderDetailStatus.COOK;
-    }
-
-    // 주문 상세 - 서빙 중
-    public void serveOrderDetail() {
-        this.status = OrderDetailStatus.SERVE;
-    }
-
-    // 주문 상세 - 서빙 완료
-    public void doneOrderDetail() {
-        this.status = OrderDetailStatus.DONE;
-    }
-
 }
