@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import create from 'zustand';
 
 /**
@@ -6,12 +7,20 @@ import create from 'zustand';
  */
 interface AccessState {
   access: string;
-  // eslint-disable-next-line no-unused-vars
   setAccess: (token: string) => void;
   removeAccess: () => void;
 }
 
-const useAuth = create<AccessState>(set => ({
+interface StoreState {
+  userId: string;
+  storeName: string;
+  setUserId: (id: string) => void;
+  removeUserId: () => void;
+  setStoreName: (store: string) => void;
+  removeStoreName: () => void;
+}
+
+export const useAuth = create<AccessState>(set => ({
   access: '',
   setAccess: (token: string) =>
     set(() => ({
@@ -20,4 +29,17 @@ const useAuth = create<AccessState>(set => ({
   removeAccess: () => set({ access: '' }),
 }));
 
-export default useAuth;
+export const useStoreInfo = create<StoreState>(set => ({
+  userId: '',
+  setUserId: (id: string) =>
+    set(() => ({
+      storeName: id,
+    })),
+  removeUserId: () => set({ userId: '' }),
+  storeName: '',
+  setStoreName: (store: string) =>
+    set(() => ({
+      storeName: store,
+    })),
+  removeStoreName: () => set({ storeName: '' }),
+}));
