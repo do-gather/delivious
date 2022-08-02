@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 /* eslint-disable react/require-default-props */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
@@ -13,9 +14,10 @@ interface Props {
   placeholder: string;
   icon?: any;
   iconRight?: any;
+  barWidth?: string;
 }
 
-export default function SearchBar({ placeholder, icon = <SearchIcon />, iconRight = false }: Props) {
+export default function SearchBar({ barWidth, placeholder, icon = <SearchIcon />, iconRight = false }: Props) {
   return (
     <div className="relative h-10" style={{ width: '28.75rem' }}>
       <div className="absolute left-3.5 top-3"> {icon} </div>

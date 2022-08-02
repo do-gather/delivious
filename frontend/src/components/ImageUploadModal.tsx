@@ -56,12 +56,7 @@ export default function ImageUploadModal({ onClose, submitFunction, imageURL }: 
           {previewURL !== '' && (
             <img className="w-32 h-32 mx-auto rounded-full bg-cover" src={previewURL} alt="메뉴 이미지" />
           )}
-          <BasicButton
-            buttonName="메뉴 사진 새로 업로드"
-            onClick={handleUploadButtonClick}
-            color="#c4c4c4"
-            height="h-10"
-          />
+          <BasicButton buttonName="메뉴 사진 새로 업로드" onClick={handleUploadButtonClick} height="h-10" />
           <input hidden type="file" accept="image/*" onChange={handleFileOnChange} ref={fileRef} />
           <BasicButton buttonName="저장하기" onClick={onClose} />
         </div>

@@ -13,6 +13,7 @@ interface Props {
   onClick: any;
   height?: string;
   state?: string;
+  xPadding?: string;
 }
 
 export default function BasicButton({ buttonName, state, onClick, xPadding = 'px-10', height = 'h-10' }: Props) {
