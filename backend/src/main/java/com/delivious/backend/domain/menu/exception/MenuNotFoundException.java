@@ -1,15 +1,12 @@
 package com.delivious.backend.domain.menu.exception;
 
-public class MenuNotFoundException extends RuntimeException {
-    public MenuNotFoundException() {
-        super();
-    }
+import com.delivious.backend.global.error.exception.NotFoundException;
 
-    public MenuNotFoundException(String message) {
-        super(message);
-    }
+import java.util.UUID;
 
-    public MenuNotFoundException(String message, Throwable cause) {
-        super(message, cause);
+public class MenuNotFoundException extends NotFoundException {
+
+    public MenuNotFoundException(UUID id) {
+        super("Menu", id);
     }
 }

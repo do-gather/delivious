@@ -1,9 +1,9 @@
 package com.delivious.backend.domain.menu.dto;
 
-import com.delivious.backend.domain.category.entity.Category;
+import com.delivious.backend.domain.category.dto.CategoryResponse;
 import com.delivious.backend.domain.menu.entity.Menu;
 import com.delivious.backend.domain.menu.entity.Size;
-import com.delivious.backend.domain.users.entity.Store;
+import com.delivious.backend.domain.users.dto.StoreResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,12 +22,11 @@ public class MenuResponse {
     private Float price;
     private String menuImage;
     //    private UUID categoryId;
-    private Category category;
-    private Store store;
+    private CategoryResponse category;
+    private StoreResponse store;
     private String temperature;
     private Size size;
     private String description;
-
 
     public static MenuResponse of(Menu menu) {
         return MenuResponse.builder()
@@ -35,8 +34,8 @@ public class MenuResponse {
                 .menuName(menu.getMenuName())
                 .price(menu.getPrice())
                 .menuImage(menu.getMenuImage())
-                .category(menu.getCategory())
-                .store(menu.getStore())
+                .category(CategoryResponse.of(menu.getCategory()))
+                .store(StoreResponse.of(menu.getStore()))
                 .temperature(menu.getTemperature())
                 .size(menu.getSize())
                 .description(menu.getDescription())

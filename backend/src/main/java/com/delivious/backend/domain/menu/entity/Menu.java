@@ -1,7 +1,6 @@
 package com.delivious.backend.domain.menu.entity;
 
 import com.delivious.backend.domain.category.entity.Category;
-import com.delivious.backend.domain.menu.dto.MenuRequest;
 import com.delivious.backend.domain.users.entity.Store;
 import com.delivious.backend.global.common.BaseEntity;
 import lombok.*;
@@ -54,22 +53,24 @@ public class Menu extends BaseEntity {
 
     @Builder
     public Menu(Category category, Store store, String menuName, Float price, String menuImage, String temperature, Size size, String description) {
+        this.category = category;
+        this.store = store;
         this.menuName = menuName;
         this.price = price;
         this.menuImage = menuImage;
-        this.category = category;
         this.temperature = temperature;
         this.size = size;
         this.description = description;
     }
 
-    public void update(MenuRequest menuRequest) {
-        this.menuName = menuRequest.getMenuName();
-        this.price = menuRequest.getPrice();
-        this.menuImage = menuRequest.getMenuImage();
-        this.category = menuRequest.getCategory();
-        this.temperature = menuRequest.getTemperature();
-        this.size = menuRequest.getSize();
-        this.description = menuRequest.getDescription();
+    public void update(Category category, Store store, String menuName, Float price, String menuImage, String temperature, Size size, String description) {
+        this.category = category;
+        this.store = store;
+        this.menuName = menuName;
+        this.price = price;
+        this.menuImage = menuImage;
+        this.temperature = temperature;
+        this.size = size;
+        this.description = description;
     }
 }

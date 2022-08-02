@@ -10,7 +10,7 @@ public interface MenuService {
 
     void createMenu(MenuRequest menuRequest);
 
-    List<Menu> findAllMenus();
+    List<Menu> searchMenus(UUID storeId, String categoryName);
 
     Menu findMenuById(UUID menuId);
 
