@@ -43,6 +43,21 @@ class AuthService {
   }
 
   // eslint-disable-next-line class-methods-use-this
+  getStore(username: string, adminToken: string) {
+    return axios
+      .get(`${API_URL}/store/${username}`, {
+        headers: authHeader(adminToken),
+      })
+      .then(response => {
+        return response;
+      })
+      .catch(err => {
+        console.error(err.response);
+        alert('매장명 조회에 실패했습니다.');
+      });
+  }
+
+  // eslint-disable-next-line class-methods-use-this
   logout() {
     window.localStorage.removeItem('adminToken');
     window.localStorage.removeItem('userToken');

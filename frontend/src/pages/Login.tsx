@@ -5,7 +5,7 @@ import InputBox from '../components/InputBox';
 import UserIcon from '../images/UserIcon';
 import PasswordIcon from '../images/PasswordIcon';
 import AuthService from '../services/AuthService';
-import useAuth from '../utils/store';
+import { useAuth, useStoreInfo } from '../utils/store';
 
 /**
  * '/login' 또는 '/mypage/login' 으로 연결되는 로그인 페이지
@@ -22,6 +22,15 @@ export default function Login() {
   });
 
   const { setAccess } = useAuth();
+  const { setStoreName, setUserId } = useStoreInfo();
+
+  const getStoreInfo = (username: string, token: string) => {
+    AuthService.getStore(username, token).then((res: any) => {
+      if (res.status === 200) {
+        setStoreName(res.data.storeName);
+      }
+    });
+  };
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -36,7 +45,11 @@ export default function Login() {
         setAccess(res.data.token);
         if (type === 'user') {
           navigate('/mypage');
-        } else navigate('/');
+        } else {
+          setUserId(userInfo.username);
+          getStoreInfo(userInfo.username, res.data.token);
+          navigate('/');
+        }
       }
     });
   };

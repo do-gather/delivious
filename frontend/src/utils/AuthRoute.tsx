@@ -3,7 +3,7 @@
 import React, { ReactElement, useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import checkToken from './checkToken';
-import useAuth from './store';
+import { useAuth, useStoreInfo } from './store';
 import { dts } from './types';
 
 /**
@@ -18,6 +18,7 @@ interface Props {
 
 export function AuthRoute({ pageType }: Props): ReactElement | null {
   const { removeAccess } = useAuth();
+  const { removeStoreName, removeUserId } = useStoreInfo();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,6 +27,8 @@ export function AuthRoute({ pageType }: Props): ReactElement | null {
       if (!token.activation && pageType === 'admin') {
         navigate('/login');
         alert('로그인이 필요합니다.');
+        removeStoreName();
+        removeUserId();
         removeAccess();
       } else if (!token.activation) {
         navigate('/mypage/login');
