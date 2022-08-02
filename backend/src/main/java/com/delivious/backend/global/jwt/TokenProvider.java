@@ -3,7 +3,7 @@
  */
 
 
-package com.delivious.backend.domain.users.jwt;
+package com.delivious.backend.global.jwt;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;

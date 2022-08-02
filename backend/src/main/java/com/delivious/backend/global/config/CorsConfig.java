@@ -1,4 +1,4 @@
-package com.delivious.backend.domain.users.config;
+package com.delivious.backend.global.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -2,7 +2,7 @@
     JwtFilter를 Security 로직에 적용
  */
 
-package com.delivious.backend.domain.users.jwt;
+package com.delivious.backend.global.jwt;
 
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

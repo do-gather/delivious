@@ -1,4 +1,4 @@
-package com.delivious.backend.domain.users.handler;
+package com.delivious.backend.global.handler;
 
 import com.delivious.backend.domain.users.dto.ErrorDto;
 import org.springframework.core.Ordered;

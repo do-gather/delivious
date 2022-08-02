@@ -1,7 +1,7 @@
 /*
    토큰 실행 - 인증 정보 저장 & http 헤더에서 토큰 가져오기
  */
-package com.delivious.backend.domain.users.jwt;
+package com.delivious.backend.global.jwt;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

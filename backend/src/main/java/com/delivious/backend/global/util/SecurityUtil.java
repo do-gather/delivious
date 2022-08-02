@@ -1,4 +1,4 @@
-package com.delivious.backend.domain.users.util;
+package com.delivious.backend.global.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

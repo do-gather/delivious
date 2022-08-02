@@ -1,7 +1,7 @@
 /*
    잘못된 토큰 - 403
  */
-package com.delivious.backend.domain.users.jwt;
+package com.delivious.backend.global.jwt;
 
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
