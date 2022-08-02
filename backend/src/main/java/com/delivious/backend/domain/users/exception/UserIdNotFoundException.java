@@ -4,9 +4,9 @@ import com.delivious.backend.global.error.exception.NotFoundFieldException;
 
 import java.util.UUID;
 
-public class StoreIdNotFoundException extends NotFoundFieldException {
+public class UserIdNotFoundException extends NotFoundFieldException {
 
-    public StoreIdNotFoundException(UUID id) {
-        super("Store", "id", id.toString());
+    public UserIdNotFoundException(UUID id) {
+        super("User", "id", id.toString());
     }
 }
