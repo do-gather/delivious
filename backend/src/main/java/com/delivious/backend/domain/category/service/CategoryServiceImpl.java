@@ -53,6 +53,7 @@ public class CategoryServiceImpl implements CategoryService {
     public void updateCategory(UUID categoryId, CategoryRequest categoryRequest) {
         Category category = findCategoryById(categoryId);
         category.update(categoryRequest.getCategoryName());
+        categoryRepository.save(category);
     }
 
     @Override
