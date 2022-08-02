@@ -5,8 +5,8 @@ package com.delivious.backend.domain.users.controller;
 
 import com.delivious.backend.domain.users.dto.LoginDto;
 import com.delivious.backend.domain.users.dto.TokenDto;
-import com.delivious.backend.domain.users.jwt.JwtFilter;
-import com.delivious.backend.domain.users.jwt.TokenProvider;
+import com.delivious.backend.global.jwt.JwtFilter;
+import com.delivious.backend.global.jwt.TokenProvider;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpHeaders;
