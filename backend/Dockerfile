@@ -40,4 +40,3 @@ WORKDIR /home/gradle
 RUN set -o errexit -o nounset \
   && echo "Testing Gradle installation" \
   && gradle --version
-  
