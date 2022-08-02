@@ -1,8 +1,10 @@
 package com.delivious.backend.domain.category.exception;
 
-public class CategoryDuplicateException extends RuntimeException {
+import com.delivious.backend.global.error.exception.DuplicateResourceException;
 
-    public CategoryDuplicateException(String message) {
-        super(message);
+public class CategoryDuplicateException extends DuplicateResourceException {
+
+    public CategoryDuplicateException() {
+        super("Category");
     }
 }

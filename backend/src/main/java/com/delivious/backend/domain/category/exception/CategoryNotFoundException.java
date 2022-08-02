@@ -1,16 +1,12 @@
 package com.delivious.backend.domain.category.exception;
 
-public class CategoryNotFoundException extends RuntimeException {
-    public CategoryNotFoundException() {
-        super();
-    }
+import com.delivious.backend.global.error.exception.NotFoundException;
 
-    public CategoryNotFoundException(String message) {
-        super(message);
-    }
+import java.util.UUID;
 
-    public CategoryNotFoundException(String message, Throwable cause) {
-        super(message, cause);
-    }
+public class CategoryNotFoundException extends NotFoundException {
 
+    public CategoryNotFoundException(UUID id) {
+        super("Category", id);
+    }
 }
