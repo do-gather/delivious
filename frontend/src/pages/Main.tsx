@@ -8,7 +8,7 @@ import ShopingCart from '../components/ShopingCart';
 import ShoppingCartIcon from '../images/ShoppingCart';
 import BasicButton from '../components/BasicButton';
 import OrderModal from '../components/OrderModal';
-import { useStoreInfo } from '../utils/store';
+import { useUserInfo } from '../utils/store';
 
 /**
  * '/'로 연결되는 메인 페이지
@@ -25,7 +25,7 @@ export default function Main() {
   const [orderModal, setOrderModal] = useState(false);
   // const [order, setOrder] = useState<dts.orderDto>();
   // const [orderList, setOrderList] = useState<dts.orderList>();
-  const { storeName } = useStoreInfo();
+  const { storeName } = useUserInfo();
   const addToCart = (order: any) => {
     console.log(order);
   };
