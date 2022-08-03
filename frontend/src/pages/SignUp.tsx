@@ -48,7 +48,7 @@ export default function SignUp() {
     AuthService.register(data).then((res: any) => {
       if (res.status === 201) {
         if (userInfo.type === 'admin') {
-          AuthService.login(userInfo.username, userInfo.password, userInfo.type).then((response: any) => {
+          AuthService.login(userInfo.username, userInfo.password).then((response: any) => {
             if (response.status === 200) {
               const store = {
                 userId: res.data.userId,
@@ -63,7 +63,7 @@ export default function SignUp() {
             }
           });
         } else {
-          navigate('/login');
+          navigate('/mypage/login');
         }
       }
       return res;

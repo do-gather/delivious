@@ -9,13 +9,32 @@ import { authHeader, contentTypeJsonHeader } from '../utils/headerUtils';
  */
 class AuthService {
   // eslint-disable-next-line class-methods-use-this
-  login(username: string, password: string, type: string) {
+  login(username: string, password: string) {
     return axios
       .post(`${API_URL}/authenticate`, { username, password })
       .then(response => {
         if (response.status === 200) {
-          if (type === 'admin') window.localStorage.setItem('adminToken', response.data.token);
-          else window.localStorage.setItem('userToken', response.data.token);
+          return response;
+        }
+        return response;
+      })
+      .catch(err => {
+        console.error(err.response);
+        window.localStorage.clear();
+        window.location.reload();
+      });
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  getUserInfo(token: string, username: string) {
+    return axios
+      .get(`${API_URL}/users/${username}`, {
+        headers: authHeader(token),
+      })
+      .then(response => {
+        if (response.status === 200) {
+          if (response.data.type === 'admin') window.localStorage.setItem('adminToken', token);
+          else window.localStorage.setItem('userToken', token);
           return response;
         }
         return response;

@@ -80,8 +80,8 @@ public class UserController {
     }
 
     @GetMapping("/users/{username}")
-    @ApiOperation(value = "특정 사용자 정보 조회 메서드(관리자만)")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @ApiOperation(value = "특정 사용자 정보 조회 메서드")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ResponseEntity<UserResponseDto> getUserInfo(@PathVariable String username) {
         return ResponseEntity.ok(userService.getUserWithAuthorities(username));
     }
