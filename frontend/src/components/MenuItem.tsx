@@ -18,8 +18,9 @@ export default function MenuItem({ props, onSubmit }: Props) {
   const [step, setStep] = useState(0);
   const [order, setOrder] = useState({
     menuId: props.id,
+    menuName: props.name,
     count: 1,
-    price: props.price,
+    price: Number(props.price.replace(',', '')),
     size: '',
     temperature: '',
   });

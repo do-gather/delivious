@@ -5,8 +5,6 @@ import Tap from '../components/Tap';
 import AdminLogin from '../images/AdminLogin';
 import AdminLoginModal from '../components/AdminLoginModal';
 import ShopingCart from '../components/ShopingCart';
-import ShoppingCartIcon from '../images/ShoppingCart';
-import BasicButton from '../components/BasicButton';
 import OrderModal from '../components/OrderModal';
 import { useUserInfo } from '../utils/store';
 
@@ -23,11 +21,27 @@ export default function Main() {
   // 어드민 로그인 모달 띄우는 기능을 위한 상태관리
   const [adminLogin, setAdminLogin] = useState(false);
   const [orderModal, setOrderModal] = useState(false);
-  // const [order, setOrder] = useState<dts.orderDto>();
-  // const [orderList, setOrderList] = useState<dts.orderList>();
+  const [orderList, setOrderList] = useState({
+    orders: [{ count: 0, menuName: '', menuId: '13947839', price: 0, size: '', temperature: '' }],
+    totalPrice: 0,
+    inOut: 'IN',
+  });
   const { storeName } = useUserInfo();
+
   const addToCart = (order: any) => {
-    console.log(order);
+    setOrderList({
+      ...orderList,
+      orders: [...orderList.orders, order],
+    });
+  };
+
+  const submitCart = (cartList: any) => {
+    setOrderList(cartList);
+    setOrderModal(true);
+  };
+
+  const updateCart = (cartList: any) => {
+    setOrderList(cartList);
   };
 
   return (
@@ -64,19 +78,10 @@ export default function Main() {
       </button>
       <div className="flex right-0 top-16">
         <Tap color="#435ca5" name="주문하기" link="/" />
-        <div className="w-64 min-h-screen bg-white">
-          <div className="flex pt-5 pl-5 space-x-2 whitespace-nowrap">
-            <ShoppingCartIcon />
-            <div className="text-lg font-bold pb-2 cursor-pointer">장바구니</div>
-          </div>
-          <ShopingCart orderList={constants.ORDER} />
-          <div className="px-14 pb-2 place-self-center">
-            <BasicButton buttonName="결제" onClick={() => setOrderModal(true)} />
-          </div>
-        </div>
+        <ShopingCart orderList={orderList} onSubmit={submitCart} updateCart={updateCart} />
       </div>
       {adminLogin && <AdminLoginModal onClose={() => setAdminLogin(false)} />}
-      {orderModal && <OrderModal orderList={constants.ORDER} onClose={() => setOrderModal(false)} />}
+      {orderModal && <OrderModal orderList={orderList} onClose={() => setOrderModal(false)} />}
     </div>
   );
 }
