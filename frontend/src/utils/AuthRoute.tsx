@@ -3,8 +3,7 @@
 import React, { ReactElement, useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import checkToken from './checkToken';
-import { useAuth, useStoreInfo } from './store';
-import { dts } from './types';
+import { useAuth } from './store';
 
 /**
  * 라우터를 감싸는 권한 확인을 위한 컴포넌트
@@ -18,29 +17,17 @@ interface Props {
 
 export function AuthRoute({ pageType }: Props): ReactElement | null {
   const { removeAccess } = useAuth();
-  const { removeStoreName, removeUserId } = useStoreInfo();
   const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
-      const token: dts.tokenDto = checkToken();
-      if (!token.activation && pageType === 'admin') {
+      const token = checkToken(pageType);
+      if (!token && pageType === 'admin') {
         navigate('/login');
-        alert('로그인이 필요합니다.');
-        removeStoreName();
-        removeUserId();
-        removeAccess();
-      } else if (!token.activation) {
+        alert('관리자 로그인이 필요합니다.');
+      } else if (!token) {
         navigate('/mypage/login');
-        alert('로그인이 필요합니다.');
-        removeAccess();
-      } else if (token.activation && token.type === 'user' && pageType === 'admin') {
-        navigate('/login');
-        alert('관리자만 접근 가능합니다.');
-        removeAccess();
-      } else if (token.activation && token.type === 'admin' && pageType === 'user') {
-        navigate('/mypage/login');
-        alert('일반 사용자 계정으로만 접근 가능합니다.');
+        alert('일반 사용자 로그인이 필요합니다.');
         removeAccess();
       }
     })();
