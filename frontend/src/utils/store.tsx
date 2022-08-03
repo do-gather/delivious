@@ -11,11 +11,17 @@ interface AccessState {
   removeAccess: () => void;
 }
 
-interface StoreState {
+interface UserInfo {
   userId: string;
+  userName: string;
+  userType: string;
   storeName: string;
   setUserId: (id: string) => void;
   removeUserId: () => void;
+  setUserName: (id: string) => void;
+  removeUserName: () => void;
+  setUserType: (id: string) => void;
+  removeUserType: () => void;
   setStoreName: (store: string) => void;
   removeStoreName: () => void;
 }
@@ -29,13 +35,25 @@ export const useAuth = create<AccessState>(set => ({
   removeAccess: () => set({ access: '' }),
 }));
 
-export const useStoreInfo = create<StoreState>(set => ({
+export const useUserInfo = create<UserInfo>(set => ({
   userId: '',
   setUserId: (id: string) =>
     set(() => ({
       storeName: id,
     })),
   removeUserId: () => set({ userId: '' }),
+  userName: '',
+  setUserName: (name: string) =>
+    set(() => ({
+      userName: name,
+    })),
+  removeUserName: () => set({ userName: '' }),
+  userType: '',
+  setUserType: (type: string) =>
+    set(() => ({
+      userType: type,
+    })),
+  removeUserType: () => set({ userType: '' }),
   storeName: '',
   setStoreName: (store: string) =>
     set(() => ({
