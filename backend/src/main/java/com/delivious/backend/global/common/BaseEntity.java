@@ -19,9 +19,9 @@ public abstract class BaseEntity {
     @CreatedDate
     @Column(updatable = false)
     @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @LastModifiedDate
     @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
 }

@@ -1,10 +1,12 @@
 package com.delivious.backend.domain.users.exception;
 
+import com.delivious.backend.global.error.exception.NotFoundFieldException;
+
 import java.util.UUID;
 
-public class StoreIdNotFoundException extends RuntimeException {
+public class StoreIdNotFoundException extends NotFoundFieldException {
 
-    public StoreIdNotFoundException() {
-        super("해당 ID를 가진 상점이 존재하지 않습니다");
+    public StoreIdNotFoundException(UUID id) {
+        super("Store", "id", id.toString());
     }
 }

@@ -24,7 +24,7 @@ public class Category extends BaseEntity {
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "category_id")
-    private UUID categoryId;
+    private UUID id;
 
     @NotNull
     @Column(name = "category_name")

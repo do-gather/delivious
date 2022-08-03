@@ -2,7 +2,6 @@ package com.delivious.backend.domain.menu.controller;
 
 import com.delivious.backend.domain.menu.dto.MenuRequest;
 import com.delivious.backend.domain.menu.dto.MenuResponse;
-import com.delivious.backend.domain.menu.entity.Menu;
 import com.delivious.backend.domain.menu.service.MenuService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -34,10 +33,13 @@ public class MenuController {
      * 메뉴 조회
      */
     @GetMapping
-    public List<MenuResponse> findAllMenus() {
-        return menuService.findAllMenus()
-                .stream().map(MenuResponse::of)
-                .collect(Collectors.toList());
+    public ResponseEntity<List<MenuResponse>> findAllMenus(
+            @RequestParam(value = "store-id") UUID storeId,
+            @RequestParam(value = "category-name", required = false) String categoryName) {
+        return ResponseEntity.ok(menuService.searchMenus(storeId, categoryName)
+                .stream()
+                .map(MenuResponse::of)
+                .collect(Collectors.toList()));
     }
 
     @GetMapping("/{menuId}")

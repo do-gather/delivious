@@ -1,6 +1,7 @@
 package com.delivious.backend.domain.category.service;
 
 import com.delivious.backend.domain.category.dto.CategoryRequest;
+import com.delivious.backend.domain.category.dto.CategoryUpdateRequest;
 import com.delivious.backend.domain.category.entity.Category;
 import com.delivious.backend.domain.category.exception.CategoryDuplicateException;
 import com.delivious.backend.domain.category.exception.CategoryNotFoundException;
@@ -26,11 +27,11 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional
     public Category createNewCategory(CategoryRequest categoryRequest) {
         if (categoryRepository.existsByCategoryNameAndStoreId(categoryRequest.getCategoryName(), categoryRequest.getStoreId())) {
-            throw new CategoryDuplicateException("동일한 카테고리명이 존재합니다");
+            throw new CategoryDuplicateException();
         }
 
         Store store = storeRepository.findById(categoryRequest.getStoreId())
-                .orElseThrow(StoreIdNotFoundException::new);
+                .orElseThrow(() -> new StoreIdNotFoundException(categoryRequest.getStoreId()));
 
         Category category = new Category(categoryRequest.getCategoryName(), store);
         return categoryRepository.save(category);
@@ -46,13 +47,14 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional(readOnly = true)
     public Category findCategoryById(UUID id) {
         return categoryRepository.findById(id)
-                .orElseThrow(CategoryNotFoundException::new);
+                .orElseThrow(() -> new CategoryNotFoundException(id));
     }
 
     @Override
-    public void updateCategory(UUID categoryId, CategoryRequest categoryRequest) {
+    public void updateCategory(UUID categoryId, CategoryUpdateRequest categoryUpdateRequestRequest) {
         Category category = findCategoryById(categoryId);
-        category.update(categoryRequest.getCategoryName());
+        category.update(categoryUpdateRequestRequest.getCategoryName());
+        categoryRepository.save(category);
     }
 
     @Override

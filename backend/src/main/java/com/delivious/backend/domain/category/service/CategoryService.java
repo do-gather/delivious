@@ -1,6 +1,7 @@
 package com.delivious.backend.domain.category.service;
 
 import com.delivious.backend.domain.category.dto.CategoryRequest;
+import com.delivious.backend.domain.category.dto.CategoryUpdateRequest;
 import com.delivious.backend.domain.category.entity.Category;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface CategoryService {
 
     Category createNewCategory(CategoryRequest categoryRequest);
 
-    void updateCategory(UUID categoryId, CategoryRequest categoryRequest);
+    void updateCategory(UUID categoryId, CategoryUpdateRequest categoryUpdateRequest);
 
     void removeCategory(UUID categoryId);
 }
