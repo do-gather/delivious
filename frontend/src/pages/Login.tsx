@@ -28,7 +28,17 @@ export default function Login() {
     AuthService.getStore(username, token).then((res: any) => {
       if (res.status === 200) {
         setStoreName(res.data.storeName);
+        navigate('/');
       }
+    });
+  };
+
+  const getInfo = (token: string) => {
+    AuthService.getUserInfo(token, userInfo.username).then((userRes: any) => {
+      setUserId(userRes.data?.id);
+      setUserName(userInfo.username);
+      setUserType(userRes.data?.type);
+      if (type === 'user') navigate('/mypage');
     });
   };
 
@@ -39,20 +49,12 @@ export default function Login() {
 
   const sendUserInfo = (e: any) => {
     e.preventDefault();
-
     AuthService.login(userInfo.username, userInfo.password).then((res: any) => {
       if (res.status === 200) {
         setAccess(res.data.token);
-        AuthService.getUserInfo(res.data.token, userInfo.username).then((userRes: any) => {
-          setUserId(userRes.data.id);
-          setUserName(userInfo.username);
-          setUserType(userRes.data.type);
-        });
-        if (type === 'user') {
-          navigate('/mypage');
-        } else {
+        getInfo(res.data.token);
+        if (type === 'admin') {
           getStoreInfo(userInfo.username, res.data.token);
-          navigate('/');
         }
       }
     });
