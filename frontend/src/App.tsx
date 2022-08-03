@@ -10,6 +10,8 @@ import SignUp from './pages/SignUp';
 import MyOrderlist from './pages/MyOrderlist';
 import OrderHistory from './pages/OrderHistory';
 import AuthRoute from './utils/AuthRoute';
+import AdminOrder from './pages/AdminOrder';
+import AdminTables from './pages/AdminTables';
 
 function App() {
   return (
