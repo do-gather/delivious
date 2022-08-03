@@ -31,8 +31,7 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/mypage/login" element={<Login />} />
           <Route element={<AuthRoute pageType="user" />}>
-            <Route path="/mypage/orderlist" element={<MyOrderlist />} />
-            <Route path="/mypage/orderlist" element={<MyOrderlist />} />
+            <Route path="/mypage" element={<MyOrderlist />} />
             <Route path="/mypage/orderhistory" element={<OrderHistory />} />
           </Route>
         </Routes>

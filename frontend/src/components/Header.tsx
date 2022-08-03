@@ -24,7 +24,7 @@ export default function Header() {
           </Link>
         )}
         {!url.pathname.includes('sign-up') && !url.pathname.includes('login') && (
-          <Link className="flex w-fit mx-12 py-9" to="/">
+          <Link className="flex w-fit mx-12 py-9" to={url.pathname.includes('mypage') ? '/mypage' : '/'}>
             <MainLogo width="118" height="25" />
           </Link>
         )}
