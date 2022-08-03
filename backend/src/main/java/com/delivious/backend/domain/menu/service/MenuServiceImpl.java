@@ -15,10 +15,10 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class MenuServiceImpl implements MenuService {
+
     private final MenuRepository menuRepository;
     private final CategoryRepository categoryRepository;
 
-    // 메뉴 추가
     @Override
     @Transactional
     public void createMenu(MenuRequest menuRequest) {
@@ -26,31 +26,27 @@ public class MenuServiceImpl implements MenuService {
         menuRepository.save(menu);
     }
 
-
-    // 메뉴 전체 리스트 불러오기
     @Override
     public List<Menu> findAllMenus() {
         return menuRepository.findAll();
     }
 
-    // 메뉴 개별 불러오기
     @Override
     @Transactional(readOnly = true)
     public Menu findMenuById(UUID menuId) {
         return menuRepository.findById(menuId).orElseThrow(MenuNotFoundException::new);
     }
 
-    // 메뉴수정
     @Override
-    public void updateMenu(Menu menu, MenuRequest menuRequest) {
-        menu.updateMenu(menuRequest);
-        menuRepository.save(menu);
+    @Transactional
+    public void updateMenu(UUID menuId, MenuRequest menuRequest) {
+        Menu menu = findMenuById(menuId);
+        menu.update(menuRequest);
     }
 
-    // 메뉴 삭제
     @Override
-    public void removeMenu(UUID menuId){
+    public void removeMenuById(UUID menuId) {
+        findMenuById(menuId);
         menuRepository.deleteById(menuId);
     }
-
 }

@@ -8,14 +8,13 @@ import java.util.UUID;
 
 public interface CategoryService {
 
-    public List<Category> findAllCategory();
+    List<Category> searchCategories(UUID storeId, String categoryName);
 
-    public Category findCategoryById(UUID categoryId);
+    Category findCategoryById(UUID id);
 
-    public Category createNewCategory(CategoryRequest categoryRequest);
+    Category createNewCategory(CategoryRequest categoryRequest);
 
-    public void updateCategory(Category category, CategoryRequest categoryRequest);
+    void updateCategory(UUID categoryId, CategoryRequest categoryRequest);
 
-    public void removeCategory(Category category);
-
+    void removeCategory(UUID categoryId);
 }

@@ -8,9 +8,10 @@ import java.util.Optional;
 import java.util.UUID;
 
 
-public interface StoreRepository extends JpaRepository<Store, Long> {
+public interface StoreRepository extends JpaRepository<Store, UUID> {
+
     @EntityGraph(attributePaths = "user")
     Optional<Store> findOneWithStoresBystoreName(String storeName);
 
-    Optional<Store> findByUserId(UUID userId);
+    Optional<Store> findByUser_userId(UUID userId);
 }

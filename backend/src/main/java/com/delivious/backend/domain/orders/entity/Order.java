@@ -26,16 +26,16 @@ import static javax.persistence.FetchType.LAZY;
 public class Order extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY , generator = "uuid2")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(columnDefinition = "BINARY(16)" , name = "order_id")
+    @Column(columnDefinition = "BINARY(16)", name = "order_id")
     private UUID orderId;
 
-    @OneToOne (fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
-    User user;
+    private User user;
 
-    @ManyToMany (fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "storeId")
     private Store store;
 
@@ -48,10 +48,10 @@ public class Order extends BaseEntity {
     @Column(name = "order_status", length = 50)
     private OrderStatus orderStatus;                      // SEND, DONE
 
-    @Column( nullable = false)
+    @Column(nullable = false)
     private int totalCount;
 
-    @Column( nullable = false)
+    @Column(nullable = false)
     private int totalPrice;
 
 
@@ -59,11 +59,9 @@ public class Order extends BaseEntity {
 //    private List<OrderDetail> orderDetails = new ArrayList<>();
 
 
-
-
     // 연관 관계 메서드
     // 주문을 받았을 때, user 랑 연결
-    public void setUser (User user) {
+    public void setUser(User user) {
         user.getOrders().add(this);
         this.user = user;
     }
@@ -88,9 +86,9 @@ public class Order extends BaseEntity {
 
 
     // 생성 메서드
-    public static Order createOrder (User userReference,  int totalCount, int totalPrice) {
+    public static Order createOrder(User userReference, int totalCount, int totalPrice) {
         return Order
-            .builder()
+                .builder()
                 .user(userReference)
                 .orderStatus(OrderStatus.SEND)
                 //.store(store)
@@ -115,9 +113,6 @@ public class Order extends BaseEntity {
 //        }
 //        return totalPrice;
 //    }
-
-
-
 
 
 }

@@ -3,14 +3,16 @@ package com.delivious.backend.domain.orders.entity;
 import com.delivious.backend.domain.menu.entity.Menu;
 import com.delivious.backend.domain.orders.dto.request.OrderDetailBill;
 import com.delivious.backend.global.common.BaseEntity;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
 import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
-
 
 @Entity
 @Table(name = "order_detail")
@@ -23,14 +25,14 @@ public class OrderDetail extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", name = "orderdetail_id")
-    private UUID orderdetailId;
+    private UUID id;
 
-    @ManyToOne (fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "orderId")
     private Order order;
 
     // 메뉴랑 조인 필요
-    @ManyToOne (fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "menuId")
     private Menu menu;
 
@@ -50,12 +52,12 @@ public class OrderDetail extends BaseEntity {
     private String temparature;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status",length = 30, nullable = false)
+    @Column(name = "status", length = 30, nullable = false)
     private OrderDetailStatus status = OrderDetailStatus.COOK;
 
 
     @Builder
-    public OrderDetail(Menu menu, Order order, int price, int count){
+    public OrderDetail(Menu menu, Order order, int price, int count) {
         this.menu = menu;
         this.order = order;
         this.price = price;
@@ -65,11 +67,11 @@ public class OrderDetail extends BaseEntity {
 
     }
 
-    public OrderDetailBill toEntity(LocalDateTime orderDate){
+    public OrderDetailBill toEntity(LocalDateTime orderDate) {
         return OrderDetailBill
                 .builder()
                 //.tableId(tableId)
-                .orderdetailId(orderdetailId)
+                .orderdetailId(id)
                 .orderDate(orderDate)
                 .orderId(order.getOrderId())
                 .menuName(menu.getMenuName())  // 나중에 변수명에 맞추어 수정해야 함
@@ -78,7 +80,7 @@ public class OrderDetail extends BaseEntity {
     }
 
     // 생성 메소드 //
-    public static OrderDetail createOrderDetail ( Menu menu, int count, int price ) {
+    public static OrderDetail createOrderDetail(Menu menu, int count, int price) {
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setMenu(menu);
         orderDetail.setCount(count);
@@ -88,7 +90,6 @@ public class OrderDetail extends BaseEntity {
     }
 
 
-
     // 주문 상품 수량 * 가격
     public int getDetailTotalPrice() { //상품 한개당 총 주문가격
         return getPrice() * getCount();
@@ -96,12 +97,18 @@ public class OrderDetail extends BaseEntity {
 
 
     // 주문 상세 - 요리중
-    public void cookOrderDetail() { this.status = OrderDetailStatus.COOK; }
+    public void cookOrderDetail() {
+        this.status = OrderDetailStatus.COOK;
+    }
 
     // 주문 상세 - 서빙 중
-    public void serveOrderDetail() { this.status = OrderDetailStatus.SERVE; }
+    public void serveOrderDetail() {
+        this.status = OrderDetailStatus.SERVE;
+    }
 
     // 주문 상세 - 서빙 완료
-    public void doneOrderDetail() { this.status = OrderDetailStatus.DONE; }
+    public void doneOrderDetail() {
+        this.status = OrderDetailStatus.DONE;
+    }
 
 }

@@ -1,4 +1,5 @@
 package com.delivious.backend.domain.menu.entity;
+
 import com.delivious.backend.domain.category.entity.Category;
 import com.delivious.backend.domain.menu.dto.MenuRequest;
 import com.delivious.backend.domain.users.entity.Store;
@@ -10,20 +11,17 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
-@Builder
-@Getter
-@Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 @Entity
 @Table(name = "menus")
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Menu extends BaseEntity {
 
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "menu_id")
-    private UUID menuId;
+    private UUID id;
 
     @NotNull
     @Column(name = "menu_name")
@@ -55,7 +53,7 @@ public class Menu extends BaseEntity {
     private String description;
 
     @Builder
-    public Menu(Category category, String menuName, Float price, String menuImage, String temperature, Size size, String description) {
+    public Menu(Category category, Store store, String menuName, Float price, String menuImage, String temperature, Size size, String description) {
         this.menuName = menuName;
         this.price = price;
         this.menuImage = menuImage;
@@ -65,7 +63,7 @@ public class Menu extends BaseEntity {
         this.description = description;
     }
 
-    public void updateMenu(MenuRequest menuRequest) {
+    public void update(MenuRequest menuRequest) {
         this.menuName = menuRequest.getMenuName();
         this.price = menuRequest.getPrice();
         this.menuImage = menuRequest.getMenuImage();
@@ -74,8 +72,4 @@ public class Menu extends BaseEntity {
         this.size = menuRequest.getSize();
         this.description = menuRequest.getDescription();
     }
-
-    public void removeMenu(){
-    }
-
 }

@@ -50,15 +50,14 @@ public class User extends BaseEntity {
    private boolean activated;
 
    // Store entity 와 조인
+   @Setter
    @OneToOne(mappedBy = "user")
    @JoinColumn(name = "userId")
    private Store store;
 
-
    // Order entity 와 조인
    @OneToMany(mappedBy = "user")
    private List<Order> orders = new ArrayList<>();
-
 
    @ManyToMany
    @JoinTable(
@@ -75,5 +74,13 @@ public class User extends BaseEntity {
    }
     */
 
-
+   public User(String username, String password, String name, String phoneNum, Date birth, String type, boolean activated) {
+      this.username = username;
+      this.password = password;
+      this.name = name;
+      this.phoneNum = phoneNum;
+      this.birth = birth;
+      this.type = type;
+      this.activated = activated;
+   }
 }

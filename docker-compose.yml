@@ -1,0 +1,59 @@
+# 웹 개발용, development version, backend, frontend db만 있음.
+# docker-compose -f docker-compose.dev.yml up 으로 실행가능
+
+version: "3"
+
+services:
+  db:
+    image: postgres:12.0-alpine
+    environment:
+      - POSTGRES_USER=delivious
+      - POSTGRES_PASSWORD=dogather
+      - POSTGRES_DB=db_delivious
+    volumes:
+      - postgres_data_dev:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    restart: always
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "delivious@dogather.com"
+      PGADMIN_DEFAULT_PASSWORD: "dogather"
+    ports:
+      - 5050:80
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    volumes:
+      - ./backend/:/app
+    working_dir: /app
+    command: sh run.sh
+    expose:
+      - 8080
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+    command: ["npm", "start"]
+    ports:
+      - 80:3000
+    volumes:
+      - ./frontend/:/frontend
+      - ./frontend/node_modules/:/frontend/node_modules
+    environment:
+      - CI=true
+      - CHOKIDAR_USEPOLLING=true
+    tty: true
+
+volumes:
+  postgres_data_dev:
