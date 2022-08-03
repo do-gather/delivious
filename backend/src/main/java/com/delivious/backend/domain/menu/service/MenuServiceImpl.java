@@ -49,6 +49,7 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Menu> searchMenus(UUID storeId, String categoryName) {
         return menuRepository.searchMenus(storeId, categoryName);
     }
