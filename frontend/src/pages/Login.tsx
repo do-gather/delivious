@@ -5,7 +5,7 @@ import InputBox from '../components/InputBox';
 import UserIcon from '../images/UserIcon';
 import PasswordIcon from '../images/PasswordIcon';
 import AuthService from '../services/AuthService';
-import useAuth from '../utils/store';
+import { useAuth, useUserInfo } from '../utils/store';
 
 /**
  * '/login' 또는 '/mypage/login' 으로 연결되는 로그인 페이지
@@ -22,6 +22,25 @@ export default function Login() {
   });
 
   const { setAccess } = useAuth();
+  const { setStoreName, setUserId, setUserName, setUserType } = useUserInfo();
+
+  const getStoreInfo = (username: string, token: string) => {
+    AuthService.getStore(username, token).then((res: any) => {
+      if (res.status === 200) {
+        setStoreName(res.data.storeName);
+        navigate('/');
+      }
+    });
+  };
+
+  const getInfo = (token: string) => {
+    AuthService.getUserInfo(token, userInfo.username).then((userRes: any) => {
+      setUserId(userRes.data?.id);
+      setUserName(userInfo.username);
+      setUserType(userRes.data?.type);
+      if (type === 'user') navigate('/mypage');
+    });
+  };
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -30,13 +49,13 @@ export default function Login() {
 
   const sendUserInfo = (e: any) => {
     e.preventDefault();
-
-    AuthService.login(userInfo.username, userInfo.password, type).then((res: any) => {
+    AuthService.login(userInfo.username, userInfo.password).then((res: any) => {
       if (res.status === 200) {
         setAccess(res.data.token);
-        if (type === 'user') {
-          navigate('/mypage');
-        } else navigate('/');
+        getInfo(res.data.token);
+        if (type === 'admin') {
+          getStoreInfo(userInfo.username, res.data.token);
+        }
       }
     });
   };

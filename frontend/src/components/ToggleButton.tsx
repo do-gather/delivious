@@ -11,10 +11,17 @@ interface Props {
   option1: string;
   option2: string;
   clickedOption: number;
+  onClick: any;
 }
 
-export default function ToggleButton({ option1, option2, clickedOption }: Props) {
+export default function ToggleButton({ option1, option2, clickedOption, onClick }: Props) {
   const [clicked, setClicked] = useState(clickedOption);
+
+  const handleClick = (index: number) => {
+    onClick(index);
+    setClicked(index);
+  };
+
   return (
     <div className="flex -space-x-1 w-full">
       <button
@@ -23,7 +30,7 @@ export default function ToggleButton({ option1, option2, clickedOption }: Props)
         ${clicked === 1 && 'rounded-r z-50'} justify-center px-10 h-10`}
         style={{ backgroundColor: clicked === 1 ? '#000000' : '#c4c4c4' }}
         onClick={() => {
-          setClicked(1);
+          handleClick(1);
         }}
       >
         {option1}
@@ -34,7 +41,7 @@ export default function ToggleButton({ option1, option2, clickedOption }: Props)
         ${clicked === 2 && 'rounded-l'}  justify-center px-10 h-10`}
         style={{ backgroundColor: clicked === 2 ? '#000000' : '#c4c4c4' }}
         onClick={() => {
-          setClicked(2);
+          handleClick(2);
         }}
       >
         {option2}

@@ -11,19 +11,39 @@ import PillButton from './PillButton';
 
 interface Props {
   props: dts.menuDto;
+  onSubmit: any;
 }
 
-export default function MenuItem({ props }: Props) {
+export default function MenuItem({ props, onSubmit }: Props) {
   const [step, setStep] = useState(0);
+  const [order, setOrder] = useState({
+    menuId: props.id,
+    menuName: props.name,
+    count: 1,
+    price: Number(props.price.replace(',', '')),
+    size: '',
+    temperature: '',
+  });
 
   // 메뉴에 있는 옵션만 화면에 보여주기 위한 함수
   const handleCheckLabel = (options: string, label: string) => {
     return options.includes(label);
   };
 
-  const handleClicked = () => {
-    if (step === 3) setStep(0);
-    else setStep(step + 1);
+  const handleClicked = (e: any) => {
+    if (step === 0) {
+      setStep(step + 1);
+    } else if (step === 1) {
+      setOrder({ ...order, temperature: e.target.innerHTML });
+      setStep(step + 1);
+    } else if (step === 2) {
+      setOrder({ ...order, size: e.target.innerHTML });
+      setStep(step + 1);
+    } else if (step === 3) {
+      onSubmit(order);
+      setOrder({ ...order, temperature: '', size: '' });
+      setStep(0);
+    }
   };
 
   return (

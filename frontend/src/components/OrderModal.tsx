@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { dts } from '../utils/types';
+import React, { useEffect, useState } from 'react';
 import BasicButton from './BasicButton';
 import InputBox from './InputBox';
 import ToggleButton from './ToggleButton';
@@ -8,13 +7,39 @@ import ToggleButton from './ToggleButton';
  * 주문하기 창
  * @param onClose 닫힘 버튼을 누를 때 실행될 함수 받음
  */
+
+interface Order {
+  count: number;
+  menuId: string;
+  menuName: string;
+  price: number;
+  size: string;
+  temperature: string;
+}
 interface Props {
+  orderList: {
+    orders: Array<Order>;
+    totalPrice: number;
+    inOut: string;
+  };
   onClose: any;
-  orderList: dts.orderList;
 }
 
 export default function OrderModal({ onClose, orderList }: Props) {
   const [step, setStep] = useState(1);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [finalOrder, setFinalOrder] = useState(orderList);
+
+  useEffect(() => {
+    let price = 0;
+    // eslint-disable-next-line no-return-assign
+    orderList.orders.map(item => item.price * item.count).forEach(item => (price += item));
+    setTotalPrice(price);
+  }, []);
+
+  const setInOut = (inOut: number) => {
+    setFinalOrder({ ...finalOrder, inOut: inOut === 1 ? 'IN' : 'OUT' });
+  };
 
   return (
     <div
@@ -47,20 +72,23 @@ export default function OrderModal({ onClose, orderList }: Props) {
               <div>수량</div>
               <div>가격</div>
             </div>
-            {orderList.orders.map(item => (
-              <div className="grid grid-cols-3 py-2 whitespace-nowrap text-xs" key={item.menu.id}>
-                <div>{item.menu.name}</div>
-                <div className="font-normal text-center ">{item.quantity}</div>
-                <div className="text-right">{item.menu.price} ₩</div>
-              </div>
-            ))}
+            {orderList.orders.map(
+              item =>
+                item.count !== 0 && (
+                  <div className="grid grid-cols-3 py-2 whitespace-nowrap text-xs" key={item.menuId}>
+                    <div>{item.menuName}</div>
+                    <div className="font-normal text-center ">{item.count}</div>
+                    <div className="text-right">{item.price} ₩</div>
+                  </div>
+                ),
+            )}
             <div className="border-b my-3 w-full border-zinc-300" />
             <div className="flex justify-between text-xs">
               <div>총</div>
-              <div>{orderList.total} ₩</div>
+              <div>{totalPrice} ₩</div>
             </div>
             <div className="flex w-full my-8">
-              <ToggleButton option1="매장 안에서" option2="테이크 아웃" clickedOption={1} />
+              <ToggleButton option1="매장 안에서" option2="테이크 아웃" clickedOption={1} onClick={setInOut} />
             </div>
 
             <div className="place-self-center w-40">
@@ -70,9 +98,9 @@ export default function OrderModal({ onClose, orderList }: Props) {
         ) : (
           <div className="px-48 pt-10 text-center text-xl pb-16 w-full flex flex-col whitespace-nowrap font-bold ">
             <div>들리버스 앱으로 주문을 확인하려면,</div>
-            <div>가입한 전화번호를 입력해주세요.</div>
+            <div>가입한 아이디를 입력해주세요.</div>
             <div className="flex w-full my-8 text-xs">
-              <InputBox placeholder="전화번호 입력" text="010-" mode="dark" />
+              <InputBox placeholder="아이디 입력" text="" mode="dark" />
             </div>
             <div className="place-self-center w-40">
               <BasicButton buttonName="완료하기" onClick={() => window.location.replace('/')} />
