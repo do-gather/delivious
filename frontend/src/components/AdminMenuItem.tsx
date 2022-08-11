@@ -1,5 +1,7 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/require-default-props */
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import CheckBox from './CheckBox';
 import InputBox from './InputBox';
 import AddCircle from '../images/AddCircle';
@@ -9,7 +11,8 @@ import { dts } from '../utils/types';
 import Save from '../images/Save';
 import ImageUpload from '../images/ImageUpload';
 import ImageUploadModal from './ImageUploadModal';
-
+import { API_URL } from '../utils/constants';
+import { contentTypeJsonHeader } from '../utils/headerUtils';
 /**
  * 어드민 메뉴 목록의 각 아이템
  * 수정 모드일 경우 수정 전 메뉴 아이템 값이 기본으로 들어가 있게 됨
@@ -45,8 +48,12 @@ export default function AdminMenuItem({
   //     price: '',
   //     date: '',
   // }))
+
   const [modal, setModal] = useState(false);
   const [menuImage, setMenuImage] = useState(props.image);
+  const [categories, setCategories] = useState([]);
+  const [value, setValue] = useState('');
+  const [userInfo, setUserInfo] = useState('');
 
   const handleChecked = (options: string, label: string) => {
     return options.includes(label);
@@ -54,6 +61,42 @@ export default function AdminMenuItem({
 
   const changeMenuImage = (image: File, url: string) => {
     setMenuImage(url);
+  };
+
+  const handleCategory = () => {
+    if (type === 'edit') {
+      // 카테고리 삭제
+      axios.delete('http://localhost:8080/categories/{categoryId}', {
+        data: {
+          categoryName: value,
+        },
+      });
+    } else if (type === 'new') {
+      // 카테고리 생성
+      axios
+        .post(`${API_URL}/categories`, {
+          categoryName: value,
+          headers: contentTypeJsonHeader(),
+        })
+        .then(response => {
+          return response;
+        })
+        .catch(err => {
+          console.error(err.response);
+          alert('post 안됩니다');
+          alert(value);
+        });
+    } else {
+      axios
+        // 카테고리 수정
+        .put('http://localhost:8080/categories/{categoryId} ', {
+          categoryName: value,
+        })
+        .then(response => {
+          setCategories(response.data);
+          console.log(response);
+        });
+    }
   };
 
   return type !== 'display' ? (
@@ -77,11 +120,13 @@ export default function AdminMenuItem({
         <InputBox placeholder="가격" text={props.price} />
         {type === 'new' ? <div>{currentDate}</div> : <div>{props.date}</div>}
       </div>
-      <div className="cursor-pointer">
+
+      <button type="button" className="cursor-pointer" onClick={handleCategory}>
         {type === 'edit' && <TrashCan />}
         {type === 'new' && <AddCircle />}
         {type === 'edited' && <Save />}
-      </div>
+      </button>
+
       {modal && (
         <ImageUploadModal onClose={() => setModal(false)} submitFunction={changeMenuImage} imageURL={menuImage} />
       )}

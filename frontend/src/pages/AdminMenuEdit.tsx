@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AdminMenuItem from '../components/AdminMenuItem';
@@ -24,12 +27,50 @@ export default function AdminMenuEdit() {
     if (finish) navigate('/admin/menu');
   }, [finish, navigate]);
 
+  // const [categories, setCategories] = useState([]);
+  // const [categoryid, setCategoryid] = useState([]);
+  // const [keywords, setKeywords] = useState('');
+
+  // // 카테고리 생성
+  // useEffect(() => {
+  //   axios.post('http://localhost:8080/categories', {
+  //     categoryName: keywords,
+  //   });
+  // }, []);
+
+  // // 특정 카테고리 조회
+  // useEffect(() => {
+  //   axios.get('http://localhost:8080/categories/{categoryId}').then(response => {
+  //     setCategories(response.data);
+  //   });
+  // }, []);
+
+  // // 카테고리 수정
+  // useEffect(() => {
+  //   axios
+  //     .put('http://localhost:8080/categories', {
+  //       categoryName: keywords,
+  //     })
+  //     .then(response => {
+  //       setCategories(response.data);
+  //     });
+  // }, []);
+
+  // // 카테고리 삭제
+  // useEffect(() => {
+  //   axios.delete('http://localhost:8080/categories', {
+  //     data: {
+  //       categoryName: keywords,
+  //     },
+  //   });
+  // }, []);
+
   return (
     <div className="w-full h-screen pl-14 pr-32 py-24 overflow-y-hidden">
       <div className="grid grid-cols-8 space-x-4 items-center pb-8 justify-between ">
         <div className="col-span-1 font-bold text-3xl whitespace-nowrap">메뉴관리</div>
         <div className="col-span-5">
-          <SearchBar placeholder="Search menu name or id" icon={<SearchIcon/>} />
+          <SearchBar placeholder="Search menu name or id" icon={<SearchIcon />} />
         </div>
         <div className="col-span-2 justify-self-end w-36">
           <BasicButton buttonName="편집 완료" onClick={() => setFinish(true)} />

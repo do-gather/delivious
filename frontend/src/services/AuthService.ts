@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-alert */
 import axios from 'axios';
 
 import { API_URL } from '../utils/constants';
