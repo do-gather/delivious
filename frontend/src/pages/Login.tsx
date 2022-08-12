@@ -61,37 +61,39 @@ export default function Login() {
   };
 
   return (
-    <div className="flex-col justify-center px-4" style={{ marginTop: '25.125rem' }}>
-      {type !== 'user' && <div className="w-full text-center text-3xl font-bold">관리자 로그인</div>}
-      <div className="flex justify-center pt-12">
-        <div className="flex-col space-y-4 pr-4" style={{ width: '30rem' }}>
-          <InputBox
-            text={userInfo.username}
-            onChange={handleChange}
-            placeholder="username"
-            icon={<UserIcon />}
-            iconLeft
-            height="h-16"
-          />
-          <InputBox
-            text={userInfo.username}
-            onChange={handleChange}
-            placeholder="password"
-            height="h-16"
-            icon={<PasswordIcon />}
-            iconLeft
-          />
-          <div className="flex whitespace-nowrap justify-between space-x-16 pt-1.5" style={{ fontSize: '0.875rem' }}>
-            <Link to="/sign-up">Create Account</Link>
-            {type === 'user' ? (
-              <Link to="/login">관리자 모드 로그인</Link>
-            ) : (
-              <Link to="/mypage/login">일반 사용자 로그인</Link>
-            )}
+    <div className="mx-auto pt-60 h-full px-4">
+      <div className="flex-col justify-center h-4/5 overflow-auto">
+        {type !== 'user' && <div className="w-full text-center text-3xl font-bold">관리자 로그인</div>}
+        <div className="flex justify-center pt-12">
+          <div className="flex-col space-y-4 pr-4" style={{ width: '30rem' }}>
+            <InputBox
+              text={userInfo.username}
+              onChange={handleChange}
+              placeholder="username"
+              icon={<UserIcon />}
+              iconLeft
+              height="h-16"
+            />
+            <InputBox
+              text={userInfo.username}
+              onChange={handleChange}
+              placeholder="password"
+              height="h-16"
+              icon={<PasswordIcon />}
+              iconLeft
+            />
+            <div className="flex whitespace-nowrap justify-between space-x-16 pt-1.5" style={{ fontSize: '0.875rem' }}>
+              <Link to="/sign-up">Create Account</Link>
+              {type === 'user' ? (
+                <Link to="/login">관리자 모드 로그인</Link>
+              ) : (
+                <Link to="/mypage/login">일반 사용자 로그인</Link>
+              )}
+            </div>
           </div>
-        </div>
-        <div className="w-24">
-          <BasicButton buttonName="Log in" onClick={sendUserInfo} height="h-36" />
+          <div className="w-24">
+            <BasicButton buttonName="Log in" onClick={sendUserInfo} height="h-36" />
+          </div>
         </div>
       </div>
     </div>
