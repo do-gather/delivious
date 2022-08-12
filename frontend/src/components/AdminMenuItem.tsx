@@ -52,8 +52,16 @@ export default function AdminMenuItem({
   const [modal, setModal] = useState(false);
   const [menuImage, setMenuImage] = useState(props.image);
   const [categories, setCategories] = useState([]);
-  const [value, setValue] = useState('');
+  const [keywords, setKeywords] = useState('');
   const [userInfo, setUserInfo] = useState('');
+
+  // const handleAddKeyword = (text: string) => {
+  //   console.log('text', text);
+  //   const newKeyword = {
+  //     text: text,
+  //   };
+  //   setKeywords([newKeyword, ...keywords]);
+  // };
 
   const handleChecked = (options: string, label: string) => {
     return options.includes(label);
@@ -63,19 +71,23 @@ export default function AdminMenuItem({
     setMenuImage(url);
   };
 
+  const handleKeyword = (e: any) => {
+    setKeywords(e.target.value);
+  };
+
   const handleCategory = () => {
     if (type === 'edit') {
       // 카테고리 삭제
-      axios.delete('http://localhost:8080/categories/{categoryId}', {
+      axios.delete(`${API_URL}/categories/{categoryId}`, {
         data: {
-          categoryName: value,
+          categoryName: keywords,
         },
       });
     } else if (type === 'new') {
       // 카테고리 생성
       axios
         .post(`${API_URL}/categories`, {
-          categoryName: value,
+          categoryName: keywords,
           headers: contentTypeJsonHeader(),
         })
         .then(response => {
@@ -83,14 +95,13 @@ export default function AdminMenuItem({
         })
         .catch(err => {
           console.error(err.response);
-          alert('post 안됩니다');
-          alert(value);
+          alert('post error');
         });
     } else {
       axios
         // 카테고리 수정
-        .put('http://localhost:8080/categories/{categoryId} ', {
-          categoryName: value,
+        .put(`${API_URL}/categories/{categoryId}`, {
+          categoryName: keywords,
         })
         .then(response => {
           setCategories(response.data);
@@ -105,7 +116,7 @@ export default function AdminMenuItem({
         <ImageUpload />
       </button>
       <div className="w-full grid grid-cols-7 gap-4 whitespace-nowrap text-center items-center text-base">
-        <InputBox placeholder="카테고리" text={props.category} />
+        <InputBox placeholder="카테고리" text={props.category} onChange={handleKeyword} />
         {type === 'new' ? <div>-</div> : <div>{props.id}</div>}
         <InputBox placeholder="메뉴 이름" text={props.name} />
         <div className="flex justify-center space-x-3">
