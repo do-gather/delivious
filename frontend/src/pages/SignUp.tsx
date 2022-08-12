@@ -81,8 +81,8 @@ export default function SignUp() {
   };
 
   return (
-    <div className="flex justify-center mt-36 px-4">
-      <div className="flex-col space-y-4">
+    <div className="pt-40 px-4 mx-auto md:w-96 h-full">
+      <div className="flex-col space-y-4 overflow-auto h-5/6">
         <div>
           <div className="text-base font-bold">아이디</div>
           <InputBox
