@@ -4,6 +4,7 @@ import com.delivious.backend.domain.menu.entity.Menu;
 import com.delivious.backend.domain.users.entity.Store;
 import com.delivious.backend.global.common.BaseEntity;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -38,6 +39,7 @@ public class Category extends BaseEntity {
             cascade = CascadeType.ALL)
     private Set<Menu> menus = new LinkedHashSet<>();
 
+    @Builder
     public Category(String categoryName, Store store) {
         this.categoryName = categoryName;
         this.store = store;
@@ -56,4 +58,5 @@ public class Category extends BaseEntity {
     public void update(String categoryName) {
         this.categoryName = categoryName;
     }
+
 }
