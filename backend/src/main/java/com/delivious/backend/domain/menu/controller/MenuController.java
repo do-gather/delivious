@@ -14,7 +14,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/menus")
+@RequestMapping("/api/menus")
 @RequiredArgsConstructor
 public class MenuController {
 
