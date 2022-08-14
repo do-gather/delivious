@@ -14,7 +14,7 @@ export default function Header() {
     <header className="fixed w-full h-16" style={{ backgroundColor: '#E5E5E5' }}>
       <div>
         {url.pathname.includes('login') && (
-          <div className=" flex justify-center mt-64 md:mx-0 mx-4">
+          <div className=" flex justify-center mt-20 md:mx-0 mx-4">
             <MainLogo width="576" height="122.032" />
           </div>
         )}

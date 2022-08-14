@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import BasicButton from './BasicButton';
 import InputBox from './InputBox';
 import PasswordIcon from '../images/PasswordIcon';
+import AuthService from '../services/AuthService';
+import { useUserInfo } from '../utils/store';
 
 /**
  * 어드민 로그인 모달 창
@@ -15,6 +17,22 @@ interface Props {
 export default function AdminLoginModal({ onClose }: Props) {
   const navigate = useNavigate();
   const [move, setMove] = useState(false);
+  const [password, setPassword] = useState('');
+  const { userName, userType } = useUserInfo();
+  const setInput = (e: any) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    AuthService.login(userName, password).then((res: any) => {
+      if (res.status === 200 && userType === 'admin') {
+        setMove(true);
+      } else {
+        alert('로그인에 실패하였습니다.');
+      }
+    });
+  };
 
   useEffect(() => {
     if (move) navigate('/admin');
@@ -49,17 +67,17 @@ export default function AdminLoginModal({ onClose }: Props) {
 
           <div className="w-full text-xs text-left my-8 place-self-center">
             <div className="pl-1">비밀번호</div>
-            <InputBox placeholder="Password" icon={<PasswordIcon width={15} height={15} />} mode="dark" />
+            <InputBox
+              placeholder="Password"
+              icon={<PasswordIcon width={15} height={15} />}
+              mode="dark"
+              onChange={setInput}
+            />
             <div className="pl-1 pr-3">해당 매장의 관리자 비밀번호를 입력해주세요.</div>
           </div>
 
           <div className="w-56 place-self-center">
-            <BasicButton
-              buttonName="관리자 모드 시작하기"
-              onClick={() => {
-                setMove(true);
-              }}
-            />
+            <BasicButton buttonName="관리자 모드 시작하기" onClick={handleSubmit} />
           </div>
         </div>
       </div>
