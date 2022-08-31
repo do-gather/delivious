@@ -16,12 +16,18 @@
   메뉴에서 이미지 클릭을 통해 장바구니에 추가 가능, 장바구니 내 수량 조절로 삭제 가능
 
   - 가맹 매장 이용자의 주문 목록 조회 및 상태 조회
-  <p align="middle">
-    <img src="https://user-images.githubusercontent.com/33317140/187600334-287f04cd-393c-407a-981c-802d5cef7b7c.png" width="43%" />
-  사용자 주문 히스토리 목록
-    <img src="https://user-images.githubusercontent.com/33317140/187600338-64b79ebe-d4fe-4cae-97e2-30a432552034.png" width="43%" />
-  주문 히스토리 상세 확인 가능
-  </p>
+    <p align="middle">
+      <img src="https://user-images.githubusercontent.com/33317140/187600334-287f04cd-393c-407a-981c-802d5cef7b7c.png" width="43%" />
+      <img src="https://user-images.githubusercontent.com/33317140/187600338-64b79ebe-d4fe-4cae-97e2-30a432552034.png" width="43%" />
+    </p>
+    <p align="middle">
+      <span width="43%">
+        사용자 주문 히스토리 목록
+      </span>
+      <span width="43%">
+        주문 히스토리 상세 확인 가능
+      </span>
+    </p>
 
   - 매장 관리자의 주문 상태 관리
 
