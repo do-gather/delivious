@@ -5,29 +5,29 @@
 
   - 매장 관리자의 메뉴 및 카테고리 관리
 
-  ![메뉴를 추가,수정, 삭제 가능](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/79ece083-309e-4ecd-9e9f-8cb380edf01c/Screen_Shot_2022-08-12_at_10.46.30_PM.png)
+  ![메뉴를 추가,수정, 삭제 가능](https://user-images.githubusercontent.com/33317140/187600323-9d476229-59ed-4d3b-9ebc-daf642443d4b.png)
 
   메뉴를 추가,수정, 삭제 가능d
 
   - 메뉴 주문
 
-  ![메뉴에서 이미지 클릭을 통해 장바구니에 추가 가능, 장바구니 내 수량 조절로 삭제 가능](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f1f1ab51-a44c-4e74-ac94-950699fb66ef/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-08-04_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_4.06.49.png)
+  ![메뉴에서 이미지 클릭을 통해 장바구니에 추가 가능, 장바구니 내 수량 조절로 삭제 가능](https://user-images.githubusercontent.com/33317140/187600329-cd4b74ce-aa84-4968-8142-ac1212e2d95e.png)
 
   메뉴에서 이미지 클릭을 통해 장바구니에 추가 가능, 장바구니 내 수량 조절로 삭제 가능
 
   - 가맹 매장 이용자의 주문 목록 조회 및 상태 조회
 
-  ![사용자 주문 히스토리 목록](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5f482037-c169-447d-b144-e3858eee2c4f/Screen_Shot_2022-08-12_at_11.06.26_PM.png)
+  ![사용자 주문 히스토리 목록](https://user-images.githubusercontent.com/33317140/187600334-287f04cd-393c-407a-981c-802d5cef7b7c.png)
 
   사용자 주문 히스토리 목록
 
-  ![주문 히스토리 상세 확인 가능](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/98f007f8-db7f-4a61-992a-36e90e578b84/Screen_Shot_2022-08-12_at_11.12.35_PM.png)
+  ![주문 히스토리 상세 확인 가능](https://user-images.githubusercontent.com/33317140/187600338-64b79ebe-d4fe-4cae-97e2-30a432552034.png)
 
   주문 히스토리 상세 확인 가능
 
   - 매장 관리자의 주문 상태 관리
 
-  ![주문을 확인하고 음식을 보내는 기능이 가능, 상태 확인 가능](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/39529164-eb4b-4de0-8d40-0d64f74ce99f/Screen_Shot_2022-08-12_at_10.44.14_PM.png)
+  ![주문을 확인하고 음식을 보내는 기능이 가능, 상태 확인 가능](https://user-images.githubusercontent.com/33317140/187600332-cb5f7512-18fb-467c-b706-e4bba2cb2271.png)
 
   주문을 확인하고 음식을 보내는 기능이 가능, 상태 확인 가능
 
@@ -197,27 +197,27 @@
 `[localhost:5050](http://localhost:5050)` 으로 접속할 수 있다.
 
 1. `PGADMIN_DEFAULT_EMAIL, PGADMIN_DEFAULT_PASSWORD` 로 설정된 계정으로 로그인 한다.
-2. ![스크린샷 2022-08-03 오전 12.34.01.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1bcb0558-227c-4dc6-a566-72bc09dc432e/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-08-03_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_12.34.01.png)
-
-3. db 컨테이너와 연결한다.
+2. db 컨테이너와 연결한다.
 
    1. Add New Server 클릭
 
-      ![스크린샷 2022-08-03 오전 12.33.54.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/65006084-588d-4fc9-88ac-9f553014d608/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-08-03_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_12.33.54.png)
+      ![스크린샷 2022-08-03 오전 12.33.54.png](https://user-images.githubusercontent.com/33317140/187600342-cb4aa1ec-0834-4886-818e-f41d8629094f.png)
 
    2. Name 작성: `db`
 
-      ![스크린샷 2022-08-03 오전 12.34.09.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ebebf0c8-0ac6-40ee-88cc-c9a6e6c3bf0e/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-08-03_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_12.34.09.png)
+      ![스크린샷 2022-08-03 오전 12.34.01.png](https://user-images.githubusercontent.com/33317140/187600341-b6e411e3-8ab0-4e47-9fd6-9f2a5af280a8.png)
 
    3. Host 작성: `db`, Password 작성: `.env` 파일 참고
 
-      ![스크린샷 2022-08-03 오전 12.34.09.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d4d5da03-5124-4aec-b78d-6f5a1558548b/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-08-03_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_12.34.09.png)
+      ![스크린샷 2022-08-03 오전 12.34.09.png](https://user-images.githubusercontent.com/33317140/187600344-47677e6d-acbb-4786-ac3f-42b38cec3c7b.png)
 
    4. 좌측 Databases 내 delivious 확인
 
-      ![스크린샷 2022-08-03 오전 12.34.17.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e117f6dd-65f0-4243-a486-0e03dda49195/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-08-03_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_12.34.17.png)
+      ![스크린샷 2022-08-03 오전 12.34.17.png](https://user-images.githubusercontent.com/33317140/187600347-b45fc804-2c05-45ab-aa0a-dde9806cdc79.png)
 
-4. 이와 같은 방법으로 table을 조회 할 수 있다.
+3. 이와 같은 방법으로 table을 조회 할 수 있다.
+
+![스크린샷 2022-08-02 오후 11.13.30.png](https://user-images.githubusercontent.com/33317140/187600350-5a9f0234-8bd5-4ed9-8dc6-38481457dadf.png)
 
 ## 자세한 구현 사항은 아래 링크 참고
 
