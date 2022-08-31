@@ -21,8 +21,7 @@
       <img src="https://user-images.githubusercontent.com/33317140/187600338-64b79ebe-d4fe-4cae-97e2-30a432552034.png" width="47%" />
     </p>
     <p align = "center">
-      <em>사용자 주문 히스토리 목록</em>
-      <em>주문 히스토리 상세 확인 가능}</em>
+      사용자 주문 히스토리 목록 및 주문 히스토리 상세 확인 가능
     </p>
 
   - 매장 관리자의 주문 상태 관리
